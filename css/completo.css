@@ -1,0 +1,61 @@
+.subunit{
+	fill: #FFEFD5;
+	stroke: #FA8072;
+}
+.subunit.ESP,
+.subunit.FRA,
+.subunit.DEU,
+.subunit.CHN,
+.subunit.JPN,
+.subunit.CHL,
+.subunit.USA,
+.subunit.THA,
+.subunit.BRA{
+	fill: #DC143C;
+}
+.subunit.europa{
+	fill: #FF8C00;
+}
+.subunit.america{
+	fill: #FFD700;
+}
+.subunit.asia{
+	fill: #FF0000;
+}
+.subunit-boundary{
+	fill: none;
+	stroke: #FFE4C4;
+}
+.subunit.ESI { 
+	fill: #ddc; 
+}
+.subunit.ESX { 
+	fill: #cdd; 
+}
+.subunit.SEC { 
+	fill: #cdc; 
+}
+.subunit.SEM { 
+	fill: #dcd; 
+}
+.subunit.ESC { 
+	display: none; 
+}
+.place-label{
+	font-size : 11px;
+}
+.province.colored {
+	fill: #FF4500;
+}
+.province.else {
+	fill: #FFFACD;
+}
+.place{
+	fill: #6495ED;
+}
+.provinces-boundary {
+  fill: none;
+  stroke: #FFD700;
+  stroke-dasharray: 2,2;
+  stroke-linejoin: round;
+}

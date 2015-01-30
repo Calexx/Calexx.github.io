@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/primera.css">
+        <link rel="stylesheet" type="text/css" href="css/estructura.css">
+        <link rel="stylesheet" type="text/css" href="css/navbar.css">
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="js/script.js"></script>
+    </head>
+    <body>
+    	<div id="cssmenu">
+    		<ul id="nav_menu">
+    			<li><a href="../VisualData"><span>Home</span></a></li>
+				<li><a href="tutorial.html"><span>Tutorial</span></a></li>
+				<li class="active"><a href="primera.html"><span>Primera</span></a></li>
+				<li><a href="segunda.html"><span>Segunda</span></a></li>
+				<li><a href="ultima.html"><span>Ultima</span></a></li>
+				<li class="last"><a href="completo.html"><span>Com</span></a></li>
+			</ul>
+		</div>
+		<div id="div_title">
+			<h1 id="title">Primera</h1>
+		</div>
+		<script>
+			var w = 600;
+		    var h = 400;
+		    var padding = 40;
+		    var formatBigNumbers = d3.format(".1s");
+			var div = d3.select("body")
+				.append("div");
+			var svg = div
+				.append("svg")
+				.attr("width", w)
+		        .attr("height", h)
+				.attr("class","graph");
+			
+			d3.json("json/paisos.json", function(json) {
+			    update(json);
+			});
+			function update(data){
+				var xScale = d3.scale.pow()
+					.exponent(.10)
+		        	.domain([0, d3.max(data, function(d) { 
+		        		return +d.poblacion;
+		        	})])
+		        	.range([padding, w - padding]);
+		    	var yScale = d3.scale.linear()
+		            .domain([0, d3.max(data, function(d) { 
+		            	return +d.riqueza; 
+		            })])
+		            .range([h-padding, padding]);
+		    	var rScale = d3.scale.sqrt()
+		            .domain([0, d3.max(data, function(d) { 
+		            	return +d.poblacion; 
+		            })])
+		            .range([5, 20]);
+		    	var xAxis = d3.svg.axis()
+		        	.scale(xScale)
+		        	.orient("bottom")
+		        	.ticks(3)
+		        	.tickFormat(formatBigNumbers)
+			    var yAxis = d3.svg.axis()
+	            	.scale(yScale)
+	            	.orient("left")
+	            	.ticks(5)
+		    		.tickFormat(formatBigNumbers);
+		    	var circles = svg.selectAll("circle")
+				    .data(data)
+				    .enter()
+				    .append("circle")
+				    .attr("fill",function(d){
+				    	switch(d.continente){
+				    		case "europa":
+				    			return "red";
+				    		case "america":
+				    			return "green";
+				    		case "asia":
+				    			return "blue";
+				    	}
+				    })
+				    .attr("cx", function(d) {
+	    				return xScale(d.poblacion)-padding/2;
+	    			})
+					.attr("cy", function(d) {
+					    return yScale(d.riqueza);
+					})
+					.attr("r", function(d) {
+	    				return rScale(d.poblacion);
+	    			});
+		    	var texts = svg.selectAll("text")
+				    .data(data)
+				    .enter()
+				    .append("text")
+					.attr("x", function(d) {
+	    				return xScale(d.poblacion)+padding/10;
+					})
+					.attr("y", function(d) {
+	    				return yScale(d.riqueza)-padding/3;
+	    			})
+	    			.text(function(d) {
+					    return d.nombre;
+					})
+					.attr("font-family", "sans-serif")
+					.attr("font-size", "11px")
+					.attr("fill", "black");
+
+		    	svg
+			    	.append("g")
+			    	.attr("class", "axis")
+			    	.attr("transform", "translate(0,"+(h-padding)+")")
+			    	.call(xAxis);
+			    svg
+			    	.append("g")
+			    	.attr("class", "axis")
+			    	.attr("transform", "translate("+padding+",0)")
+			    	.call(yAxis); 
+  
+			    svg
+				    .append("text")
+		            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+		            .attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+		            .attr("font-size", "10px")
+		            .text("Riqueza");
+
+		        svg
+		        	.append("text")
+		            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+		            .attr("transform", "translate("+((padding+w)/2)+","+(h-(padding/4))+")")  // centre below axis
+		            .attr("font-size", "10px")
+		            .text("Población");
+			}
+			
+			var h_leyenda = h/2;
+			
+			var svg_leyenda = div
+				.append("svg")
+				.attr("width", w)
+		        .attr("height", h_leyenda)
+				.attr("class","leyenda");
+			
+			svg_leyenda
+				.append("rect")
+				.attr("x",padding)
+				.attr("y",padding)
+				.attr("width", 20)
+			    .attr("height", 10)
+    			.attr("fill", "blue");
+			svg_leyenda
+				.append("rect")
+				.attr("x",padding)
+				.attr("y",padding*2)
+				.attr("width", 20)
+			    .attr("height", 10)
+				.attr("fill", "red");
+			svg_leyenda
+				.append("rect")
+				.attr("x",padding)
+				.attr("y",padding*3)
+				.attr("width", 20)
+			    .attr("height", 10)
+				.attr("fill", "green");
+			svg_leyenda
+				.append("text")
+				.attr("x", padding*2)
+				.attr("y", padding+10)
+		        .attr("font-size", "10px")
+		        .text("Asia");
+			svg_leyenda
+				.append("text")
+				.attr("x", padding*2)
+				.attr("y", padding*2+10)
+		        .attr("font-size", "10px")
+		        .text("Europa");
+			svg_leyenda
+				.append("text")
+				.attr("x", padding*2)
+				.attr("y", padding*3+10)
+		        .attr("font-size", "10px")
+		        .text("America");
+		</script>
+        <div id="footer">
+			<p> Alejandro Cortes Cabrejas</p>
+			<p> Follow him on gitHub as @Calexx</p>
+		</div>
+	</body>
+</html>
+	

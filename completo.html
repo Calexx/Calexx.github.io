@@ -164,14 +164,29 @@
 							.attr("dy", ".35em")
 							.style("text-anchor", function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; })
 							.text(function(d) { return d.properties.name; });
+						
+						var a = svg.append("a")
+							.attr("xlink:href", "completo.html")
+							
+						var rect = a.append("rect")
+							.attr("class","back")
+							.attr("x",650)
+							.attr("y",100)
+							.attr("width", 80)
+							.attr("height", 30)
+							.on("mouseover",function(){
+								d3.select(this).style("fill","blue");
+							})
+							.on("mouseleave",function(){
+								d3.select(this).style("fill","white");
+							});
+							
+						var text = a.append("text")
+							.attr("id","backtext")
+							.text("back")
+							.attr("x", 675)
+							.attr("y", 120);
 					});
-					
-					svg.append("rect")
-						.style("fill","blue")
-						.attr("x",padding)
-						.attr("y",padding)
-						.attr("width", 20)
-						.attr("height", 10)
 				}
 			});
 		</script>

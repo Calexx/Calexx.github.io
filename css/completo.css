@@ -54,17 +54,8 @@
 	fill: #6495ED;
 }
 .provinces-boundary {
-	fill: none;
-	stroke: #FFD700;
-	stroke-dasharray: 2,2;
-	stroke-linejoin: round;
-}
-.back{
-	stroke-width:3;
-	stroke: black;
-	fill: white;
-}
-#backtext{
-	font-family:sans-serif;
-	font-size:11px;
+  fill: none;
+  stroke: #FFD700;
+  stroke-dasharray: 2,2;
+  stroke-linejoin: round;
 }

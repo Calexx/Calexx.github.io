@@ -30,17 +30,22 @@
 		    var padding = 40;
 		    var formatBigNumbers = d3.format(".1s");
 			var div = d3.select("body")
-				.append("div");
+				.append("div")
+				.attr("id","primero");
 			var svg = div
 				.append("svg")
 				.attr("width", w)
 		        .attr("height", h)
-				.attr("class","graph");
+				.attr("class","graph")
+				.attr("id","svg_p");
 			
 			d3.json("json/paisos.json", function(json) {
 			    update(json);
 			});
+			
 			function update(data){
+				var svg = d3.select("#svg_p");
+				
 				var xScale = d3.scale.pow()
 					.exponent(.10)
 		        	.domain([0, d3.max(data, function(d) { 
@@ -180,6 +185,272 @@
 				.attr("y", padding*3+10)
 		        .attr("font-size", "10px")
 		        .text("America");
+		</script>
+		<div id="segundo">
+			<button id="button">Update</button>
+		</div>
+		<script>
+			var w = 600;
+		    var h = 400;
+		    var padding = 40;
+		    var formatBigNumbers = d3.format(".1s");
+			var div = d3.select("#segundo");
+			var svg = div
+				.append("svg")
+				.attr("width", w)
+		        .attr("height", h)
+				.attr("class","graph")
+				.attr("id","svg_s");
+			
+			d3.json("json/paisos.temp.json", function(json) {
+			    console.log(json);
+				draw(json);
+			});
+			
+			function draw(data){
+				var svg = d3.select("#svg_s");
+				
+				console.log(data[0].datos[0]);
+				
+				var xScale = d3.scale.pow()
+					.exponent(.10)
+		        	.domain([0, d3.max(data, function(d) { 
+		        		return +d.datos[0].poblacion;
+		        	})])
+		        	.range([padding, w - padding]);
+		    	var yScale = d3.scale.linear()
+		            .domain([0, d3.max(data, function(d) { 
+		            	return +d.datos[0].riqueza; 
+		            })])
+		            .range([h-padding, padding]);
+		    	var rScale = d3.scale.sqrt()
+		            .domain([0, d3.max(data, function(d) { 
+		            	return +d.datos[0].poblacion; 
+		            })])
+		            .range([5, 20]);
+		    	var xAxis = d3.svg.axis()
+		        	.scale(xScale)
+		        	.orient("bottom")
+		        	.ticks(3)
+		        	.tickFormat(formatBigNumbers)
+			    var yAxis = d3.svg.axis()
+	            	.scale(yScale)
+	            	.orient("left")
+	            	.ticks(5)
+		    		.tickFormat(formatBigNumbers);
+		    	var circles = svg.selectAll("circle")
+				    .data(data)
+				    .enter()
+				    .append("circle")
+				    .attr("fill",function(d){
+				    	switch(d.continente){
+				    		case "europa":
+				    			return "red";
+				    		case "america":
+				    			return "green";
+				    		case "asia":
+				    			return "blue";
+				    	}
+				    })
+				    .attr("cx", function(d) {
+	    				return xScale(d.datos[0].poblacion)-padding/2;
+	    			})
+					.attr("cy", function(d) {
+					    return yScale(d.datos[0].riqueza);
+					})
+					.attr("r", function(d) {
+	    				return rScale(d.datos[0].poblacion);
+	    			});
+					
+		    	var texts = svg.selectAll("text")
+					.attr("class","nombres")
+				    .data(data)
+				    .enter()
+				    .append("text")
+					.attr("x", function(d) {
+	    				return xScale(d.datos[0].poblacion)+padding/10;
+					})
+					.attr("y", function(d) {
+	    				return yScale(d.datos[0].riqueza)-padding/3;
+	    			})
+	    			.text(function(d) {
+					    return d.nombre;
+					})
+					.attr("font-family", "sans-serif")
+					.attr("font-size", "11px")
+					.attr("fill", "black");
+
+		    	svg
+			    	.append("g")
+			    	.attr("class", "axis")
+			    	.attr("transform", "translate(0,"+(h-padding)+")")
+			    	.call(xAxis);
+			    svg
+			    	.append("g")
+			    	.attr("class", "axis")
+			    	.attr("transform", "translate("+padding+",0)")
+			    	.call(yAxis); 
+  
+			    svg
+				    .append("text")
+		            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+		            .attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+		            .attr("font-size", "10px")
+		            .text("Riqueza");
+
+		        svg
+		        	.append("text")
+		            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+		            .attr("transform", "translate("+((padding+w)/2)+","+(h-(padding/4))+")")  // centre below axis
+		            .attr("font-size", "10px")
+		            .text("Población");
+				
+				svg
+					.append("text")
+					.attr("id","year")
+					.text(data[0].datos[0].year)
+					.attr("x", padding*10+60)
+					.attr("y", padding+10);
+					
+				var button = d3.select("#button");
+				button
+					.on("click",function(){
+						var circles = svg.selectAll("circle");
+						circles.transition()
+							.attr("cx", function(d) {
+								return xScale(d.datos[1].poblacion)-padding/2;
+							})
+							.attr("cy", function(d) {
+								return yScale(d.datos[1].riqueza);
+							})
+							.attr("r", function(d) {
+								return rScale(d.datos[1].poblacion);
+							})
+							.duration(3000) // this is 1s
+							.delay(100)
+							.each("end",function() { // as seen above
+								d3.select(this).transition()
+									.attr("cx", function(d) {
+										return xScale(d.datos[2].poblacion)-padding/2;
+									})
+									.attr("cy", function(d) {
+										return yScale(d.datos[2].riqueza);
+									})
+									.attr("r", function(d) {
+										return rScale(d.datos[2].poblacion);
+									})
+									.duration(3000) // this is 1s
+									.delay(100)
+									.each("end",function() {
+										d3.select(this)
+											.attr("cx", function(d) {
+												return xScale(d.datos[0].poblacion)-padding/2;
+											})
+											.attr("cy", function(d) {
+												return yScale(d.datos[0].riqueza);
+											})
+											.attr("r", function(d) {
+												return rScale(d.datos[0].poblacion);
+											});
+									});
+							});
+						var year = svg.select("#year");
+						year.transition()
+							.text(data[0].datos[1].year)
+							.duration(3000) // this is 1s
+							.delay(100)
+							.each("end",function() { // as seen above
+								d3.select(this).transition()
+									.text(data[0].datos[2].year)
+									.duration(3000) // this is 1s
+									.delay(100)
+									.each("end",function() {
+										d3.select(this)
+											.text(data[0].datos[0].year);
+									});
+							});
+							
+						var texts = svg.selectAll("text").data(data);
+						texts.transition()
+							.attr("x", function(d) {
+								return xScale(d.datos[1].poblacion)+padding/10;
+							})
+							.attr("y", function(d) {
+								return yScale(d.datos[1].riqueza)-padding/3;
+							})
+							.duration(3000) // this is 1s
+							.delay(100)
+							.each("end",function(){
+								d3.select(this).transition()
+									.attr("x", function(d) {
+										return xScale(d.datos[2].poblacion)+padding/10;
+									})
+									.attr("y", function(d) {
+										return yScale(d.datos[2].riqueza)-padding/3;
+									})
+									.duration(3000) // this is 1s
+									.delay(100)
+									.each("end",function() {
+										d3.select(this)
+											.attr("x", function(d) {
+												return xScale(d.datos[0].poblacion)+padding/10;
+											})
+											.attr("y", function(d) {
+												return yScale(d.datos[0].riqueza)-padding/3;
+											});
+									});
+							});
+					});
+			}
+			
+			var h_leyenda = h/2;
+			
+			var svg_leyenda = div
+				.append("svg")
+				.attr("width", w)
+		        .attr("height", h_leyenda)
+				.attr("class","leyenda");
+			
+			svg_leyenda
+				.append("rect")
+				.attr("x",padding)
+				.attr("y",padding)
+				.attr("width", 20)
+			    .attr("height", 10)
+    			.attr("fill", "blue");
+			svg_leyenda
+				.append("rect")
+				.attr("x",padding)
+				.attr("y",padding*2)
+				.attr("width", 20)
+			    .attr("height", 10)
+				.attr("fill", "red");
+			svg_leyenda
+				.append("rect")
+				.attr("x",padding)
+				.attr("y",padding*3)
+				.attr("width", 20)
+			    .attr("height", 10)
+				.attr("fill", "green");
+			svg_leyenda
+				.append("text")
+				.attr("x", padding*2)
+				.attr("y", padding+10)
+		        .attr("font-size", "10px")
+		        .text("Asia");
+			svg_leyenda
+				.append("text")
+				.attr("x", padding*2)
+				.attr("y", padding*2+10)
+		        .attr("font-size", "10px")
+		        .text("Europa");
+			svg_leyenda
+				.append("text")
+				.attr("x", padding*2)
+				.attr("y", padding*3+10)
+		        .attr("font-size", "10px")
+		        .text("America");
+			
 		</script>
         <div id="footer">
 			<p> Alejandro Cortes Cabrejas</p>

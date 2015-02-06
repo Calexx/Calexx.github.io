@@ -13,13 +13,25 @@
 .subunit.BRA{
 	fill: #DC143C;
 }
-.subunit.europa{
+.subunit.primero{
+	fill: #f9b966;
+}
+.subunit.segundo{
+	fill: #ce5f2d;
+}
+.subunit.tercero{
+	fill: #50232e;
+}
+.subunit.cuarto{
 	fill: #FF8C00;
 }
 .subunit.america{
-	fill: #FFD700;
+	fill: #FF8C00;
 }
 .subunit.asia{
+	fill: #FFD700;
+}
+.subunit.europa{
 	fill: #FF0000;
 }
 .subunit-boundary{

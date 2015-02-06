@@ -193,6 +193,8 @@
 			var w = 600;
 		    var h = 400;
 		    var padding = 40;
+			var i_circle,i_text,j_circle,j_text,i_year;
+			var nElem = 10;
 		    var formatBigNumbers = d3.format(".1s");
 			var div = d3.select("#segundo");
 			var svg = div
@@ -313,94 +315,147 @@
 					.attr("y", padding+10);
 					
 				var button = d3.select("#button");
+				
 				button
 					.on("click",function(){
-						var circles = svg.selectAll("circle");
-						circles.transition()
-							.attr("cx", function(d) {
-								return xScale(d.datos[1].poblacion)-padding/2;
-							})
-							.attr("cy", function(d) {
-								return yScale(d.datos[1].riqueza);
-							})
-							.attr("r", function(d) {
-								return rScale(d.datos[1].poblacion);
-							})
-							.duration(3000) // this is 1s
-							.delay(100)
-							.each("end",function() { // as seen above
-								d3.select(this).transition()
-									.attr("cx", function(d) {
-										return xScale(d.datos[2].poblacion)-padding/2;
-									})
-									.attr("cy", function(d) {
-										return yScale(d.datos[2].riqueza);
-									})
-									.attr("r", function(d) {
-										return rScale(d.datos[2].poblacion);
-									})
-									.duration(3000) // this is 1s
-									.delay(100)
-									.each("end",function() {
-										d3.select(this)
-											.attr("cx", function(d) {
-												return xScale(d.datos[0].poblacion)-padding/2;
-											})
-											.attr("cy", function(d) {
-												return yScale(d.datos[0].riqueza);
-											})
-											.attr("r", function(d) {
-												return rScale(d.datos[0].poblacion);
-											});
-									});
-							});
-						var year = svg.select("#year");
-						year.transition()
-							.text(data[0].datos[1].year)
-							.duration(3000) // this is 1s
-							.delay(100)
-							.each("end",function() { // as seen above
-								d3.select(this).transition()
-									.text(data[0].datos[2].year)
-									.duration(3000) // this is 1s
-									.delay(100)
-									.each("end",function() {
-										d3.select(this)
-											.text(data[0].datos[0].year);
-									});
-							});
-							
-						var texts = svg.selectAll("text").data(data);
-						texts.transition()
-							.attr("x", function(d) {
-								return xScale(d.datos[1].poblacion)+padding/10;
-							})
-							.attr("y", function(d) {
-								return yScale(d.datos[1].riqueza)-padding/3;
-							})
-							.duration(3000) // this is 1s
-							.delay(100)
-							.each("end",function(){
-								d3.select(this).transition()
-									.attr("x", function(d) {
-										return xScale(d.datos[2].poblacion)+padding/10;
-									})
-									.attr("y", function(d) {
-										return yScale(d.datos[2].riqueza)-padding/3;
-									})
-									.duration(3000) // this is 1s
-									.delay(100)
-									.each("end",function() {
-										d3.select(this)
-											.attr("x", function(d) {
-												return xScale(d.datos[0].poblacion)+padding/10;
-											})
-											.attr("y", function(d) {
-												return yScale(d.datos[0].riqueza)-padding/3;
-											});
-									});
-							});
+						i_circle = 0;
+						i_text = 0;
+						transitions();
 					});
+						
+				function transitions(){
+					
+					var circles = svg.selectAll("circle");
+					var texts = svg.selectAll("text").data(data);
+					var year = svg.select("#year");
+					
+					i_circle = 2;
+					i_text = 2;
+					i_year = 2;
+					j_circle = 2 * nElem;
+					j_text = 2 * nElem;
+					
+					circles.transition()
+						.attr("cx", function(d) {
+							return xScale(d.datos[1].poblacion)-padding/2;
+						})
+						.attr("cy", function(d) {
+							return yScale(d.datos[1].riqueza);
+						})
+						.attr("r", function(d) {
+							return rScale(d.datos[1].poblacion);
+						})
+						.duration(1000)
+						.delay(100)
+						.each("end",repeatCircles);
+					
+					texts.transition()
+						.attr("x", function(d) {
+							return xScale(d.datos[1].poblacion)+padding/10;
+						})
+						.attr("y", function(d) {
+							return yScale(d.datos[1].riqueza)-padding/3;
+						})
+						.duration(1000)
+						.delay(100)
+						.each("end",repeatText);
+						
+					year.transition()
+						.text(data[0].datos[1].year)
+						.duration(1000) // this is 1s
+						.delay(100)
+						.each("end",repeatYear);
+				}
+				
+				function repeatYear(){
+					if(i_year<data[0].datos.length+1){
+						if(i_year==data[0].datos.length){
+							d3.select(this).transition()
+								.text(data[0].datos[0].year)
+								.duration(3000) // this is 1s
+								.delay(100);
+							i_year++;
+						}
+						else{
+							d3.select(this).transition()
+								.text(data[0].datos[i_year].year)
+								.duration(1000) // this is 1s
+								.delay(100)
+								.each("end",repeatYear);
+							i_year++;
+						}
+					}
+				}
+				
+				function repeatText(){
+					i_text = parseInt(j_text/nElem);
+					if(i_text<data[0].datos.length+1){
+						if(i_text==data[0].datos.length){
+							d3.select(this).transition()
+								.attr("x", function(d) {
+									return xScale(d.datos[0].poblacion)+padding/10;
+								})
+								.attr("y", function(d) {
+									return yScale(d.datos[0].riqueza)-padding/3;
+								})
+								.duration(3000)
+								.delay(100);
+							j_text++;
+						}
+						else{
+							d3.select(this).transition()
+								.attr("x", function(d) {
+									return xScale(d.datos[i_text].poblacion)+padding/10;
+								})
+								.attr("y", function(d) {
+									return yScale(d.datos[i_text].riqueza)-padding/3;
+								})
+								.duration(1000)
+								.delay(100)
+								.each("end",repeatText);
+							j_text++;
+						}
+					}
+				}
+				
+				
+				function repeatCircles(){
+					i_circle = parseInt(j_circle/nElem);
+					console.log(i_circle);
+					if(i_circle<data[0].datos.length+1){
+						if(i_circle==data[0].datos.length){
+							d3.select(this).transition()
+								.attr("cx", function(d) {
+									return xScale(d.datos[0].poblacion)-padding/2;
+								})
+								.attr("cy", function(d) {
+									return yScale(d.datos[0].riqueza);
+								})
+								.attr("r", function(d) {
+									return rScale(d.datos[0].poblacion);
+								})
+								.duration(3000)
+								.delay(100);
+							j_circle++;
+						}
+						else{
+							d3.select(this).transition()
+								.attr("cx", function(d) {
+									return xScale(d.datos[i_circle].poblacion)-padding/2;
+								})
+								.attr("cy", function(d) {
+									return yScale(d.datos[i_circle].riqueza);
+								})
+								.attr("r", function(d) {
+									return rScale(d.datos[i_circle].poblacion);
+								})
+								.duration(1000)
+								.delay(100)
+								.each("end",repeatCircles);
+							j_circle++;
+						}
+					}
+				}
 			}
 			
 			var h_leyenda = h/2;

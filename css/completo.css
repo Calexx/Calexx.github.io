@@ -71,3 +71,7 @@
   stroke-dasharray: 2,2;
   stroke-linejoin: round;
 }
+#year{
+  font-size: 40px;
+  fill: #C0C0C0;
+}

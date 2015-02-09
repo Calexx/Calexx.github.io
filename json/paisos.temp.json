@@ -18,12 +18,12 @@
 			{
 				"year":"2012",
 				"poblacion":"31421421",
-				"riqueza":"250"
+				"riqueza":"2250"
 			},
 			{
 				"year":"2013",
 				"poblacion":"13232311",
-				"riqueza":"412"
+				"riqueza":"4"
 			}
 			]
 	},
@@ -46,7 +46,7 @@
 			{
 				"year":"2012",
 				"poblacion":"12331240",
-				"riqueza":"12"
+				"riqueza":"1"
 			},
 			{
 				"year":"2014",
@@ -74,7 +74,7 @@
 			{
 				"year":"2012",
 				"poblacion":"432514321",
-				"riqueza":"64"
+				"riqueza":"6433"
 			},
 			{
 				"year":"2014",
@@ -102,7 +102,7 @@
 			{
 				"year":"2012",
 				"poblacion":"545235234",
-				"riqueza":"111"
+				"riqueza":"1"
 			},
 			{
 				"year":"2014",
@@ -130,12 +130,12 @@
 			{
 				"year":"2012",
 				"poblacion":"5454354",
-				"riqueza":"56"
+				"riqueza":"5"
 			},
 			{
 				"year":"2014",
 				"poblacion":"1323122311",
-				"riqueza":"412"
+				"riqueza":"4122"
 			}
 			]	
 	},
@@ -148,12 +148,12 @@
 			{
 				"year":"2010",
 				"poblacion":"321333323",
-				"riqueza":"110"
+				"riqueza":"1103"
 			},
 			{
 				"year":"2011",
 				"poblacion":"32133323",
-				"riqueza":"123"
+				"riqueza":"1"
 			},
 			{
 				"year":"2012",
@@ -163,7 +163,7 @@
 			{
 				"year":"2014",
 				"poblacion":"1323122311",
-				"riqueza":"412"
+				"riqueza":"41"
 			}
 			]		
 	},
@@ -176,22 +176,22 @@
 			{
 				"year":"2010",
 				"poblacion":"2313124",
-				"riqueza":"43"
+				"riqueza":"433"
 			},
 			{
 				"year":"2011",
 				"poblacion":"32141411",
-				"riqueza":"314"
+				"riqueza":"31"
 			},
 			{
 				"year":"2012",
 				"poblacion":"54326",
-				"riqueza":"23"
+				"riqueza":"2322"
 			},
 			{
 				"year":"2014",
 				"poblacion":"1323122311",
-				"riqueza":"412"
+				"riqueza":"4"
 			}
 			]
 	},
@@ -209,7 +209,7 @@
 			{
 				"year":"2011",
 				"poblacion":"111111313",
-				"riqueza":"5"
+				"riqueza":"321"
 			},
 			{
 				"year":"2012",
@@ -219,7 +219,7 @@
 			{
 				"year":"2014",
 				"poblacion":"1323122311",
-				"riqueza":"412"
+				"riqueza":"4122"
 			}
 			]
 	},
@@ -232,7 +232,7 @@
 			{
 				"year":"2010",
 				"poblacion":"3123124",
-				"riqueza":"70"
+				"riqueza":"703"
 			},
 			{
 				"year":"2011",
@@ -242,7 +242,7 @@
 			{
 				"year":"2012",
 				"poblacion":"5435663",
-				"riqueza":"43"
+				"riqueza":"4"
 			},
 			{
 				"year":"2014",
@@ -265,7 +265,7 @@
 			{
 				"year":"2011",
 				"poblacion":"412341234",
-				"riqueza":"33"
+				"riqueza":"332"
 			},
 			{
 				"year":"2012",
@@ -275,7 +275,7 @@
 			{
 				"year":"2014",
 				"poblacion":"1323122311",
-				"riqueza":"412"
+				"riqueza":"4112"
 			}
 			]	
 	}

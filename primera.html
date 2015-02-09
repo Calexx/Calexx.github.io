@@ -205,30 +205,44 @@
 				.attr("id","svg_s");
 			
 			d3.json("json/paisos.temp.json", function(json) {
-			    console.log(json);
 				draw(json);
 			});
 			
 			function draw(data){
-				var svg = d3.select("#svg_s");
 				
-				console.log(data[0].datos[0]);
+				var array = [];
+				for(var i=0;i<data.length;i++){
+					var array2 = [];
+					for (var j=0;j<data[0].datos.length;j++){
+						array2.push(parseInt(data[i].datos[j].riqueza));
+					}
+					array.push(d3.max(array2));	
+				}
+				
+				var maxRiq = d3.max(array);
+				
+				var array = [];
+				for(var i=0;i<data.length;i++){
+					var array2 = [];
+					for (var j=0;j<data[0].datos.length;j++){
+						array2.push(parseInt(data[i].datos[j].poblacion));
+					}
+					array.push(d3.max(array2));
+				}
+				
+				var maxPob = d3.max(array);
+				
+				var svg = d3.select("#svg_s");
 				
 				var xScale = d3.scale.pow()
 					.exponent(.10)
-		        	.domain([0, d3.max(data, function(d) { 
-		        		return +d.datos[0].poblacion;
-		        	})])
+		        	.domain([0, maxPob])
 		        	.range([padding, w - padding]);
 		    	var yScale = d3.scale.linear()
-		            .domain([0, d3.max(data, function(d) { 
-		            	return +d.datos[0].riqueza; 
-		            })])
+		            .domain([0, maxRiq])
 		            .range([h-padding, padding]);
 		    	var rScale = d3.scale.sqrt()
-		            .domain([0, d3.max(data, function(d) { 
-		            	return +d.datos[0].poblacion; 
-		            })])
+		            .domain([0, maxPob])
 		            .range([5, 20]);
 		    	var xAxis = d3.svg.axis()
 		        	.scale(xScale)

@@ -21,9 +21,6 @@
 				<li class="last"><a href="completo.html"><span>Com</span></a></li>
 			</ul>
 		</div>
-		<div id="div_title">
-			<h1 id="title">Tutorial</h1>
-		</div>
         <br></br>
 	    <!--<script>
 	    	var dataset = [ 5, 10, 15, 20, 25];
@@ -283,7 +280,8 @@
 				})
 				.attr("r", function(d) {
     				return rScale(d[1]);
-    			});
+    			})
+				.attr("fill","#958e4a");
 		    var texts = svg.selectAll("text")
 			    .data(dataset)
 			    .enter()
@@ -299,7 +297,7 @@
     			})
 				.attr("font-family", "sans-serif")
 				.attr("font-size", "11px")
-				.attr("fill", "red");
+				.attr("fill", "#fffbf1");
 	    </script>
 	    <script>
 		    var dataset = [];
@@ -342,7 +340,8 @@
 				})
 				.attr("r", function(d) {
     				return rScale(d[1]);
-    			});
+    			})
+				.attr("fill","#958e4a");
 		    var texts = svg.selectAll("text")
 			    .data(dataset)
 			    .enter()
@@ -358,7 +357,7 @@
     			})
 				.attr("font-family", "sans-serif")
 				.attr("font-size", "11px")
-				.attr("fill", "red");
+				.attr("fill","#fffbf1");
 		    var xAxis = d3.svg.axis()
 	        	.scale(xScale)
 	        	.orient("bottom")
@@ -379,7 +378,7 @@
 		    	.attr("transform", "translate(" + padding + ",0)")
 		    	.call(yAxis);
 	    </script>
-	    <div id="footer">
+		<div id="footer">
 			<p> Alejandro Cortes Cabrejas</p>
 			<p> Follow him on gitHub as @Calexx</p>
 		</div>

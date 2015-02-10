@@ -41,7 +41,7 @@
 		}
 		#cssmenu #bg-one {
 		  height: 10px;
-		  background: #FF6600;
+		  background: #fffbf1;
 		}
 		#cssmenu #bg-two {
 		  height: 59px;
@@ -53,12 +53,12 @@
 		  height: 55px;
 		  z-index: 3;
 		  background: #222222;
-		  background: -moz-linear-gradient(top, #FFCC99 0%, #FFCC99 100%);
-		  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFCC99), color-stop(100%, #FFCC99));
-		  background: -webkit-linear-gradient(top, #FFCC99 0%, #FFCC99 100%);
-		  background: -o-linear-gradient(top, #FFCC99 0%, #FFCC99 100%);
-		  background: -ms-linear-gradient(top, #FFCC99 0%, #FFCC99 100%);
-		  background: linear-gradient(to bottom, #FFCC99 0%, #FFCC99 100%);
+		  background: -moz-linear-gradient(top, #030505 0%, #030505 100%);
+		  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #030505), color-stop(100%, #030505));
+		  background: -webkit-linear-gradient(top, #030505 0%, #030505 100%);
+		  background: -o-linear-gradient(top, #030505 0%, #030505 100%);
+		  background: -ms-linear-gradient(top, #030505 0%, #030505 100%);
+		  background: linear-gradient(to bottom, #030505 0%, #030505 100%);
 		}
 		#cssmenu #bg-four {
 		  bottom: 4px;
@@ -81,7 +81,7 @@
 		  margin-bottom: 4px;
 		  border-top-left-radius: 3px;
 		  border-top-right-radius: 3px;
-		  color: #eeeeee;
+		  color: #fffbf1;
 		  font-size: 15px;
 		  text-decoration: none;
 		}
@@ -92,12 +92,12 @@
 		#cssmenu ul li:hover,
 		#cssmenu ul li.active {
 		  background: #0f71ba;
-		  background: -moz-linear-gradient(top, #FF6600 0%, #FF6600 100%);
-		  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FF6600), color-stop(100%, #FF6600));
-		  background: -webkit-linear-gradient(top, #FF6600 0%, #FF6600 100%);
-		  background: -o-linear-gradient(top, #FF6600 0%, #FF6600 100%);
-		  background: -ms-linear-gradient(top, #FF6600 0%, #FF6600 100%);
-		  background: linear-gradient(to bottom, #FF6600 0%, #FF6600 100%);
+		  background: -moz-linear-gradient(top, #ac9597 0%, #ac9597 100%);
+		  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ac9597), color-stop(100%, #ac9597));
+		  background: -webkit-linear-gradient(top, #ac9597 0%, #ac9597 100%);
+		  background: -o-linear-gradient(top, #ac9597 0%, #ac9597 100%);
+		  background: -ms-linear-gradient(top, #ac9597 0%, #ac9597 100%);
+		  background: linear-gradient(to bottom, #ac9597 0%, #ac9597 100%);
 		}
 		#cssmenu ul li a:hover,
 		#cssmenu ul li.active > a {

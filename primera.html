@@ -21,9 +21,7 @@
 				<li class="last"><a href="completo.html"><span>Com</span></a></li>
 			</ul>
 		</div>
-		<div id="div_title">
-			<h1 id="title">Primera</h1>
-		</div>
+		
 		<!--<script>
 			var w = 600;
 		    var h = 400;
@@ -186,13 +184,13 @@
 		        .attr("font-size", "10px")
 		        .text("America");
 		</script>-->
+		<button class="myButton">Update</button>
 		<div id="segundo">
-			<button id="button">Update</button>
 		</div>
 		<script>
 			var w = 600;
 		    var h = 400;
-		    var padding = 40;
+		    var padding = 30;
 			var i_circle,i_text,j_circle,j_text,i_year;
 			var nElem = 10;
 		    var formatBigNumbers = d3.format(".1s");
@@ -261,11 +259,11 @@
 				    .attr("fill",function(d){
 				    	switch(d.continente){
 				    		case "europa":
-				    			return "red";
+				    			return "#f3a1a0";
 				    		case "america":
-				    			return "green";
+				    			return "#958e4a";
 				    		case "asia":
-				    			return "blue";
+				    			return "#ac9597";
 				    	}
 				    })
 				    .attr("cx", function(d) {
@@ -294,17 +292,19 @@
 					})
 					.attr("font-family", "sans-serif")
 					.attr("font-size", "11px")
-					.attr("fill", "black");
+					.attr("fill", "#fffbf1");
 
 		    	svg
 			    	.append("g")
 			    	.attr("class", "axis")
 			    	.attr("transform", "translate(0,"+(h-padding)+")")
+					.attr("fill","#fffbf1")
 			    	.call(xAxis);
 			    svg
 			    	.append("g")
 			    	.attr("class", "axis")
 			    	.attr("transform", "translate("+padding+",0)")
+					.attr("fill","#fffbf1")
 			    	.call(yAxis); 
   
 			    svg
@@ -312,6 +312,7 @@
 		            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
 		            .attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
 		            .attr("font-size", "10px")
+					.attr("fill","#fffbf1")
 		            .text("Riqueza");
 
 		        svg
@@ -319,7 +320,8 @@
 		            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
 		            .attr("transform", "translate("+((padding+w)/2)+","+(h-(padding/4))+")")  // centre below axis
 		            .attr("font-size", "10px")
-		            .text("Población");
+					.attr("fill","#fffbf1")
+		            .text("Poblacion");
 				
 				svg
 					.append("text")
@@ -328,7 +330,7 @@
 					.attr("x", padding*10+60)
 					.attr("y", padding+10);
 					
-				var button = d3.select("#button");
+				var button = d3.select(".myButton");
 				
 				button
 					.on("click",function(){
@@ -479,45 +481,47 @@
 				.attr("width", w)
 		        .attr("height", h_leyenda)
 				.attr("class","leyenda");
-			
 			svg_leyenda
 				.append("rect")
 				.attr("x",padding)
 				.attr("y",padding)
 				.attr("width", 20)
 			    .attr("height", 10)
-    			.attr("fill", "blue");
+    			.attr("fill", "#ac9597");
 			svg_leyenda
 				.append("rect")
 				.attr("x",padding)
 				.attr("y",padding*2)
 				.attr("width", 20)
 			    .attr("height", 10)
-				.attr("fill", "red");
+				.attr("fill", "#f3a1a0");
 			svg_leyenda
 				.append("rect")
 				.attr("x",padding)
 				.attr("y",padding*3)
 				.attr("width", 20)
 			    .attr("height", 10)
-				.attr("fill", "green");
+				.attr("fill", "#958e4a");
 			svg_leyenda
 				.append("text")
 				.attr("x", padding*2)
 				.attr("y", padding+10)
 		        .attr("font-size", "10px")
+				.attr("fill","#fffbf1")
 		        .text("Asia");
 			svg_leyenda
 				.append("text")
 				.attr("x", padding*2)
 				.attr("y", padding*2+10)
 		        .attr("font-size", "10px")
+				.attr("fill","#fffbf1")
 		        .text("Europa");
 			svg_leyenda
 				.append("text")
 				.attr("x", padding*2)
 				.attr("y", padding*3+10)
 		        .attr("font-size", "10px")
+				.attr("fill","#fffbf1")
 		        .text("America");
 		</script>
         <div id="footer">

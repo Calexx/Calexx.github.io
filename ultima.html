@@ -22,27 +22,27 @@
 				<li class="last"><a href="completo.html"><span>Com</span></a></li>
 			</ul>
 		</div>
-		<div id="div_title">
-			<h1 id="title">Ultima</h1>
-		</div>
 		<script>
 		//Width and height
 	        
 			var width = 960,
-				height = 1160;
+				height = 675;
 			
 			var projection = d3.geo.albers()
 			    .center([0, 40])
 			    .rotate([4.4, 0])
 			    .parallels([50, 60])
 			    .scale(1200 * 3)
-			    .translate([width / 3, height / 3]);
+			    .translate([width / 3, height / 2]);
 			
 			var path = d3.geo.path()
 			    .projection(projection)
 			    .pointRadius(2);
 			
-			var svg = d3.select("body").append("svg")
+			var div = d3.select("body").append("div")
+				.attr("id","segundo");
+				
+			var svg = div.append("svg")
 			    .attr("width", width)
 			    .attr("height", height);
 			

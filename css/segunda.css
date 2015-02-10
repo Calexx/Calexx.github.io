@@ -1,3 +1,7 @@
+body{
+	background-color: #030505;
+	margin: 0px;
+}
 .subunit-boundary {
   fill: none;
   stroke: #777;
@@ -8,16 +12,16 @@
   stroke: #aaa;
 }
 .subunit.SCT { 
-	fill: #ddc; 
+	fill: #958e4a; 
 }
 .subunit.WLS { 
-	fill: #cdd; 
+	fill: #7a6248; 
 }
 .subunit.NIR { 
-	fill: #cdc; 
+	fill: #f3a1a0; 
 }
 .subunit.ENG { 
-	fill: #dcd; 
+	fill: #ac9597; 
 }
 .subunit.IRL { 
 	display: none; 
@@ -32,7 +36,7 @@
 	stroke: #aaa;
 }
 .subunit-label {
-	fill: #777;
+	fill: #e7eedb;
 	fill-opacity: .5;
 	font-size: 20px;
 	font-weight: 300;
@@ -40,4 +44,16 @@
 }
 .place-label{
 	font-size : 11px;
+	fill: #fffbf1;
+}
+#footer{
+	position:relative;
+	top: 70%;
+	left: 80%;
+	width: 20%;
+}
+p{
+	color: #fffbf1;
+	font-family: Verdana;
+	font-size: 12px;
 }

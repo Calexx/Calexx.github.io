@@ -1,36 +1,56 @@
+body{
+	background-color: #030505;
+	margin: 0px;
+}
 .subunit.ESI { 
-	fill: #ddc; 
+	fill: #ac9597; 
 }
 .subunit.ESX { 
-	fill: #cdd; 
+	fill: #ac9597; 
 }
 .subunit.SEC { 
-	fill: #cdc; 
+	fill: #ac9597; 
 }
 .subunit.SEM { 
-	fill: #dcd; 
+	fill: #ac9597; 
 }
 .subunit.ESC { 
-	display: none; 
+	display: #ac9597; 
 }
 .place-label{
 	font-size : 11px;
+	fill: #fffbf1;
 }
 .province.colored {
-	fill: #FF4500;
+	fill: #958e4a;
 }
 .province.else {
-	fill: #FFFACD;
+	fill: #ac9597;
 }
 .place{
-	fill: #6495ED;
+	fill: #030505;
 }
 .provinces-boundary {
   fill: none;
-  stroke: #FFD700;
+  stroke: #e7eedb;
   stroke-dasharray: 2,2;
   stroke-linejoin: round;
 }
 .subunit-boundary {
-  stroke: #FF4500;
+  stroke: #fffbf1;
+}
+#segundo{
+	height: 725px;
+}
+
+#footer{
+	position:relative;
+	top: 70%;
+	left: 80%;
+	width: 20%;
+}
+p{
+	color: #fffbf1;
+	font-family: Verdana;
+	font-size: 12px;
 }

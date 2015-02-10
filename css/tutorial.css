@@ -1,47 +1,66 @@
-			div.bar {
-        		display: inline-block;
-				width: 20px;
-				height: 75px;
-				margin-right: 2px;
-				background-color: teal;
-			}
-			div.first_bar{
-				display: inline-block;
-				width: 20px;
-				height: 75px;
-				margin-right: 2px;
-				margin-left: 10%;
-				background-color: teal;
-			}
-			svg .pumpkin {
-				fill: yellow;
-    			stroke: orange;
-    			stroke-width: 5;
-    		}
-    		#datos{
-    			border-style: solid;
-    			border-color: orange;
-    			border-width: 2px;
-    		}
-    		#barras{
-    			border-style: solid;
-    			border-color: orange;
-    			border-width: 2px;
-    		}
-    		#acces{
-    			margin-left:auto;
-    			margin-rigth:auto;
-    			width:60%;
-    		}
-    		.axis path,
-			.axis line {
-			    fill: none;
-			    stroke: black;
-			    shape-rendering: crispEdges;
-			}
-			.axis text {
-			    font-family: sans-serif;
-			    font-size: 11px;
-			}
+svg{
+	margin-left: 100px;
+}
+body{
+	background-color: #030505;
+	margin: 0px;
+}
+div.bar {
+    display: inline-block;
+	width: 20px;
+	height: 75px;
+	margin-right: 2px;
+	background-color: teal;
+}
+div.first_bar{
+	display: inline-block;
+	width: 20px;
+	height: 75px;
+	margin-right: 2px;
+	margin-left: 10%;
+	background-color: teal;
+}
+svg .pumpkin {
+	fill: yellow;
+	stroke: orange;
+	stroke-width: 5;
+}
+#datos{
+	border-style: solid;
+	border-color: orange;
+	border-width: 2px;
+}
+#barras{
+	border-style: solid;
+	border-color: orange;
+	border-width: 2px;
+}
+#acces{
+	margin-left:auto;
+	margin-rigth:auto;
+	width:60%;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #ac9597;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+	fill: #ac9597;
+}
+#footer{
+	position:relative;
+	top: 70%;
+	left: 80%;
+	width: 20%;
+}
+p{
+	color: #fffbf1;
+	font-family: Verdana;
+	font-size: 12px;
+}
     		
     	

@@ -3,38 +3,36 @@ body{
 	margin: 0px;
 }
 .subunit.ESI { 
-	fill: #ac9597; 
+	fill: #f0ddaa; 
 }
 .subunit.ESX { 
-	fill: #ac9597; 
+	fill: #f0ddaa; 
 }
 .subunit.SEC { 
-	fill: #ac9597; 
+	fill: #f0ddaa; 
 }
 .subunit.SEM { 
-	fill: #ac9597; 
+	fill: #f0ddaa; 
 }
 .subunit.ESC { 
-	display: #ac9597; 
+	display: #f0ddaa; 
 }
 .place-label{
 	font-size : 11px;
-	fill: #fffbf1;
+	fill: white;
 }
 .province.colored {
-	fill: #958e4a;
+	fill: #e42d40;
 }
 .province.else {
-	fill: #ac9597;
+	fill: #f0ddaa;
 }
 .place{
-	fill: #030505;
+	fill: #142b3b;
 }
 .provinces-boundary {
   fill: none;
-  stroke: #e7eedb;
-  stroke-dasharray: 2,2;
-  stroke-linejoin: round;
+  stroke: #e47c5d;
 }
 .subunit-boundary {
   stroke: #fffbf1;

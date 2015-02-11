@@ -6,8 +6,8 @@ svg{
 	margin-left: 100px;
 }
 .subunit{
-	fill: #f3f3e3;
-	stroke: #fffbf1;
+	fill: #f0ddaa;
+	stroke: #e47c5d;
 }
 .subunit.ESP,
 .subunit.FRA,
@@ -21,16 +21,16 @@ svg{
 	fill: #DC143C;
 }
 .subunit.primero{
-	fill: #f2c1ac;
+	fill: #ece473;
 }
 .subunit.segundo{
-	fill: #f3a1a0;
+	fill: #f9d422;
 }
 .subunit.tercero{
-	fill: #ac9597;
+	fill: #f28f3f;
 }
 .subunit.cuarto{
-	fill: #694489;
+	fill: #e94f53;
 }
 .subunit.america{
 	fill: #FF8C00;
@@ -43,40 +43,7 @@ svg{
 }
 .subunit-boundary{
 	fill: none;
-	stroke: #958e4a;
-}
-.subunit.ESI { 
-	fill: #ddc; 
-}
-.subunit.ESX { 
-	fill: #cdd; 
-}
-.subunit.SEC { 
-	fill: #cdc; 
-}
-.subunit.SEM { 
-	fill: #dcd; 
-}
-.subunit.ESC { 
-	display: none; 
-}
-.place-label{
-	font-size : 11px;
-}
-.province.colored {
-	fill: #FF4500;
-}
-.province.else {
-	fill: #FFFACD;
-}
-.place{
-	fill: #6495ED;
-}
-.provinces-boundary {
-  fill: none;
-  stroke: #FFD700;
-  stroke-dasharray: 2,2;
-  stroke-linejoin: round;
+	stroke: #e47c5d;
 }
 #year{
   font-size: 40px;

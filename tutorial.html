@@ -177,7 +177,8 @@
     				return d*4;  //Solo el dato
     			})
     			.attr("fill", function(d) {
-    				return "rgb(0, 0, " + (d * 10) + ")";
+    				//return "rgb(0, 0, " + (d * 10) + ")";
+					return "rgb("+ (d*10) + ", 0, 0)";
     			});
 		    var texts = svg.selectAll("text")
 		    	.data(dataset)
@@ -281,7 +282,7 @@
 				.attr("r", function(d) {
     				return rScale(d[1]);
     			})
-				.attr("fill","#958e4a");
+				.attr("fill","#981914");
 		    var texts = svg.selectAll("text")
 			    .data(dataset)
 			    .enter()
@@ -341,7 +342,7 @@
 				.attr("r", function(d) {
     				return rScale(d[1]);
     			})
-				.attr("fill","#958e4a");
+				.attr("fill","#981914");
 		    var texts = svg.selectAll("text")
 			    .data(dataset)
 			    .enter()

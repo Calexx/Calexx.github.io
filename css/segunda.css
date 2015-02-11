@@ -4,7 +4,7 @@ body{
 }
 .subunit-boundary {
   fill: none;
-  stroke: #777;
+  stroke: #f6f5f5;
   stroke-dasharray: 2,2;
   stroke-linejoin: round;
 }
@@ -12,31 +12,22 @@ body{
   stroke: #aaa;
 }
 .subunit.SCT { 
-	fill: #958e4a; 
+	fill: #5ebdb2; 
 }
 .subunit.WLS { 
-	fill: #7a6248; 
+	fill: #f0ddaa; 
 }
 .subunit.NIR { 
-	fill: #f3a1a0; 
+	fill: #e47c5d; 
 }
 .subunit.ENG { 
-	fill: #ac9597; 
+	fill: #e42d40; 
 }
 .subunit.IRL { 
 	display: none; 
 }
-.subunit-boundary {
-	fill: none;
-	stroke: #777;
-	stroke-dasharray: 2,2;
-	stroke-linejoin: round;
-}
-.subunit-boundary.IRL {
-	stroke: #aaa;
-}
 .subunit-label {
-	fill: #e7eedb;
+	fill: #142b3b;
 	fill-opacity: .5;
 	font-size: 20px;
 	font-weight: 300;

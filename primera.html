@@ -259,11 +259,11 @@
 				    .attr("fill",function(d){
 				    	switch(d.continente){
 				    		case "europa":
-				    			return "#f3a1a0";
+				    			return "#5ebdb2";
 				    		case "america":
-				    			return "#958e4a";
+				    			return "#e47c5d";
 				    		case "asia":
-				    			return "#ac9597";
+				    			return "#e42d40";
 				    	}
 				    })
 				    .attr("cx", function(d) {
@@ -487,21 +487,21 @@
 				.attr("y",padding)
 				.attr("width", 20)
 			    .attr("height", 10)
-    			.attr("fill", "#ac9597");
+    			.attr("fill", "#e42d40");
 			svg_leyenda
 				.append("rect")
 				.attr("x",padding)
 				.attr("y",padding*2)
 				.attr("width", 20)
 			    .attr("height", 10)
-				.attr("fill", "#f3a1a0");
+				.attr("fill", "#5ebdb2");
 			svg_leyenda
 				.append("rect")
 				.attr("x",padding)
 				.attr("y",padding*3)
 				.attr("width", 20)
 			    .attr("height", 10)
-				.attr("fill", "#958e4a");
+				.attr("fill", "#e47c5d");
 			svg_leyenda
 				.append("text")
 				.attr("x", padding*2)

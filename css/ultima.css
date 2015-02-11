@@ -2,20 +2,26 @@ body{
 	background-color: #030505;
 	margin: 0px;
 }
+
 .subunit.ESI { 
 	fill: #f0ddaa; 
+	stroke: #e47c5d;
 }
 .subunit.ESX { 
-	fill: #f0ddaa; 
+	fill: #f0ddaa;
+	stroke: #e47c5d;	
 }
 .subunit.SEC { 
-	fill: #f0ddaa; 
+	fill: #f0ddaa;
+	stroke: #e47c5d;
 }
 .subunit.SEM { 
-	fill: #f0ddaa; 
+	fill: #f0ddaa;
+	stroke: #e47c5d;
 }
 .subunit.ESC { 
-	display: #f0ddaa; 
+	display: #f0ddaa;
+	stroke: #e47c5d;
 }
 .place-label{
 	font-size : 11px;
@@ -35,7 +41,7 @@ body{
   stroke: #e47c5d;
 }
 .subunit-boundary {
-  stroke: #fffbf1;
+  stroke: #e47c5d;
 }
 #segundo{
 	height: 725px;

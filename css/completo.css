@@ -7,7 +7,7 @@ svg{
 }
 .subunit{
 	fill: #f0ddaa;
-	stroke: #e47c5d;
+	stroke: #333333;
 }
 .subunit.ESP,
 .subunit.FRA,
@@ -21,16 +21,16 @@ svg{
 	fill: #DC143C;
 }
 .subunit.primero{
-	fill: #ece473;
+	fill: #5ebdb2;
 }
 .subunit.segundo{
-	fill: #f9d422;
+	fill: #e47c5d;
 }
 .subunit.tercero{
-	fill: #f28f3f;
+	fill: #e42d40;
 }
 .subunit.cuarto{
-	fill: #e94f53;
+	fill: #142b3b;
 }
 .subunit.america{
 	fill: #FF8C00;
@@ -43,7 +43,7 @@ svg{
 }
 .subunit-boundary{
 	fill: none;
-	stroke: #e47c5d;
+	stroke: #333333;
 }
 #year{
   font-size: 40px;

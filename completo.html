@@ -282,16 +282,16 @@
 										var tono = ''+data[i].datos[1].riqueza.length;
 										switch(tono){
 											case "1":
-												return "#ece473";
+												return "#5ebdb2";
 												break;
 											case "2":
-												return "#f9d422";
+												return "#e47c5d";
 												break;
 											case "3":
-												return "#f28f3f";
+												return "#e42d40";
 												break;
 											case "4":
-												return "#e94f53";
+												return "#142b3b";
 												break;
 										}
 									}
@@ -339,16 +339,16 @@
 												var tono = ''+data[i].datos[0].riqueza.length;
 												switch(tono){
 													case "1":
-														return "#ece473";
+														return "#5ebdb2";
 														break;
 													case "2":
-														return "#f9d422";
+														return "#e47c5d";
 														break;
 													case "3":
-														return "#f28f3f";
+														return "#e42d40";
 														break;
 													case "4":
-														return "#e94f53";
+														return "#142b3b";
 														break;
 												}
 											}
@@ -366,16 +366,16 @@
 												var tono = ''+data[i].datos[i_pais].riqueza.length;
 												switch(tono){
 													case "1":
-														return "#ece473";
+														return "#5ebdb2";
 														break;
 													case "2":
-														return "#f9d422";
+														return "#e47c5d";
 														break;
 													case "3":
-														return "#f28f3f";
+														return "#e42d40";
 														break;
 													case "4":
-														return "#e94f53";
+														return "#142b3b";
 														break;
 												}
 											}
@@ -403,28 +403,28 @@
 					.attr("y",padding)
 					.attr("width", 20)
 					.attr("height", 10)
-					.attr("fill", "#ece473");
+					.attr("fill", "#5ebdb2");
 				svg_leyenda
 					.append("rect")
 					.attr("x",padding)
 					.attr("y",padding*2)
 					.attr("width", 20)
 					.attr("height", 10)
-					.attr("fill", "#f9d422");
+					.attr("fill", "#e47c5d");
 				svg_leyenda
 					.append("rect")
 					.attr("x",padding)
 					.attr("y",padding*3)
 					.attr("width", 20)
 					.attr("height", 10)
-					.attr("fill", "#f28f3f");
+					.attr("fill", "#e42d40");
 				svg_leyenda
 					.append("rect")
 					.attr("x",padding)
 					.attr("y",padding*4)
 					.attr("width", 20)
 					.attr("height", 10)
-					.attr("fill", "#e94f53");
+					.attr("fill", "#142b3b");
 				svg_leyenda
 					.append("text")
 					.attr("x", padding)

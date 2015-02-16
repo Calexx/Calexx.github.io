@@ -1,0 +1,104 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+        <script src="http://d3js.org/topojson.v1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/navbar.css">
+		<link rel="stylesheet" type="text/css" href="css/dataset.css">
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="js/script.js"></script>
+		<script src="js/diccionario_europa.js"></script>
+    </head>
+    <body>
+    	<div id="cssmenu">
+    		<ul id="nav_menu">
+    			<li><a href="index.html"><span>Home</span></a></li>
+				<li><a href="tutorial.html"><span>Tutorial</span></a></li>
+				<li><a href="primera.html"><span>Primera</span></a></li>
+				<li><a href="segunda.html"><span>Segunda</span></a></li>
+				<li><a href="ultima.html"><span>Ultima</span></a></li>
+				<li class="active"><a href="dataset.html"><span>DataSet</span></a></li>
+				<li class="last"><a href="completo.html"><span>Completo</span></a></li>
+			</ul>
+		</div>
+		<script>
+			var width = 1200,
+				height = 800;
+				
+			var div = d3.select("body")
+				.append("div")
+				.attr("id","contenedor");
+			
+			var projection = d3.geo.mercator()
+			    .center([0, 40])
+			    .scale(600)
+			    .translate([width / 3, height/1.25]);
+			
+			var path = d3.geo.path()
+			    .projection(projection)
+			    .pointRadius(2);
+				
+			var svg = div
+				.append("svg")
+				.attr("id","europe_svg")
+				.attr("width", width)
+			    .attr("height", height)
+				
+			d3.json("json/europe.topo.json", function(error, europe) {
+				
+				d3.json("json/I+D_europe.json", function(json) {
+					update(json);
+				});
+				
+				function update(json){
+				
+					var data = pivotID(json);
+					
+					var dic = crearDiccionarioEuropa();
+					
+					svg.selectAll(".subunits")
+						.data(topojson.feature(europe, europe.objects.regions).features)
+						.enter().append("path")
+						.attr("d", path)
+						.attr("class", function(d){
+							return "subunit " + d.properties.NUTS_ID.substring(0,2); 
+						});
+					
+					svg.append("path")
+						.datum(topojson.mesh(europe, europe.objects.regions, function(a, b) { return a !== b}))
+						.attr("d", path)
+						.attr("class", "subunit-boundary");
+				}
+	
+			});
+			
+			function pivotID(data){
+				
+				var groups = [];
+
+				$.each(data, function(i, item) {
+					var geo = item.GEO;					
+					delete item.GEO;
+					
+					if(groups[geo]){
+						groups[geo].push(item);
+					}
+					else{
+						groups[geo] = [item];
+					}
+					
+				});
+
+				console.log(groups["Austria"]);
+				
+			}
+			
+		</script>
+		<div id="footer">
+			<p> Alejandro Cortes Cabrejas</p>
+			<p> Follow him on gitHub as @Calexx</p>
+		</div>
+	</body>
+</html>

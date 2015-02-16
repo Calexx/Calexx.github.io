@@ -1,0 +1,38 @@
+body{
+	background-color: #030505;
+	margin: 0px;
+}
+svg{
+	margin-left: 100px;
+}
+.subunit{
+	fill: #f0ddaa;
+	stroke: #333333;
+}
+.subunit.AT{
+	fill: #e47c5d;
+}
+.subunit.BE{
+	fill: #5ebdb2;
+}
+.subunit.BG{
+	fill: #e42d40;
+}
+.subunit.ES{
+	fill: #142b3b;
+}
+.subunit-boundary{
+	fill: none;
+	stroke: #333333;
+}
+#footer{
+	position:relative;
+	top: 70%;
+	left: 80%;
+	width: 20%;
+}
+p{
+	color: #fffbf1;
+	font-family: Verdana;
+	font-size: 12px;
+}

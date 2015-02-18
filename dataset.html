@@ -74,26 +74,26 @@
 	
 			});
 			
-			function pivotID(data){
-				
-				var groups = [];
-
-				$.each(data, function(i, item) {
-					var geo = item.GEO;					
-					delete item.GEO;
-					
-					if(groups[geo]){
-						groups[geo].push(item);
+			function pivotID(json){
+			
+				_.groupByMulti = function (obj, values, context) {
+					if (!values.length)
+						return obj;
+					var byFirst = _.groupBy(obj, values[0], context),
+						rest = values.slice(1);
+					for (var prop in byFirst) {
+						byFirst[prop] = _.groupByMulti(byFirst[prop], rest, context);
 					}
-					else{
-						groups[geo] = [item];
-					}
-					
-				});
+					return byFirst;
+				};
 
-				console.log(groups["Austria"]);
-				
+				var result = JSON.stringify(
+					_.groupByMulti(json, ['GEO','SECTPERF','TIME'])
+				, null, 4);
+			
+				console.log(result);
 			}
+			
 			
 		</script>
 		<div id="footer">

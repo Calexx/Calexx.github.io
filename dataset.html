@@ -100,7 +100,13 @@
 						});
 						
 					svg.append("path")
-						.datum(topojson.mesh(europe, europe.objects.regions, function(a, b) { return a !== b}))
+						//.datum(topojson.mesh(europe, europe.objects.regions, function(a, b) { return a !== b}))
+						.datum(topojson.mesh(europe, europe.objects.regions, function(d) {
+							if(d.properties.NUTS_ID.length == 2){
+								return true;
+							}
+							else return false;
+						}))
 						.attr("d", path)
 						.attr("class", "subunit-boundary");
 						

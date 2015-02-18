@@ -4,7 +4,7 @@ function crearDiccionarioEuropa (){
 		,"Bulgaria":"BG"
 		,"Czech Republic":"CZ"
 		,"Denmark":"DK"
-		,"Germany":"DE"
+		,"Germany (until 1990 former territory of the FRG)":"DE"
 		,"Estonia":"EE"
 		,"Ireland":"IE"
 		,"Greece":"EL"

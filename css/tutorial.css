@@ -1,9 +1,6 @@
 svg{
-	margin-left: 100px;
-}
-body{
-	background-color: #030505;
-	margin: 0px;
+	display:block;
+	margin: auto;
 }
 div.bar {
     display: inline-block;
@@ -43,24 +40,13 @@ svg .pumpkin {
 .axis path,
 .axis line {
     fill: none;
-    stroke: #e8e8e7;
+    stroke: #000000;
     shape-rendering: crispEdges;
 }
 .axis text {
     font-family: sans-serif;
     font-size: 11px;
-	fill: #e8e8e7;
-}
-#footer{
-	position:relative;
-	top: 70%;
-	left: 80%;
-	width: 20%;
-}
-p{
-	color: #fffbf1;
-	font-family: Verdana;
-	font-size: 12px;
+	fill: #000000;
 }
     		
     	

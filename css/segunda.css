@@ -1,6 +1,6 @@
-body{
-	background-color: #030505;
-	margin: 0px;
+svg{
+	display:block;
+	margin: auto;
 }
 .subunit-boundary {
   fill: none;
@@ -35,16 +35,5 @@ body{
 }
 .place-label{
 	font-size : 11px;
-	fill: #fffbf1;
-}
-#footer{
-	position:relative;
-	top: 70%;
-	left: 80%;
-	width: 20%;
-}
-p{
-	color: #fffbf1;
-	font-family: Verdana;
-	font-size: 12px;
+	fill: black;
 }

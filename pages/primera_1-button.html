@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/primera.css">
+</head>
+<body>
+	<script>
+		var div = d3.select("#panel_1-head");
+		var title = div
+			.append("i")
+			.attr("class","fa fa-bar-chart-o fa-fw")
+			.html("Riqueza y Poblacion");
+		var button = div
+			.append("button")
+			.attr("class","myButton")
+			.text("update");
+	</script>
+</body>
+</html>

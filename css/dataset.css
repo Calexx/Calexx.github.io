@@ -1,49 +1,34 @@
-body{
-	background-color: #030505;
-	margin: 0px;
+svg{
+	display:block;
+	margin: auto;
 }
 .subunit{
 	fill: #f0ddaa;
 	stroke: #333333;
 }
 .subunit.primero{
-	fill: #5ebdb2;
+	fill: #F2F2F2;
 }
 .subunit.segundo{
-	fill: #e47c5d;
+	fill: #F2F2F2;
 }
 .subunit.tercero{
-	fill: #e42d40;
+	fill: #F2F2F2;
 }
 .subunit.cuarto{
-	fill: #142b3b;
+	fill: #F2F2F2;
 }
 .subunit-boundary{
 	fill: none;
 	stroke: #333333;
 }
-#title{
-	color: #fffbf1;
-	margin-bottom: 50px;
-}
 #year{
 	font-size: 40px;
-	fill: #C0C0C0;
-}
-#footer{
-	position:relative;
-	top: 70%;
-	left: 80%;
-	width: 20%;
+	fill: black;
 }
 #sector{
 	font-size: 40px;
-	fill: #C0C0C0; 
-}
-p{
-	color: #fffbf1;
-	font-family: Verdana;
-	font-size: 12px;
+	fill: black; 
 }
 .myButton {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -65,13 +50,12 @@ p{
 	cursor:pointer;
 	color:#666666;
 	font-family:arial;
-	font-size:15px;
+	font-size:10px;
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
-	margin-left: 150px;
-	margin-bottom: 50px;
+	float:right;
 }
 .myButton:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
@@ -82,11 +66,4 @@ p{
 	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
 	background-color:#e9e9e9;
-}
-#europe_svg{
-	float:left;
-	margin-left: 100px;
-}
-.leyenda{
-	
 }

@@ -1,9 +1,6 @@
-body{
-	background-color: #030505;
-	margin: 0px;
-}
 svg{
-	margin-left: 100px;
+	display:block;
+	margin: auto;
 }
 .subunit{
 	fill: #f0ddaa;
@@ -47,22 +44,9 @@ svg{
 }
 #year{
   font-size: 40px;
-  fill: #C0C0C0;
+  fill: black;
 }
-#segundo{
-	height: 700px;
-}
-#footer{
-	position:relative;
-	top: 70%;
-	left: 80%;
-	width: 20%;
-}
-p{
-	color: #fffbf1;
-	font-family: Verdana;
-	font-size: 12px;
-}
+
 .myButton {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -83,13 +67,12 @@ p{
 	cursor:pointer;
 	color:#666666;
 	font-family:arial;
-	font-size:15px;
+	font-size:10px;
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
-	margin-top: 40px;
-	margin-left: 100px;
+	float:right;
 }
 .myButton:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));

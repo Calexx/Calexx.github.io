@@ -1,6 +1,6 @@
-body{
-	background-color: #030505;
-	margin: 0px;
+svg{
+	display:block;
+	margin: auto;
 }
 .subunit.ESI { 
 	fill: #f0ddaa; 
@@ -24,7 +24,7 @@ body{
 }
 .place-label{
 	font-size : 11px;
-	fill: white;
+	fill: black;
 }
 .province.colored {
 	fill: #e42d40;
@@ -41,19 +41,4 @@ body{
 }
 .subunit-boundary {
   stroke: #e47c5d;
-}
-#segundo{
-	height: 725px;
-}
-
-#footer{
-	position:relative;
-	top: 70%;
-	left: 80%;
-	width: 20%;
-}
-p{
-	color: #fffbf1;
-	font-family: Verdana;
-	font-size: 12px;
 }

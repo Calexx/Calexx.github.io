@@ -11,8 +11,8 @@
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!-- Custom SVG -->
+	<link href="css/tutorial.css" rel="stylesheet" type="text/css">
 	<!-- Angular JS -->
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<!-- D3 JS -->
@@ -25,12 +25,14 @@
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<!-- Controllers Angular JS -->
 	<script src="js/displayController.js"></script>
+	<!-- Scripts Tutorial -->
+	<script src="js/tutorial.js"></script>
 	
 	<script type="text/javascript" async="async">
 		$(document).ready(function(){
-		   $("#panel_1").load("pages/tutorial_1.html");
-		   $("#panel_2").load("pages/tutorial_2.html");
-		   $("#panel_3").load("pages/tutorial_3.html");
+			drawBars("#panel_1");
+			drawPoints("#panel_2");
+			drawPointsAxis("#panel_3");
 		});
 	</script>
 	

@@ -11,8 +11,8 @@
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom SVG -->
+    <link href="css/segunda.css" rel="stylesheet" type="text/css">
 	<!-- Angular JS -->
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<!-- D3 JS -->
@@ -25,10 +25,14 @@
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<!-- Controllers Angular JS -->
 	<script src="js/displayController.js"></script>
+	<!-- Scripts Segunda -->
+	<script src="js/segunda.js" type="text/javascript"></script>
 	
 	<script type="text/javascript" async="async">
 		$(document).ready(function(){
-			$("#panel_1-body").load("pages/segunda_1.html");
+			d3.json("json/uk.topo.json", function(error, uk) {
+				drawMap(uk,"#panel_1-body");
+			});
 		});
 	</script>
 	

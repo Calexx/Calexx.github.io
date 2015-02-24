@@ -11,8 +11,8 @@
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom SVG -->
+    <link href="css/ultima.css" rel="stylesheet" type="text/css">
 	<!-- Angular JS -->
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<!-- D3 JS -->
@@ -23,12 +23,16 @@
 	<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<!-- Underscore JS-->
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+	<!-- Scripts Ultima-->
+	<script type="text/javascript" src="js/ultima.js"></script>
 	<!-- Controllers Angular JS -->
 	<script src="js/displayController.js"></script>
 	
 	<script type="text/javascript" async="async">
 		$(document).ready(function(){
-			$("#panel_1-body").load("pages/ultima_1.html");
+			d3.json("json/spain.topo.json", function(error, spain) {
+				drawMap(spain,"#panel_1-body");
+			});
 		});
 	</script>
 	
@@ -95,7 +99,7 @@
 				<!-- Titulo -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">Segunda</h1>
+						<h1 class="page-header">Ultima</h1>
 					</div>
 				</div>
 				

@@ -13,6 +13,8 @@
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!-- Custom SVG -->
+	<link rel="stylesheet" type="text/css" href="css/dataset.css">
 	<!-- Angular JS -->
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<!-- D3 JS -->
@@ -25,11 +27,30 @@
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<!-- Controllers Angular JS -->
 	<script src="js/displayController.js"></script>
+	<!-- Underscore JS -->
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+	<!-- Scripts DataSet -->
+	<script src="js/dataset.js"></script>
 	
-	<script type="text/javascript" async="async">
+	<script type="text/javascript">
 		$(document).ready(function(){
-			$("#panel_1-head").load("pages/dataset_1-button.html");
-			$("#panel_1-body").load("pages/dataset_1.html");
+			var data;
+			d3.json("json/europe.topo.json", function(error, europe) {	
+				d3.json("json/I+D_europe.json", function(json) {
+						data = pivotID(json);
+						drawTitleButton("#panel_1-head");
+						drawMap(europe,data,"#panel_1-body");
+						
+						drawGraph(data["Euro area (18 countries)"],"#panelr_1-body","All sectors");
+						drawTitle("#panelr_1-head","EuroArea Investment All Sectors");
+						
+						drawGraph(data["Euro area (18 countries)"],"#panelr_2-body","Business enterprise sector");
+						drawTitle("#panelr_2-head","EuroArea Investment Business enterprise sector");
+						
+						drawGraph(data["Euro area (18 countries)"],"#panelr_3-body","Government sector");
+						drawTitle("#panelr_3-head","EuroArea Investment Government sector");
+					});
+			});
 		});
 	</script>
 	
@@ -110,7 +131,7 @@
 						<div class="panel panel-default" id="panel_1">
 							<!-- Titulo Panel Tutorial 1 -->
 							<div class="panel-heading" id="panel_1-head">
-								<i class="fa fa-bar-chart-o fa-fw"></i> I+D en Europa
+								<i class="fa fa-bar-chart-o fa-fw"></i>
 							</div>
 							<!-- Cuerpo Panel Tutorial 1 -->
 							<div id="panel_1-body" class="panel-body">
@@ -124,13 +145,37 @@
 						
 						<!-- Panel 1 -->
 						<div class="panel panel-default">
-							<!-- Titulo Panel 1 -->
-							<div class="panel-heading">
-								<i class="fa fa-bell fa-fw"></i> Notifications Panel
+							<!-- Head Panel 1 -->
+							<div class="panel-heading" id="panelr_1-head">
+								<i class="fa fa-bar-chart-o fa-fw"></i>
 							</div>
 							<!-- Cuerpo Panel 1 -->
-							<div class="panel-body">
-								<a href="#" class="btn btn-default btn-block">View All Alerts</a>
+							<div class="panel-body" id="panelr_1-body">
+								
+							</div>
+						</div>
+						
+						<!-- Panel 2 -->
+						<div class="panel panel-default">
+							<!-- Head Panel 2 -->
+							<div class="panel-heading" id="panelr_2-head">
+								<i class="fa fa-bar-chart-o fa-fw"></i>
+							</div>
+							<!-- Cuerpo Panel 2 -->
+							<div class="panel-body" id="panelr_2-body">
+								
+							</div>
+						</div>
+						
+						<!-- Panel 3 -->
+						<div class="panel panel-default">
+							<!-- Head Panel 3 -->
+							<div class="panel-heading" id="panelr_3-head">
+								<i class="fa fa-bar-chart-o fa-fw"></i>
+							</div>
+							<!-- Cuerpo Panel 3 -->
+							<div class="panel-body" id="panelr_3-body">
+								
 							</div>
 						</div>
 					</div>

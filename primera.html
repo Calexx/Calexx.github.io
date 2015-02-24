@@ -12,7 +12,7 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/primera.css" rel="stylesheet" type="text/css">
 	<!-- Angular JS -->
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<!-- D3 JS -->
@@ -25,12 +25,17 @@
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<!-- Controllers Angular JS -->
 	<script src="js/displayController.js"></script>
+	<!-- Scripts Primera -->
+	<script src="js/primera.js"></script>
 	
 	<script type="text/javascript" async="async">
 		$(document).ready(function(){
-			$("#panel_1-head").load("pages/primera_1-button.html");
-			$("#panel_1-body").load("pages/primera_1.html");
-		   
+			var data;	
+			d3.json("json/paisos.temp.json", function(json) {
+				data = json;
+				drawTitle("#panel_1-head");
+				drawGraph(data,"#panel_1-body");
+			});
 		});
 	</script>
 	
@@ -111,7 +116,7 @@
 						<div class="panel panel-default" id="panel_1">
 							<!-- Titulo Panel Tutorial 1 -->
 							<div class="panel-heading" id="panel_1-head">
-								<i class="fa fa-bar-chart-o fa-fw"></i> Riqueza
+								<i class="fa fa-bar-chart-o fa-fw"></i>
 							</div>
 							<!-- Cuerpo Panel Tutorial 1 -->
 							<div id="panel_1-body" class="panel-body">

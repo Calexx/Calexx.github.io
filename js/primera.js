@@ -13,7 +13,7 @@ function drawTitle(id){
 function drawGraph(data, id){
 	var w = 600;
 	var h = 400;
-	var padding = 0;
+	var padding = 30;
 	var i_circle,i_text,j_circle,j_text,i_year;
 	var nElem = 10;
 	var formatBigNumbers = d3.format(".1s");

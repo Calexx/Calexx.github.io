@@ -6,13 +6,15 @@ function drawGraph(data,id,sector){
 		
 	var padding = 30;
 	
+	var initialValue = data[sector]["2004"][0]["Value"];
+	
 	var values = [];
 	for (key in data[sector]){
-		values.push(data[sector][key][0]["Value"]);
+		values.push(data[sector][key][0]["Value"].replace(',',''));
 	}
 	
 	var xScale = d3.scale.linear()
-		.domain([2003, 2013])
+		.domain([2004, 2013])
 		.range([padding, w - padding]);
 	
 	var yScale = d3.scale.linear()
@@ -56,7 +58,7 @@ function drawGraph(data,id,sector){
 	var array = []
 	for (key in data[sector]){
 		var value = {};
-		value[key] = data[sector][key][0]["Value"];
+		value[key] = data[sector][key][0]["Value"].replace(',','');
 		array.push(value);
 	}
 	
@@ -65,7 +67,17 @@ function drawGraph(data,id,sector){
 	    .enter()
 	    .append("circle")
 	    .attr("fill",function(d){
-				return "black";
+				var value = d[Object.keys(d)[0]] - initialValue;
+				initialValue = d[Object.keys(d)[0]];
+				if (value<0){
+					return "#D93A46";
+				} 
+				else if (value>0){
+					return "#3F7F93";
+				}
+				else{
+					return "#F2F2F2";
+				}
 	    })
 	    .attr("cx", function(d) {
 			return xScale(Object.keys(d)[0]);
@@ -164,8 +176,8 @@ function drawMap(europe,data,id){
 	 	.attr("class", function(d){
 	 		for (key in data){
 	 			if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
-	 				var tono = data[key]["All sectors"][yearsSort[0]][0]["Value"];
-	 				if(tono<100){
+	 				var tono = data[key]["All sectors"][yearsSort[0]][0]["Value"].replace(',','');
+					if(tono<100){
 	 					return "subunit " + key + " " + "primero";
 	 				}
 	 				else if (tono<500){
@@ -235,9 +247,11 @@ function drawMap(europe,data,id){
 	 		.style("fill",function(d){
 	 			for(key in data){
 	 				if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
-	 					var tono = initialValues[key]-data[key]["All sectors"][yearsSort[1]][0]["Value"];
+						var value = initialValues[key].replace(',','');
+						var value2 = data[key]["All sectors"][yearsSort[1]][0]["Value"].replace(',','');
+	 					var tono = value2-value;
 	 					if(tono<0){
-	 						var qual = initialValues[key]/Math.abs(tono);
+	 						var qual = value/Math.abs(tono);
 	 						if(qual<10){
 	 							return "#FAE6E7"
 	 						}
@@ -249,7 +263,7 @@ function drawMap(europe,data,id){
 	 						}
 	 					}
 	 					else if (tono>0){
-	 						var qual = initialValues[key]/Math.abs(tono);
+	 						var qual = value/Math.abs(tono);
 	 						if(qual<10){
 	 							return "#E9F2F5"
 	 						}
@@ -287,9 +301,10 @@ function drawMap(europe,data,id){
 	 				.style("fill",function(d){
 	 					for(key in data){
 	 						if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
-	 							var tono = data[key]["All sectors"][yearsSort[0]][0]["Value"];
+								var value = initialValues[key].replace(',','');
+								var tono = data[key]["All sectors"][yearsSort[0]][0]["Value"].replace(',','');
 	 							if(tono<0){
-	 								var qual = initialValues[key]/Math.abs(tono);
+	 								var qual = value/Math.abs(tono);
 	 								if(qual<10){
 	 									return "#F2F2F2"
 	 								}
@@ -301,7 +316,7 @@ function drawMap(europe,data,id){
 	 								}
 	 							}
 	 							else if (tono>0){
-	 								var qual = initialValues[key]/Math.abs(tono);
+	 								var qual = value/Math.abs(tono);
 	 								if(qual<10){
 	 									return "#F2F2F2"
 	 								}
@@ -327,9 +342,11 @@ function drawMap(europe,data,id){
 	 				.style("fill",function(d){
 	 					for(key in data){
 	 						if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
-	 							var tono = initialValues[key]-data[key]["All sectors"][yearsSort[i_pais]][0]["Value"];
+								var value = initialValues[key].replace(',','');
+								var value2 = data[key]["All sectors"][yearsSort[i_pais]][0]["Value"].replace(',','');
+	 							var tono = value2-value;
 	 							if(tono<0){
-	 								var qual = initialValues[key]/Math.abs(tono);
+	 								var qual = value/Math.abs(tono);
 	 								if(qual<10){
 	 									return "#FAE6E7"
 	 								}
@@ -341,7 +358,7 @@ function drawMap(europe,data,id){
 	 								}
 	 							}
 	 							else if (tono>0){
-	 								var qual = initialValues[key]/Math.abs(tono);
+	 								var qual = value/Math.abs(tono);
 	 								if(qual<10){
 	 									return "#E9F2F5"
 	 								}

@@ -6,6 +6,8 @@ function drawGraph(data,id,sector){
 		
 	var padding = 30;
 	
+	console.log(data);
+	
 	var initialValue = data[sector]["2004"][0]["Value"];
 	
 	var values = [];

@@ -16,7 +16,19 @@ app.controller('Data', function($scope){
 				
 				$scope.pais = $scope.paisos[0];
 				$scope.year = $scope.years[0];
-				$scope.value = $scope.values[0];
+				$scope.actual = $scope.year;
+				$scope.sector = $scope.sectors[0];
+				
+				$scope.values_indicator = {};
+				
+				for (var i=0; i<$scope.values.length; i++){
+					$scope.values_indicator[$scope.values[i]] = $scope.datos[$scope.paisos[0]][$scope.sectors[0]][$scope.years[0]][$scope.values[i]]["UNIT"];
+				}
+				
+				$scope.changeValue = function(sector){
+					console.log("entra");
+					$scope.sector = sector;
+				}
 			});
 		});
 	});
@@ -24,33 +36,34 @@ app.controller('Data', function($scope){
 
 app.directive('myChart',function(){
 	function link(scope,el,attr){
-		scope.$watch('datos',function(){
-			if(typeof scope.datos !== "undefined"){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
 				
-				scope.sector = attr.sector;
+				scope.value = attr.value;
 				
-				scope.$watchGroup(['pais','year','value'], function(){
-					drawMap(scope,el,scope.datos);
+				scope.$parent.$watchGroup(['pais','year','sector'], function(){
+					drawMap(scope,el,scope.$parent.datos);
 				});
 			}
 		});
 		
 		function drawMap(scope, el, datos){
-			
 			d3.select(el[0]).selectAll("svg").remove();
 			
 			var w = 265,
 				h = 265;
 			var padding = 30;
 			
-			var data = datos[scope.pais];
-			var initialValue = data[scope.sector][scope.year][scope.value]["Value"];
+			var data = datos[scope.$parent.pais];
+			var initialValue = parseFloat(data[scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+			
 			var values = [];
 			for (key in data[scope.sector]){
-				values.push(data[scope.sector][key][scope.value]["Value"].replace(',',''));
+				values.push(parseFloat(data[scope.$parent.sector][key][scope.value]["Value"].replace(',','')));
 			}
+			
 			var xScale = d3.scale.linear()
-				.domain([scope.year, scope.years[scope.years.length-1]])
+				.domain([scope.$parent.year, scope.$parent.years[scope.$parent.years.length-1]])
 				.range([padding, w - padding]);
 			
 			var yScale = d3.scale.linear()
@@ -68,6 +81,9 @@ app.directive('myChart',function(){
 			var yAxis = d3.svg.axis()
 				.scale(yScale)
 				.orient("left")
+				.tickFormat(function(d){
+					return d.toString().substring(0,3);
+				})
 				.ticks(5);
 				
 			var svg = d3.select(el[0])
@@ -92,9 +108,9 @@ app.directive('myChart',function(){
 				.call(yAxis); 
 			
 			var array = []
-			for (key in data[scope.sector]){
+			for (key in data[scope.$parent.sector]){
 				var value = {};
-				value[key] = data[scope.sector][key][scope.value]["Value"].replace(',','');
+				value[key] = parseFloat(data[scope.$parent.sector][key][scope.value]["Value"].replace(',',''));
 				array.push(value);
 			}
 			
@@ -103,8 +119,8 @@ app.directive('myChart',function(){
 				.enter()
 				.append("circle")
 				.attr("fill",function(d){
-						var value = d[Object.keys(d)[0]] - initialValue;
-						initialValue = d[Object.keys(d)[0]];
+						var value = parseFloat(d[Object.keys(d)[0]]) - initialValue;
+						initialValue = parseFloat(d[Object.keys(d)[0]]);
 						if (value<0){
 							return "#D93A46";
 						} 
@@ -142,6 +158,371 @@ app.directive('myChart',function(){
 		}
 	};
 	
+	return {
+		link: link,
+		restrict: 'AE',
+		scope: true
+	};
+});
+
+app.directive('myMap',function(){
+	function link(scope,el,attr){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
+				
+				scope.value = attr.value;
+				
+				scope.$parent.$watchGroup(['sector','year'], function(){
+					drawMap(scope,el,scope.$parent.datos);
+				});
+			}
+		});
+		
+		function drawMap(scope, el, datos){
+			d3.select(el[0]).selectAll("svg").remove();
+			
+			var nElem = 0;
+			var width = 600,
+				height = 800;
+			var padding = 40;
+			var i_pais,j_pais;		
+
+			var data = datos;
+			var europe = scope.$parent.map;
+			
+			var projection = d3.geo.mercator()
+				.center([0, 40])
+				.scale(600)
+				.translate([width / 3, height/1.25]);
+
+			var path = d3.geo.path()
+				.projection(projection)
+				.pointRadius(2);
+				
+			var svg = d3.select(el[0])
+				.append("svg")
+				.attr("id","europe_svg")
+				.attr("width", width)
+				.attr("height", height)
+
+			var dic = crearDiccionarioEuropa();
+			
+			var initialValues = {};
+			
+			for (key in data){
+				if (_.contains(Object.keys(dic), key)){
+					initialValues[key] = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+				}
+			}
+			
+			// Euro Per Capita in RESEARCH
+			svg.selectAll(".subunits")
+				.data(topojson.feature(europe, europe.objects.regions).features.filter(function(d){
+					if(d.properties.NUTS_ID.length == 2){
+						return true;
+					}
+					else return false;
+				}))
+				.enter().append("path")
+				.attr("d", path)
+				.attr("class", function(d){
+					for (key in data){
+						if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
+							var tono = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+							if(tono<100){
+								return "subunit " + key + " " + "primero";
+							}
+							else if (tono<500){
+								return "subunit " + key + " " + "segundo";
+							}
+							else if (tono<1000){
+								return "subunit " + key + " " + "tercero";
+							}
+							else{
+								return "subunit " + key + " " + "cuarto";
+							}
+						}
+					}
+				})
+				.each(function(){
+					nElem++;
+				})
+				.on("mouseover",function(){
+					d3.select(this)
+						.style("opacity",0.1);
+				})
+				.on("mouseleave",function(){
+					d3.select(this)
+						.style("opacity",1);	
+				})
+				.on("click",function(d){
+					scope.$apply(function(){
+						for (key in data){
+							if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
+								scope.$parent.pais = key;
+							}
+						}
+					});
+				});
+				
+			svg.append("path")
+				//.datum(topojson.mesh(europe, europe.objects.regions, function(a, b) { return a !== b}))
+				.datum(topojson.mesh(europe, europe.objects.regions, function(d) {
+					if(d.properties.NUTS_ID.length == 2){
+						return true;
+					}
+					else return false;
+				}))
+				.attr("d", path)
+				.attr("class", "subunit-boundary");
+			
+			svg.append("text")
+				.attr("id","year");
+		
+			d3.select(el[0].children[0]).selectAll(".myButton").remove();
+			
+			var button = d3.select(el[0].children[0])
+				.append("button")
+				.attr("class","myButton")
+				.text("update");
+				
+			var button = d3.select(".myButton");
+				
+			button
+				.on("click",function(){
+					transitions();
+				});
+				
+			function transitions(){
+				i_pais = 2;
+				j_pais = 2 * nElem;
+				i_year = 1;
+				
+				var subunits = svg.selectAll(".subunit");
+				var year = svg.select("#year");
+				
+				subunits.transition()
+					.style("fill",function(d){
+						for(key in data){
+							if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
+								var value = initialValues[key];
+								var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[1]][scope.value]["Value"].replace(',',''));
+								var tono = value2-value;
+								if(tono<0){
+									var qual = value/Math.abs(tono);
+									if(qual<10){
+										return "#FAE6E7"
+									}
+									else if (qual<20){
+										return "#E98E95"
+									}
+									else{
+										return "#D93A46";
+									}
+								}
+								else if (tono>0){
+									var qual = value/Math.abs(tono);
+									if(qual<10){
+										return "#E9F2F5"
+									}
+									else if (qual<20){
+										return "#93B8C3"
+									}
+									else{
+										return "#3F7F93";
+									}
+								}
+								else{
+									return "#F2F2F2";
+								}
+							}
+						}
+					})
+					.duration(1000)
+					.delay(300)
+					.each("end",repeat);
+					
+				year.transition()
+					.duration(1000) // this is 1s
+					.delay(500)
+					.each("end",repeatYear);
+				}
+			
+			function repeatYear(){
+				scope.$apply (function(){
+					if(i_year<scope.$parent.years.length+1){
+						if(i_year==scope.$parent.years.length){
+							d3.select(this).transition()
+								.duration(1000) // this is 1s
+								.delay(5000);
+							scope.$parent.actual = scope.$parent.year;
+							i_year++;
+						}
+						else{
+							d3.select(this).transition()
+								.duration(1000) // this is 1s
+								.delay(300)
+								.each("end",repeatYear);
+							scope.$parent.actual = scope.$parent.years[i_year];
+							i_year++;
+						}
+					}
+				});
+			}
+			
+			
+			function repeat(){
+				i_pais = parseInt(j_pais/nElem);
+				//ultima transicion o no
+				if(i_pais<scope.$parent.years.length+1){
+					//ultimo año
+					if(i_pais == scope.$parent.years.length){
+						d3.select(this).transition()
+							.style("fill",function(d){
+								for(key in data){
+									if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
+										var value = initialValues[key];
+										var tono = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+										if(tono<0){
+											var qual = value/Math.abs(tono);
+											if(qual<10){
+												return "#F2F2F2"
+											}
+											else if (qual<20){
+												return "#F2F2F2"
+											}
+											else{
+												return "#F2F2F2";
+											}
+										}
+										else if (tono>0){
+											var qual = value/Math.abs(tono);
+											if(qual<10){
+												return "#F2F2F2"
+											}
+											else if (qual<20){
+												return "#F2F2F2"
+											}
+											else{
+												return "#F2F2F2";
+											}
+										}
+										else{
+											return "#F2F2F2";
+										}
+									}
+								}
+							})
+							.duration(1000) // this is 1s
+							.delay(5000);
+						j_pais++;
+					}
+					else{
+						d3.select(this).transition()
+							.style("fill",function(d){
+								for(key in data){
+									if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
+										var value = initialValues[key];
+										var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[i_pais]][scope.value]["Value"].replace(',',''));
+										var tono = value2-value;
+										if(tono<0){
+											var qual = value/Math.abs(tono);
+											if(qual<10){
+												return "#FAE6E7"
+											}
+											else if (qual<20){
+												return "#E98E95"
+											}
+											else{
+												return "#D93A46";
+											}
+										}
+										else if (tono>0){
+											var qual = value/Math.abs(tono);
+											if(qual<10){
+												return "#E9F2F5"
+											}
+											else if (qual<20){
+												return "#93B8C3"
+											}
+											else{
+												return "#3F7F93";
+											}
+										}
+										else{
+											return "#F2F2F2";
+										}
+									}
+								}
+							})
+							.duration(1000) // this is 1s
+							.delay(300)
+							.each("end",repeat);
+						j_pais++;
+					}
+				}
+			}
+			
+			var h_leyenda = 20;
+			var w_rect = width/7;
+			
+			var svg_leyenda = d3.select(el[0])
+				.append("svg")
+				.attr("width", width)
+				.attr("height", h_leyenda)
+				.attr("class","leyenda");
+				
+			svg_leyenda
+				.append("rect")
+				.attr("x",0)
+				.attr("y",0)
+				.attr("width", w_rect)
+				.attr("height", h_leyenda)
+				.attr("fill", "#D93A46");
+			svg_leyenda
+				.append("rect")
+				.attr("x",w_rect)
+				.attr("y",0)
+				.attr("width", w_rect)
+				.attr("height", h_leyenda)
+				.attr("fill", "#E98E95");
+			svg_leyenda
+				.append("rect")
+				.attr("x",w_rect*2)
+				.attr("y",0)
+				.attr("width", w_rect)
+				.attr("height", h_leyenda)
+				.attr("fill", "#FAE6E7");
+			svg_leyenda
+				.append("rect")
+				.attr("x",w_rect*3)
+				.attr("y",0)
+				.attr("width", w_rect)
+				.attr("height", h_leyenda)
+				.attr("fill", "#F2F2F2");
+			svg_leyenda
+				.append("rect")
+				.attr("x",w_rect*4)
+				.attr("y",0)
+				.attr("width", w_rect)
+				.attr("height", h_leyenda)
+				.attr("fill", "#E9F2F5");
+			svg_leyenda
+				.append("rect")
+				.attr("x",w_rect*5)
+				.attr("y",0)
+				.attr("width", w_rect)
+				.attr("height", h_leyenda)
+				.attr("fill", "#93B8C3");
+			svg_leyenda
+				.append("rect")
+				.attr("x",w_rect*6)
+				.attr("y",0)
+				.attr("width", w_rect)
+				.attr("height", h_leyenda)
+				.attr("fill", "#3F7F93");
+		}
+	};
 	return {
 		link: link,
 		restrict: 'AE',

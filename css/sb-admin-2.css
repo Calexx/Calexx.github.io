@@ -12,6 +12,7 @@ body {
 a{
 	text-decoration:none!important;
 	color: #3F7F93!important;
+	cursor: pointer;
 }
 
 a:hover{

@@ -64,7 +64,7 @@
                             <a href="ultima.html"><i class="fa fa-edit fa-fw" ></i> Ultima </a>
                         </li>
                         <li class="nav-option">
-							<a class="navbar-multilevel-option active" href="dataset.html"><i class="fa fa-table fa-fw"></i> Dataset </a>
+							<!--<a class="navbar-multilevel-option active" href="dataset.html"><i class="fa fa-table fa-fw"></i> Dataset </a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="AllSectorID.html">All Sectors</a>
@@ -80,6 +80,27 @@
                                 </li>
 								<li>
                                     <a href="PrivateSectorID.html">Private non-profit sector</a>
+                                </li>
+                            </ul>-->
+							<a href="dataset.html"><i class="fa fa-edit fa-fw" ></i> DataSet </a>
+                        </li>
+						<li class="nav-option">
+							<a class="navbar-multilevel-option active" href="datasetAngular.html"><i class="fa fa-table fa-fw"></i> DatasetAngular </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a ng-click="changeValue('All sectors')">All sectors</a>
+                                </li>
+                                <li>
+                                    <a ng-click="changeValue('Business enterprise sector')">Business enterprise sector</a>
+                                </li>
+								<li>
+                                    <a ng-click="changeValue('Government sector')">Government sector</a>
+                                </li>
+								<li>
+                                    <a ng-click="changeValue('Higher education sector')">Higher education sector</a>
+                                </li>
+								<li>
+                                    <a ng-click="changeValue('Private non-profit sector')">Private non-profit sector</a>
                                 </li>
                             </ul>
                         </li>
@@ -104,10 +125,13 @@
 					<div class="col-lg-8">
 						
 						<!-- Panel Tutorial 1 -->
-						<div class="panel panel-default" id="panel_1">
+						<div my-map value="0" class="panel panel-default" id="panel_1">
 							<!-- Titulo Panel Tutorial 1 -->
 							<div class="panel-heading" id="panel_1-head">
-								<i class="fa fa-bar-chart-o fa-fw"></i>
+								<i class="fa fa-bar-chart-o fa-fw">{{sector}}</i>
+							</div>
+							<div class="panel-heading" id="panel_2-head">
+								<i class="fa fa-bar-chart-o fa-fw"><b>{{actual}}</b></i>
 							</div>
 							<!-- Cuerpo Panel Tutorial 1 -->
 							<div id="panel_1-body" class="panel-body">
@@ -119,37 +143,79 @@
 					<div class="col-lg-4">
 						
 						<!-- Panel 1 -->
-						<div class="panel panel-default">
+						<div my-chart value="0" class="panel panel-default">
 							<!-- Head Panel 1 -->
 							<div class="panel-heading" id="panelr_1-head">
 								<i class="fa fa-bar-chart-o fa-fw">{{sector}}</i>
 							</div>
+							<div class="panel-heading" id="panelr_1-head2">
+								<i class="fa fa-bar-chart-o fa-fw">{{pais}}</i>
+								<i class="fa fa-bar-chart-o fa-fw">{{values_indicator[value]}}</i>
+							</div>
 							<!-- Cuerpo Panel 1 -->
-							<div my-chart sector="All sectors" class="panel-body" id="panelr_1-body">
+							<div class="panel-body" id="panelr_1-body">
 								
 							</div>
 						</div>
 						
 						<!-- Panel 2 -->
-						<div class="panel panel-default">
+						<div my-chart value="1" class="panel panel-default">
 							<!-- Head Panel 2 -->
 							<div class="panel-heading" id="panelr_2-head">
 								<i class="fa fa-bar-chart-o fa-fw">{{sector}}</i>
 							</div>
+							<div class="panel-heading" id="panelr_2-head2">
+								<i class="fa fa-bar-chart-o fa-fw">{{pais}}</i>
+								<i class="fa fa-bar-chart-o fa-fw">{{values_indicator[value]}}</i>
+							</div>
 							<!-- Cuerpo Panel 2 -->
-							<div my-chart sector="Business enterprise sector" class="panel-body" id="panelr_2-body">
+							<div  class="panel-body" id="panelr_2-body">
 								
 							</div>
 						</div>
 						
 						<!-- Panel 3 -->
-						<div class="panel panel-default">
+						<div my-chart value="2" class="panel panel-default">
 							<!-- Head Panel 3 -->
 							<div class="panel-heading" id="panelr_3-head">
 								<i class="fa fa-bar-chart-o fa-fw">{{sector}}</i>
 							</div>
+							<div class="panel-heading" id="panelr_3-head3">
+								<i class="fa fa-bar-chart-o fa-fw">{{pais}}</i>
+								<i class="fa fa-bar-chart-o fa-fw">{{values_indicator[value]}}</i>
+							</div>
 							<!-- Cuerpo Panel 3 -->
-							<div my-chart sector="Government sector" class="panel-body" id="panelr_3-body">
+							<div class="panel-body" id="panelr_3-body">
+								
+							</div>
+						</div>
+						
+						<div my-chart value="3" class="panel panel-default">
+							<!-- Head Panel 3 -->
+							<div class="panel-heading" id="panelr_3-head">
+								<i class="fa fa-bar-chart-o fa-fw">{{sector}}</i>
+							</div>
+							<div class="panel-heading" id="panelr_3-head3">
+								<i class="fa fa-bar-chart-o fa-fw">{{pais}}</i>
+								<i class="fa fa-bar-chart-o fa-fw">{{values_indicator[value]}}</i>
+							</div>
+							<!-- Cuerpo Panel 3 -->
+							<div class="panel-body" id="panelr_3-body">
+								
+							</div>
+						</div>
+						
+						<div my-chart value="4" class="panel panel-default">
+							<!-- Head Panel 3 -->
+							<div class="panel-heading" id="panelr_3-head">
+								<i class="fa fa-bar-chart-o fa-fw">{{sector}}</i>
+							</div>
+							<div class="panel-heading" id="panelr_3-head3">
+								<i class="fa fa-bar-chart-o fa-fw">{{pais}}</i>
+								<i class="fa fa-bar-chart-o fa-fw">{{values_indicator[value]}}</i>
+							</div>
+							<!-- Cuerpo Panel 3 -->
+							<div class="panel-body" id="panelr_3-body">
 								
 							</div>
 						</div>

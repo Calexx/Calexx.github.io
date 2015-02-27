@@ -199,7 +199,7 @@ app.directive('myMap',function(){
 				.projection(projection)
 				.pointRadius(2);
 				
-			var svg = d3.select(el[0])
+			var svg = d3.select(el[0].children[2])
 				.append("svg")
 				.attr("id","europe_svg")
 				.attr("width", width)
@@ -290,6 +290,12 @@ app.directive('myMap',function(){
 				
 			button
 				.on("click",function(){
+					scope.$apply(function(){
+						scope.$parent.actual = scope.$parent.year;
+					});
+					var subunits = svg.selectAll(".subunit");
+					subunits
+						.style("fill", "#F2F2F2");
 					transitions();
 				});
 				
@@ -344,7 +350,7 @@ app.directive('myMap',function(){
 					
 				year.transition()
 					.duration(1000) // this is 1s
-					.delay(500)
+					.delay(300)
 					.each("end",repeatYear);
 				}
 			
@@ -352,10 +358,15 @@ app.directive('myMap',function(){
 				scope.$apply (function(){
 					if(i_year<scope.$parent.years.length+1){
 						if(i_year==scope.$parent.years.length){
+							console.log("depresion");
 							d3.select(this).transition()
 								.duration(1000) // this is 1s
-								.delay(5000);
-							scope.$parent.actual = scope.$parent.year;
+								.delay(5000)
+								.each("end",function(){
+									scope.$apply (function(){
+										scope.$parent.actual = scope.$parent.year;
+									});
+								});
 							i_year++;
 						}
 						else{
@@ -466,18 +477,18 @@ app.directive('myMap',function(){
 			var h_leyenda = 20;
 			var w_rect = width/7;
 			
-			var svg_leyenda = d3.select(el[0])
+			var svg_leyenda = d3.select(el[0].children[2])
 				.append("svg")
 				.attr("width", width)
 				.attr("height", h_leyenda)
 				.attr("class","leyenda");
-				
 			svg_leyenda
 				.append("rect")
 				.attr("x",0)
 				.attr("y",0)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda)
+				.attr("id","lowest")
 				.attr("fill", "#D93A46");
 			svg_leyenda
 				.append("rect")
@@ -485,6 +496,7 @@ app.directive('myMap',function(){
 				.attr("y",0)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda)
+				.attr("id","low_mid")
 				.attr("fill", "#E98E95");
 			svg_leyenda
 				.append("rect")
@@ -492,6 +504,7 @@ app.directive('myMap',function(){
 				.attr("y",0)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda)
+				.attr("id","low")
 				.attr("fill", "#FAE6E7");
 			svg_leyenda
 				.append("rect")
@@ -499,6 +512,7 @@ app.directive('myMap',function(){
 				.attr("y",0)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda)
+				.attr("id","nothing")
 				.attr("fill", "#F2F2F2");
 			svg_leyenda
 				.append("rect")
@@ -506,6 +520,7 @@ app.directive('myMap',function(){
 				.attr("y",0)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda)
+				.attr("id","hight")
 				.attr("fill", "#E9F2F5");
 			svg_leyenda
 				.append("rect")
@@ -513,6 +528,7 @@ app.directive('myMap',function(){
 				.attr("y",0)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda)
+				.attr("id","high_mid")
 				.attr("fill", "#93B8C3");
 			svg_leyenda
 				.append("rect")
@@ -520,7 +536,40 @@ app.directive('myMap',function(){
 				.attr("y",0)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda)
+				.attr("id","highest")
 				.attr("fill", "#3F7F93");
+			svg_leyenda.selectAll("rect")
+				.on("mouseover",function (d){
+					var rect = d3.select(this)
+						.attr("opacity",0.5);
+					var color = rect.attr("fill");
+					var subunits = svg.selectAll(".subunit");
+					subunits
+						.each(function () {
+							var unit = d3.select(this);
+							var color_unit = rgb2hex(unit.style("fill")).toUpperCase();
+							if(color_unit !=  color){
+								unit
+									.style("opacity",0);
+							}
+						});
+				})
+				.on("mouseleave",function (d){
+					d3.select(this)
+						.attr("opacity",1);
+					var subunits = svg.selectAll(".subunit");
+					subunits
+						.each(function () {
+							var unit = d3.select(this)
+								.style("opacity",1);
+						});
+				})
+				.on("click", function(d){
+					var subunits = svg.selectAll(".subunit");
+					subunits.transition().duration(0);
+					var year = svg.selectAll("#year");
+					year.transition().duration(0);
+				});
 		}
 	};
 	return {
@@ -577,4 +626,16 @@ function crearDiccionarioEuropa (){
 		,"Sweden":"SE",
 		"United Kingdom":"UK"
 	}
+}
+
+function rgb2hex(rgb) {
+     if (  rgb.search("rgb") == -1 ) {
+          return rgb;
+     } else {
+          rgb = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+))?\)$/);
+          function hex(x) {
+               return ("0" + parseInt(x).toString(16)).slice(-2);
+          }
+          return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]); 
+     }
 }

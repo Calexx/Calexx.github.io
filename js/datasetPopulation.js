@@ -2,32 +2,33 @@ var app = angular.module('datasetAngular', []);
 
 app.controller('Data', function($scope){
     d3.json("json/europe.topo.json", function(error, europe) {	
-		d3.json("json/I+D_europe.json", function(json) {
+		d3.json("json/PopulationEmployement.json", function(json) {
 			if(error) throw error;
 			$scope.$apply(function(){
 				data = pivotID(json);
 				$scope.datos = data;
 				$scope.map = europe;
 				
+				console.log($scope.datos);
+				
 				$scope.paisos = Object.keys($scope.datos);
-				$scope.sectors = Object.keys($scope.datos[$scope.paisos[0]]);
-				$scope.years = Object.keys($scope.datos[$scope.paisos[0]][$scope.sectors[0]]);
-				$scope.values = Object.keys($scope.datos[$scope.paisos[0]][$scope.sectors[0]][$scope.years[0]]); 
+				$scope.items = Object.keys($scope.datos[$scope.paisos[0]]);
+				$scope.years = Object.keys($scope.datos[$scope.paisos[0]][$scope.items[0]]);
+				$scope.values = Object.keys($scope.datos[$scope.paisos[0]][$scope.items[0]][$scope.years[0]]); 
 				
 				$scope.pais = $scope.paisos[0];
 				$scope.year = $scope.years[0];
 				$scope.actual = $scope.year;
-				$scope.sector = $scope.sectors[0];
+				$scope.item = $scope.items[0];
 				
 				$scope.values_indicator = {};
 				
 				for (var i=0; i<$scope.values.length; i++){
-					$scope.values_indicator[$scope.values[i]] = $scope.datos[$scope.paisos[0]][$scope.sectors[0]][$scope.years[0]][$scope.values[i]]["UNIT"];
+					$scope.values_indicator[$scope.values[i]] = $scope.datos[$scope.paisos[0]][$scope.items[0]][$scope.years[0]][$scope.values[i]]["UNIT"];
 				}
 				
-				$scope.changeValue = function(sector){
-					console.log("entra");
-					$scope.sector = sector;
+				$scope.changeValue = function(item){
+					$scope.item = item;
 				}
 			});
 		});
@@ -41,7 +42,7 @@ app.directive('myChart',function(){
 				
 				scope.value = attr.value;
 				
-				scope.$parent.$watchGroup(['pais','year','sector'], function(){
+				scope.$parent.$watchGroup(['pais','year','item'], function(){
 					drawMap(scope,el,scope.$parent.datos);
 				});
 			}
@@ -55,11 +56,11 @@ app.directive('myChart',function(){
 			var padding = 30;
 			
 			var data = datos[scope.$parent.pais];
-			var initialValue = parseFloat(data[scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+			var initialValue = parseFloat(data[scope.$parent.item][scope.$parent.year][scope.value]["Value"].replace(',',''));
 			
 			var values = [];
-			for (key in data[scope.sector]){
-				values.push(parseFloat(data[scope.$parent.sector][key][scope.value]["Value"].replace(',','')));
+			for (key in data[scope.item]){
+				values.push(parseFloat(data[scope.$parent.item][key][scope.value]["Value"].replace(',','')));
 			}
 			
 			var xScale = d3.scale.linear()
@@ -108,9 +109,9 @@ app.directive('myChart',function(){
 				.call(yAxis); 
 			
 			var array = []
-			for (key in data[scope.$parent.sector]){
+			for (key in data[scope.$parent.item]){
 				var value = {};
-				value[key] = parseFloat(data[scope.$parent.sector][key][scope.value]["Value"].replace(',',''));
+				value[key] = parseFloat(data[scope.$parent.item][key][scope.value]["Value"].replace(',',''));
 				array.push(value);
 			}
 			
@@ -196,7 +197,7 @@ app.directive('myMap',function(){
 				
 				scope.value = attr.value;
 				
-				scope.$parent.$watchGroup(['sector','year'], function(){
+				scope.$parent.$watchGroup(['item','year'], function(){
 					drawMap(scope,el,scope.$parent.datos);
 				});
 			}
@@ -235,7 +236,7 @@ app.directive('myMap',function(){
 			
 			for (key in data){
 				if (_.contains(Object.keys(dic), key)){
-					initialValues[key] = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+					initialValues[key] = parseFloat(data[key][scope.$parent.item][scope.$parent.year][scope.value]["Value"].replace(',',''));
 				}
 			}
 			
@@ -252,7 +253,8 @@ app.directive('myMap',function(){
 				.attr("class", function(d){
 					for (key in data){
 						if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
-							var tono = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+							var tono = parseFloat(data[key][scope.$parent.item][scope.$parent.year][scope.value]["Value"].replace(',',''));
+							if(d.properties.NUTS_ID.substring(0,2)=="ES") console.log(tono);
 							if(tono<100){
 								return "subunit " + key + " " + "primero";
 							}
@@ -336,8 +338,9 @@ app.directive('myMap',function(){
 						for(key in data){
 							if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
 								var value = initialValues[key];
-								var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[1]][scope.value]["Value"].replace(',',''));
+								var value2 = parseFloat(data[key][scope.$parent.item][scope.$parent.years[1]][scope.value]["Value"].replace(',',''));
 								var tono = value2-value;
+								if(d.properties.NUTS_ID.substring(0,2)=="ES") console.log(tono);
 								if(tono<0){
 									var qual = value/Math.abs(tono);
 									if(qual<10){
@@ -417,9 +420,9 @@ app.directive('myMap',function(){
 								for(key in data){
 									if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
 										var value = initialValues[key];
-										var tono = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+										var tono = parseFloat(data[key][scope.$parent.item][scope.$parent.year][scope.value]["Value"].replace(',',''));
 										if(tono<0){
-											var qual = value/Math.abs(tono);
+											var qual = Math.abs(tono)/value;
 											if(qual<10){
 												return "#F2F2F2"
 											}
@@ -431,7 +434,7 @@ app.directive('myMap',function(){
 											}
 										}
 										else if (tono>0){
-											var qual = value/Math.abs(tono);
+											var qual = Math.abs(tono)/value;
 											if(qual<10){
 												return "#F2F2F2"
 											}
@@ -458,10 +461,11 @@ app.directive('myMap',function(){
 								for(key in data){
 									if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
 										var value = initialValues[key];
-										var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[i_pais]][scope.value]["Value"].replace(',',''));
+										var value2 = parseFloat(data[key][scope.$parent.item][scope.$parent.years[i_pais]][scope.value]["Value"].replace(',',''));
 										var tono = value2-value;
+										if(d.properties.NUTS_ID.substring(0,2)=="ES") console.log(tono);
 										if(tono<0){
-											var qual = value/Math.abs(tono);
+											var qual = Math.abs(tono)/value;
 											if(qual<10){
 												return "#FAE6E7"
 											}
@@ -473,7 +477,7 @@ app.directive('myMap',function(){
 											}
 										}
 										else if (tono>0){
-											var qual = value/Math.abs(tono);
+											var qual = Math.abs(tono)/value;
 											if(qual<10){
 												return "#E9F2F5"
 											}
@@ -658,7 +662,7 @@ function pivotID(json){
 		return byFirst;
 	};
 
-	var result = _.groupByMulti(json, ['GEO','SECTPERF','TIME']);
+	var result = _.groupByMulti(json, ['GEO','NA_ITEM','TIME']);
 
 	return result;
 }

@@ -138,7 +138,12 @@ app.directive('myChart',function(){
 					return xScale(Object.keys(d)[0]);
 				})
 				.attr("cy", function(d) {
-					return yScale(d[Object.keys(d)[0]]);
+					if(isNaN(d[Object.keys(d)[0]])){
+						d3.select(this).remove();
+					}
+					else{
+						return yScale(d[Object.keys(d)[0]]);
+					}
 				})
 				.attr("r", function(d) {
 					return 2;
@@ -338,32 +343,37 @@ app.directive('myMap',function(){
 								var value = initialValues[key];
 								var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[1]][scope.value]["Value"].replace(',',''));
 								var tono = value2-value;
-								if(tono<0){
-									var qual = value/Math.abs(tono);
-									if(qual<10){
-										return "#FAE6E7"
-									}
-									else if (qual<20){
-										return "#E98E95"
-									}
-									else{
-										return "#D93A46";
-									}
-								}
-								else if (tono>0){
-									var qual = value/Math.abs(tono);
-									if(qual<10){
-										return "#E9F2F5"
-									}
-									else if (qual<20){
-										return "#93B8C3"
-									}
-									else{
-										return "#3F7F93";
-									}
+								if(isNaN(tono)){
+									return d3.select(this).style("fill");
 								}
 								else{
-									return "#F2F2F2";
+									if(tono<0){
+										var qual = (Math.abs(tono)/value)*100;
+										if(qual<10){
+											return "#FAE6E7"
+										}
+										else if (qual<20){
+											return "#E98E95"
+										}
+										else{
+											return "#D93A46";
+										}
+									}
+									else if (tono>0){
+										var qual = (Math.abs(tono)/value)*100;
+										if(qual<10){
+											return "#E9F2F5"
+										}
+										else if (qual<20){
+											return "#93B8C3"
+										}
+										else{
+											return "#3F7F93";
+										}
+									}
+									else{
+										return "#F2F2F2";
+									}
 								}
 							}
 						}
@@ -418,32 +428,37 @@ app.directive('myMap',function(){
 									if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
 										var value = initialValues[key];
 										var tono = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
-										if(tono<0){
-											var qual = value/Math.abs(tono);
-											if(qual<10){
-												return "#F2F2F2"
-											}
-											else if (qual<20){
-												return "#F2F2F2"
-											}
-											else{
-												return "#F2F2F2";
-											}
-										}
-										else if (tono>0){
-											var qual = value/Math.abs(tono);
-											if(qual<10){
-												return "#F2F2F2"
-											}
-											else if (qual<20){
-												return "#F2F2F2"
-											}
-											else{
-												return "#F2F2F2";
-											}
+										if(isNaN(tono)){
+											return d3.select(this).style("fill");
 										}
 										else{
-											return "#F2F2F2";
+											if(tono<0){
+												var qual = (Math.abs(tono)/value)*100;
+												if(qual<10){
+													return "#F2F2F2"
+												}
+												else if (qual<20){
+													return "#F2F2F2"
+												}
+												else{
+													return "#F2F2F2";
+												}
+											}
+											else if (tono>0){
+												var qual = (Math.abs(tono)/value)*100;
+												if(qual<10){
+													return "#F2F2F2"
+												}
+												else if (qual<20){
+													return "#F2F2F2"
+												}
+												else{
+													return "#F2F2F2";
+												}
+											}
+											else{
+												return "#F2F2F2";
+											}
 										}
 									}
 								}
@@ -460,32 +475,37 @@ app.directive('myMap',function(){
 										var value = initialValues[key];
 										var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[i_pais]][scope.value]["Value"].replace(',',''));
 										var tono = value2-value;
-										if(tono<0){
-											var qual = value/Math.abs(tono);
-											if(qual<10){
-												return "#FAE6E7"
-											}
-											else if (qual<20){
-												return "#E98E95"
-											}
-											else{
-												return "#D93A46";
-											}
-										}
-										else if (tono>0){
-											var qual = value/Math.abs(tono);
-											if(qual<10){
-												return "#E9F2F5"
-											}
-											else if (qual<20){
-												return "#93B8C3"
-											}
-											else{
-												return "#3F7F93";
-											}
+										if(isNaN(tono)){
+											return d3.select(this).style("fill");
 										}
 										else{
-											return "#F2F2F2";
+											if(tono<0){
+												var qual = (Math.abs(tono)/value)*100;
+												if(qual<10){
+													return "#FAE6E7"
+												}
+												else if (qual<20){
+													return "#E98E95"
+												}
+												else{
+													return "#D93A46";
+												}
+											}
+											else if (tono>0){
+												var qual = (Math.abs(tono)/value)*100;
+												if(qual<10){
+													return "#E9F2F5"
+												}
+												else if (qual<20){
+													return "#93B8C3"
+												}
+												else{
+													return "#3F7F93";
+												}
+											}
+											else{
+												return "#F2F2F2";
+											}
 										}
 									}
 								}

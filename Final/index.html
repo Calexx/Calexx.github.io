@@ -95,9 +95,9 @@
 
         <div id="page-wrapper">
 
-            <div class="container-fluid">
+            <div class="container-fluid" id="page-container">
 
-                <div class="row">
+                <div class="row" id="row1">
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
                             <div id="green" class="panel-heading">
@@ -189,7 +189,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
+                <div class="row" id="row2">
                     <div class="col-lg-12">
                         <div my-map value="0" class="panel panel-default big-panel">
                             <div class="panel-heading">
@@ -202,7 +202,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
+                <div class="row" id="row3">
                     <div class="col-lg-4">
                         <div my-chart value="0" class="panel panel-default">
                             <div class="panel-heading">
@@ -232,7 +232,7 @@
                     </div>
                 </div>
 				
-				<div class="row">
+				<div class="row" id="row4">
                     <div class="col-lg-4">
                         <div my-chart value="3" class="panel panel-default">
                             <div class="panel-heading">
@@ -244,6 +244,15 @@
                     </div>
                     <div class="col-lg-4">
                         <div my-chart value="4" class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> {{pais}} : {{values_indicator[value]}}</h3>
+                            </div>
+                            <div class="panel-body"> 
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-lg-4">
+                        <div my-stacked-bar value="0" class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> {{pais}} : {{values_indicator[value]}}</h3>
                             </div>

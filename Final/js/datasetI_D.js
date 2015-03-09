@@ -19,9 +19,9 @@ app.controller('Data', function($scope){
 				$scope.actual = $scope.year;
 				$scope.sector = $scope.sectors[0];
 				
-				$scope.values_indicator = {};
+				$scope.reconstruccion = false;
 				
-				$scope.reconstruirVista = false;
+				$scope.values_indicator = {};
 				
 				for (var i=0; i<$scope.values.length; i++){
 					$scope.values_indicator[$scope.values[i]] = $scope.datos[$scope.paisos[0]][$scope.sectors[0]][$scope.years[0]][$scope.values[i]]["UNIT"];
@@ -54,8 +54,8 @@ app.directive('myChart',function(){
 			
 			d3.select(el[0]).selectAll("svg").remove();
 			
-			var w = 265,
-				h = 265;
+			var w = el.width()-30,
+				h = el.width()-30;
 			var padding = 30;
 			
 			var data = datos[scope.$parent.pais];
@@ -208,16 +208,6 @@ app.directive('myMap',function($compile){
 				scope.$parent.$watchGroup(['sector','year'], function(){
 					drawMap(scope,el,scope.$parent.datos,$compile);
 				});
-				
-				scope.$parent.$watch('reconstruirVista',function(){
-					if(typeof scope.$parent.$reconstruirVista !== false){
-						scope.$parent.$reconstruirVista = !(scope.$parent.$reconstruirVista);
-						console.log("dasdsa");
-						el.remove();
-						el = null;
-						scope.$destroy();
-					}
-				});
 			}
 		});
 		
@@ -225,9 +215,9 @@ app.directive('myMap',function($compile){
 			d3.select(el[0]).selectAll("svg").remove();
 			
 			var nElem = 0;
-			var width = 600,
-				height = 800;
-			var padding = 40;
+			var width = el.width()-50,
+				height = el.width()-100;
+			var padding = 20;
 			var i_pais,j_pais;		
 
 			var data = datos;
@@ -235,8 +225,8 @@ app.directive('myMap',function($compile){
 			
 			var projection = d3.geo.mercator()
 				.center([0, 40])
-				.scale(600)
-				.translate([width / 3, height/1.25]);
+				.scale(width/1.5)
+				.translate([width / 2.5, height/1.25]);
 
 			var path = d3.geo.path()
 				.projection(projection)
@@ -305,20 +295,17 @@ app.directive('myMap',function($compile){
 								scope.$parent.pais = key;
 							}
 						}
+						
+						if(scope.$parent.reconstruccion == false){
+							scope.$parent.reconstruccion = true;
+							$(".row").remove();
+							var template = 	
+							"<div class='row' id='row'><div class='col-lg-4'><div my-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div><div class='col-lg-4'><div my-chart value='1' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div><div class='col-lg-4'><div my-chart value='2' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div></div><div class='row' id='row2'><div class='col-lg-4'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'> <h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i>  {{sector}} at year : {{actual}}</h3></div><div class='panel-body'></div></div></div></div>";
+							var linkFn = $compile(template);
+							var content = linkFn(scope);
+							$('#page-container').append(content);
+						}	
 					});
-					//borrar grande
-					//coger pequeños y ponerlos arriba con compile otro template
-					//añadir el mapa al final con template nuevo
-					/*var templateMapa = "<div my-map value='"+scope.$parent.sector+"' class='panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-bar-chart-o fa-fw'></i> {{sector}} at year : {{actual}}</h3></div><div class='panel-body'></div></div>";
-					console.log(templateMapa);
-					var element = $compile(templateMapa)(scope);
-					scope.$destroy();
-					scope = null; 
-					el.remove();
-					el = null;
-					//console.log(element[0]);
-					d3.select("body").append(element);*/
-					scope.$parent.$reconstruirVista = !(scope.$parent.$reconstruirVista);
 				});
 				
 			svg.append("path")
@@ -544,7 +531,7 @@ app.directive('myMap',function($compile){
 				}
 			}
 			
-			var h_leyenda = 40;
+			var h_leyenda = height/20;
 			var w_rect = width/7;
 			
 			var svg_leyenda = d3.select(el[0].children[1])
@@ -557,7 +544,7 @@ app.directive('myMap',function($compile){
 				.attr("x",0)
 				.attr("y",0)
 				.attr("width", w_rect)
-				.attr("height", h_leyenda-20)
+				.attr("height", h_leyenda/3)
 				.attr("id","lowest")
 				.attr("fill", "#D93A46");
 			svg_leyenda
@@ -565,7 +552,7 @@ app.directive('myMap',function($compile){
 				.attr("x",w_rect)
 				.attr("y",0)
 				.attr("width", w_rect)
-				.attr("height", h_leyenda-20)
+				.attr("height", h_leyenda/3)
 				.attr("id","low_mid")
 				.attr("fill", "#E98E95");
 			svg_leyenda
@@ -573,7 +560,7 @@ app.directive('myMap',function($compile){
 				.attr("x",w_rect*2)
 				.attr("y",0)
 				.attr("width", w_rect)
-				.attr("height", h_leyenda-20)
+				.attr("height", h_leyenda/3)
 				.attr("id","low")
 				.attr("fill", "#FAE6E7");
 			svg_leyenda
@@ -581,7 +568,7 @@ app.directive('myMap',function($compile){
 				.attr("x",w_rect*3)
 				.attr("y",0)
 				.attr("width", w_rect)
-				.attr("height", h_leyenda-20)
+				.attr("height", h_leyenda/3)
 				.attr("id","nothing")
 				.attr("fill", "#F2F2F2");
 			svg_leyenda
@@ -589,7 +576,7 @@ app.directive('myMap',function($compile){
 				.attr("x",w_rect*4)
 				.attr("y",0)
 				.attr("width", w_rect)
-				.attr("height", h_leyenda-20)
+				.attr("height", h_leyenda/3)
 				.attr("id","hight")
 				.attr("fill", "#E9F2F5");
 			svg_leyenda
@@ -597,7 +584,7 @@ app.directive('myMap',function($compile){
 				.attr("x",w_rect*5)
 				.attr("y",0)
 				.attr("width", w_rect)
-				.attr("height", h_leyenda-20)
+				.attr("height", h_leyenda/3)
 				.attr("id","high_mid")
 				.attr("fill", "#93B8C3");
 			svg_leyenda
@@ -605,7 +592,7 @@ app.directive('myMap',function($compile){
 				.attr("x",w_rect*6)
 				.attr("y",0)
 				.attr("width", w_rect)
-				.attr("height", h_leyenda-20)
+				.attr("height", h_leyenda/3)
 				.attr("id","highest")
 				.attr("fill", "#3F7F93");
 			svg_leyenda.selectAll("rect")
@@ -637,44 +624,65 @@ app.directive('myMap',function($compile){
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect/3)
-				.attr("y",h_leyenda-5)
+				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return h_leyenda/4 + "px";
+				})
 				.text("-30%");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect+w_rect/3)
-				.attr("y",h_leyenda-5)
+				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return h_leyenda/4 + "px";
+				})
 				.text("-20%");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect*2+w_rect/3)
-				.attr("y",h_leyenda-5)
+				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return h_leyenda/4 + "px";
+				})
 				.text("-10%");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect*3+w_rect/3)
-				.attr("y",h_leyenda-5)
+				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return h_leyenda/4 + "px";
+				})
 				.text("-0%");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect*4+w_rect/3)
-				.attr("y",h_leyenda-5)
+				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return h_leyenda/4 + "px";
+				})
 				.text("+10%");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect*5+w_rect/3)
-				.attr("y",h_leyenda-5)
+				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return h_leyenda/4 + "px";
+				})
 				.text("+20%");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect*6+w_rect/3)
-				.attr("y",h_leyenda-5)
+				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return h_leyenda/4 + "px";
+				})
 				.text("+30%");
 				
 				/*.on("click", function(d){
@@ -685,6 +693,146 @@ app.directive('myMap',function($compile){
 				});*/
 		}
 	};
+	return {
+		link: link,
+		restrict: 'AE',
+		scope: true
+	};
+});
+
+app.directive('myStackedBar',function(){
+	function link(scope,el,attr){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
+				
+				scope.value = attr.value;
+				
+				scope.$parent.$watch('pais', function(){
+					drawMap(scope,el,scope.$parent.datos);
+				});
+			}
+		});
+		
+		function drawMap(scope, el, datos){
+			
+			d3.select(el[0]).selectAll("svg").remove();
+			
+			var w = el.width(),
+				h = el.width();
+			var padding = 30;
+			
+			var data = datos[scope.$parent.pais];
+			
+			var values = [];
+			var allValues = [];
+			for (sector in data){
+				if(sector == scope.$parent.sectors[0]){
+					for (year in data[sector]){
+						var v = {};
+						v["year"] = year;
+						v["sector"] = sector;
+						v["value"] = parseFloat(data[sector][year][scope.value]["Value"].replace(',',''));
+						allValues.push(v);
+					}
+				}
+				else{
+					var element = []
+					for (year in data[sector]){
+						var v = {};
+						v["year"] = year;
+						v["sector"] = sector;
+						v["value"] = parseFloat(data[sector][year][scope.value]["Value"].replace(',',''));
+						values.push(v);
+					}					
+				}
+				
+			}
+			
+			values.sort(compare);
+			
+			var minmax = [];
+			for (var i=0;i<values.length;i++){
+				minmax.push(values[i].value);
+			}	
+			
+			var xScale = d3.scale.linear()
+				.domain([scope.$parent.year, scope.$parent.years[scope.$parent.years.length-1]])
+				.range([padding, w - padding]);
+			
+			var yScale = d3.scale.linear()
+				.domain([d3.min(minmax), d3.max(minmax)])
+				.range([h-padding, padding]);
+				
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.ticks(10)
+				.tickFormat(function(d){
+					return d.toString().substring(2);
+				});
+				
+			var svg = d3.select(el[0].children[1])
+				.append("svg")
+				.attr("width", w)
+				.attr("height", h)
+				.attr("class","stacked")
+				.attr("id","stacked-char");
+			
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0,"+(h-padding)+")")
+				.attr("fill","black")
+				.call(xAxis);
+			
+			var anterior = 0;
+			var contador = 1;
+			var cont = 1;
+			
+			var rect = svg.selectAll("rect")
+				.data(values)
+				.enter()
+				.append("rect")
+				.attr("x", function(d, i) {
+					return xScale(d[Object.keys(d)[0]]);
+				})
+				.attr("y", function(d) {
+					var a = anterior;
+					var maximum;
+					var year = d[Object.keys(d)[0]];
+					for (var i=0;i<allValues.length;i++){
+						if(d[Object.keys(allValues[i])[0]] == year){
+							maximum = allValues[i][Object.keys(allValues[i])[2]];
+						}
+					}
+					var value = d[Object.keys(d)[2]];
+					if(contador%(scope.$parent.sectors.length-1)==0){
+						console.log(contador);
+						anterior = 0;
+					}
+					else{
+						anterior = anterior+(value/maximum)*h;
+						console.log(anterior);
+					}
+					contador++;
+					return a;
+				})
+				.attr("width", w / scope.$parent.years.length - padding)
+				.attr("height", function(d) {
+					var maximum;
+					var year = d[Object.keys(d)[0]];
+					for (var i=0;i<allValues.length;i++){
+						if(d[Object.keys(allValues[i])[0]] == year){
+							maximum = allValues[i][Object.keys(allValues[i])[2]];
+						}
+					}
+					var value = d[Object.keys(d)[2]];
+					return (value/maximum)*h;  //Solo el dato
+				});
+				
+		}
+	};
+	
 	return {
 		link: link,
 		restrict: 'AE',
@@ -751,4 +899,14 @@ function rgb2hex(rgb) {
           }
           return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]); 
      }
+}
+
+function compare(a,b){
+	if(a.year<b.year){
+		return -1;
+	}
+	if(a.year>b.year){
+		return 1;
+	}
+	return 0;
 }

@@ -1,4 +1,4 @@
-var app = angular.module('datasetAngular', []);
+var app = angular.module('datasetPopulation', []);
 
 app.controller('Data', function($scope){
     d3.json("json/europe.topo.json", function(error, europe) {	
@@ -87,7 +87,7 @@ app.directive('myChart',function(){
 				})
 				.ticks(5);
 				
-			var svg = d3.select(el[0].children[2])
+			var svg = d3.select(el[0].children[1])
 				.append("svg")
 				.attr("width", w)
 				.attr("height", h)
@@ -153,7 +153,7 @@ app.directive('myChart',function(){
 					var cr = d3.select(this);
 					cr.attr("r",5);
 					d3.selectAll('.tooltip').remove();
-					tooltip = d3.select(el[0].children[2]).append("div").attr("class", "tooltip");
+					tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
 					var absoluteMousePos = d3.mouse(this);
 					tooltip
 						.style('left', (absoluteMousePos[0])+'px')
@@ -229,7 +229,7 @@ app.directive('myMap',function(){
 				.projection(projection)
 				.pointRadius(2);
 				
-			var svg = d3.select(el[0].children[2])
+			var svg = d3.select(el[0].children[1])
 				.append("svg")
 				.attr("id","europe_svg")
 				.attr("width", width)
@@ -313,8 +313,7 @@ app.directive('myMap',function(){
 			
 			var button = d3.select(el[0].children[0])
 				.append("button")
-				.attr("class","myButton")
-				.text("update");
+				.attr("class","myButton");
 				
 			var button = d3.select(".myButton");
 				
@@ -521,7 +520,7 @@ app.directive('myMap',function(){
 			var h_leyenda = 40;
 			var w_rect = width/7;
 			
-			var svg_leyenda = d3.select(el[0].children[2])
+			var svg_leyenda = d3.select(el[0].children[1])
 				.append("svg")
 				.attr("width", width)
 				.attr("height", h_leyenda)

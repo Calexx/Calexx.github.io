@@ -2,6 +2,9 @@ svg{
 	display:block;
 	margin: auto;
 }
+body{
+	background-color: #2D353C;
+}
 .subunit{
 	fill: #f0ddaa;
 	stroke: #333333;
@@ -30,9 +33,6 @@ svg{
 	font-size: 40px;
 	fill: black; 
 }
-.panel-body{
-	position: relative;
-}
 .tooltip{ 
 	background-color:rgba(68,136,187,0.5);
 	padding: 3px; 
@@ -45,45 +45,123 @@ svg{
 	margin:0px;
 }
 .myButton {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
-	background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-	background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-	background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-	background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
-	background-color:#f9f9f9;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
+	width:3%;
+	height:20px;
+	border:0px;
 	cursor:pointer;
-	color:#666666;
-	font-family:arial;
-	font-size:10px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffffff;
-	float:right;
+	background-image: url(../img/button-play.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-color: transparent;
 }
-.myButton:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
-	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-	background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-	background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
-	background-color:#e9e9e9;
+.navbar-brand{
+	color: #AFAFAF!important;
 }
+.big-panel .panel-heading .panel-title{
+	width:97%;
+	float:left;
+	padding:5px;
+	font-size:16px;
+}
+.panel-title{
+	font-size: 10px;
+}
+.panel{
+	border-radius: 8px;
+}
+#green{
+	background-color: #00ACAC!important;
+	border-width: 0px;
+}
+#blue{
+	background-color: #348FE2!important;
+	border-width: 0px;
+}
+#purple{
+	background-color: #727CB6!important;
+	border-width: 0px;
+}
+#black{
+	background-color: #2D353C!important;
+	border-width: 0px;
+}
+.panel-primary{
+	border-width: 0px;
+}
+.panel-green{
+	border-width: 0px;
+}
+.panel-yellow{
+	border-width: 0px;
+}
+.panel-red{
+	border-width: 0px;
+}
+.panel-primary a .panel-footer{
+	background-color: #00ACAC!important;
+	color: #ffffff;
+}
+.panel-green a .panel-footer{
+	background-color: #348FE2!important;
+	color: #ffffff;
+}
+.panel-yellow a .panel-footer{
+	background-color: #727CB6!important;
+	color: #ffffff;
+}
+.panel-red a .panel-footer{
+	background-color: #2D353C!important;
+	color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #00ACAC!important;
+}
+.panel-heading{
+	background-color: #242A30!important;
+	color: #ffffff!important;
+	border-width: 0px; 
+}
+.collapse a{
+	cursor:pointer;
+}
+.navbar{
+	border-width:0px;
+}
+.big-panel{
+	background-color: #2D353C!important;
+}
+.side-nav{
+	background-color: #2D353C;
+}
+
+#page-wrapper{
+	background-color: #D9E0E7;
+}
+#europe_svg{
+	background-color: #2D353C;
+}
+.navbar-collapse{
+	background-color: #FFFFFF;
+}
+.title-option{
+	width: 100%;
+	height: 50px;
+	color: #FFFFF1;
+	background-color: #1A2229;
+	text-align: center;
+	
+}
+.title-option p{
+	padding: 15px;
+}
+
 .leyenda{
 	margin-top: 10px;
-}	
+}
+.leyenda text{
+	fill: #ffffff;
+}		
 .axis path,
 .axis line {
 	fill: none;

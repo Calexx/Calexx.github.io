@@ -865,38 +865,38 @@ app.directive('myStackedBar',function(){
 				
 			svg_leyenda
 				.append("text")
-				.attr("x",w_rect/3)
+				.attr("x",0)
 				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
 				.style("font-size",function(d){
-					return h_leyenda/6 + "px";
+					return h_leyenda/7 + "px";
 				})
 				.text("Business");
 			svg_leyenda
 				.append("text")
-				.attr("x",w_rect+w_rect/3)
+				.attr("x",w_rect)
 				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
 				.style("font-size",function(d){
-					return h_leyenda/6 + "px";
+					return h_leyenda/7 + "px";
 				})
 				.text("Government");
 			svg_leyenda
 				.append("text")
-				.attr("x",w_rect*2+w_rect/3)
+				.attr("x",w_rect*2)
 				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
 				.style("font-size",function(d){
-					return h_leyenda/6 + "px";
+					return h_leyenda/7 + "px";
 				})
-				.text("Higher education");
+				.text("H.Education");
 			svg_leyenda
 				.append("text")
-				.attr("x",w_rect*3+w_rect/3)
+				.attr("x",w_rect*3)
 				.attr("y",h_leyenda/1.5)
 				.attr("class","desc_leyenda")
 				.style("font-size",function(d){
-					return h_leyenda/6 + "px";
+					return h_leyenda/7 + "px";
 				})
 				.text("Private");
 		}

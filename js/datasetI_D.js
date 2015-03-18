@@ -1,6 +1,6 @@
 var app = angular.module('datasetI_D', []);
 
-app.controller('Data', function($scope){
+app.controller('Data', function($scope, $compile){
     d3.json("json/europe.topo.json", function(error, europe) {	
 		d3.json("json/I+D_europe.json", function(json) {
 			if(error) throw error;
@@ -28,6 +28,17 @@ app.controller('Data', function($scope){
 				}
 				
 				$scope.changeValue = function(sector){
+					if($scope.sector == sector){
+						if($scope.reconstruccion == true){
+							$scope.reconstruccion = false;
+							$(".row").remove();
+							var template = 	
+							"<div class='row' id='row1'><div class='col-lg-3 col-md-6'><div class='panel panel-primary'><div id='green' class='panel-heading'><div class='row'><div class='col-xs-3'><i class='fa fa-comments fa-5x'></i></div><div class='col-xs-9 text-right'><div class='huge'>26</div><div>New Comments!</div></div></div></div><a href='#'><div class='panel-footer'><span class='pull-left'>View Details</span><span class='pull-right'><i class='fa fa-arrow-circle-right'></i></span><div class='clearfix'></div></div></a></div></div><div class='col-lg-3 col-md-6'><div class='panel panel-green'><div id='blue'class='panel-heading'><div class='row'><div class='col-xs-3'><i class='fa fa-tasks fa-5x'></i></div><div class='col-xs-9 text-right'><div class='huge'>12</div><div>New Tasks!</div></div></div></div><a href='#'><div class='panel-footer'><span class='pull-left'>View Details</span><span class='pull-right'><i class='fa fa-arrow-circle-right'></i></span><div class='clearfix'></div></div></a></div></div><div class='col-lg-3 col-md-6'><div class='panel panel-yellow'><div id='purple' class='panel-heading'><div class='row'><div class='col-xs-3'><i class='fa fa-shopping-cart fa-5x'></i></div><div class='col-xs-9 text-right'><div class='huge'>124</div><div>New Orders!</div></div></div></div><a href='#'><div class='panel-footer'><span class='pull-left'>View Details</span><span class='pull-right'><i class='fa fa-arrow-circle-right'></i></span><div class='clearfix'></div></div></a></div></div><div class='col-lg-3 col-md-6'><div class='panel panel-red'><div id='black' class='panel-heading'><div class='row'><div class='col-xs-3'><i class='fa fa-support fa-5x'></i></div><div class='col-xs-9 text-right'><div class='huge'>13</div><div>Support Tickets!</div></div></div></div><a href='#'><div class='panel-footer'><span class='pull-left'>View Details</span><span class='pull-right'><i class='fa fa-arrow-circle-right'></i></span><div class='clearfix'></div></div></a></div></div></div><!-- /.row --><div class='row' id='row2'><div class='col-lg-12'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-bar-chart-o fa-fw'></i> {{sector}} at year : {{actual}}</h3></div><div class='panel-body'></div></</div></div><!-- /.row --><div class='row' id='row3'><div class='col-lg-4'><<div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><</div></div></div><<div my-chart value='1' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div><div class='col-lg-4'><div my-chart value='2' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-money fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div></div><div class='row' id='row4'><div class='col-lg-4'><div my-chart value='3' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div><<div my-chart value='4' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><</div></div></div><div class='col-lg-4'><div my-stacked-bar value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div></div>";
+							var linkFn = $compile(template);
+							var content = linkFn($scope);
+							$('#page-container').append(content);
+						}
+					}
 					$scope.sector = sector;
 				}
 				

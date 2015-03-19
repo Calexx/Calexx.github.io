@@ -27,15 +27,23 @@ body{
 }
 .bar.Businessenterprisesector{
 	fill: #00ACAC;
+	stroke-width: 1px;
+	stroke: white;
 }
 .bar.Governmentsector{
 	fill: #348FE2;
+	stroke-width: 1px;
+	stroke: white;
 }
 .bar.Highereducationsector{
 	fill: #727CB6;
+	stroke-width: 1px;
+	stroke: white;
 }
 .bar.Privatenon-profitsector{
 	fill: #2D353C;
+	stroke-width: 1px;
+	stroke: white;
 }
 #year{
 	font-size: 40px;
@@ -67,6 +75,17 @@ body{
 	background-position: center; 
 	background-color: transparent;
 }
+.options{
+	background-color: #2D353C;
+	font-size: 10px;
+}
+
+.mySelect {
+	background-color: #2D353C;
+	width: 100%;
+	font-size: 10px;
+}
+
 .navbar-brand{
 	color: #AFAFAF!important;
 }
@@ -171,6 +190,7 @@ body{
 .leyenda{
 	margin-top: 10px;
 }
+
 .leyenda text{
 	fill: #ffffff;
 }		

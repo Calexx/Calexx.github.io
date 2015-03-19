@@ -31,9 +31,9 @@ app.controller('Data', function($scope, $compile){
 					if($scope.sector == sector){
 						if($scope.reconstruccion == true){
 							$scope.reconstruccion = false;
-							$(".row").remove();
-							var template = 	
-							"<div class='row' id='row1'><div class='col-lg-3 col-md-6'><div class='panel panel-primary'><div id='green' class='panel-heading'><div class='row'><div class='col-xs-3'><i class='fa fa-comments fa-5x'></i></div><div class='col-xs-9 text-right'><div class='huge'>26</div><div>New Comments!</div></div></div></div><a href='#'><div class='panel-footer'><span class='pull-left'>View Details</span><span class='pull-right'><i class='fa fa-arrow-circle-right'></i></span><div class='clearfix'></div></div></a></div></div><div class='col-lg-3 col-md-6'><div class='panel panel-green'><div id='blue'class='panel-heading'><div class='row'><div class='col-xs-3'><i class='fa fa-tasks fa-5x'></i></div><div class='col-xs-9 text-right'><div class='huge'>12</div><div>New Tasks!</div></div></div></div><a href='#'><div class='panel-footer'><span class='pull-left'>View Details</span><span class='pull-right'><i class='fa fa-arrow-circle-right'></i></span><div class='clearfix'></div></div></a></div></div><div class='col-lg-3 col-md-6'><div class='panel panel-yellow'><div id='purple' class='panel-heading'><div class='row'><div class='col-xs-3'><i class='fa fa-shopping-cart fa-5x'></i></div><div class='col-xs-9 text-right'><div class='huge'>124</div><div>New Orders!</div></div></div></div><a href='#'><div class='panel-footer'><span class='pull-left'>View Details</span><span class='pull-right'><i class='fa fa-arrow-circle-right'></i></span><div class='clearfix'></div></div></a></div></div><div class='col-lg-3 col-md-6'><div class='panel panel-red'><div id='black' class='panel-heading'><div class='row'><div class='col-xs-3'><i class='fa fa-support fa-5x'></i></div><div class='col-xs-9 text-right'><div class='huge'>13</div><div>Support Tickets!</div></div></div></div><a href='#'><div class='panel-footer'><span class='pull-left'>View Details</span><span class='pull-right'><i class='fa fa-arrow-circle-right'></i></span><div class='clearfix'></div></div></a></div></div></div><!-- /.row --><div class='row' id='row2'><div class='col-lg-12'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-bar-chart-o fa-fw'></i> {{sector}} at year : {{actual}}</h3></div><div class='panel-body'></div></</div></div><!-- /.row --><div class='row' id='row3'><div class='col-lg-4'><<div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><</div></div></div><<div my-chart value='1' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div><div class='col-lg-4'><div my-chart value='2' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-money fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div></div><div class='row' id='row4'><div class='col-lg-4'><div my-chart value='3' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div><<div my-chart value='4' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><</div></div></div><div class='col-lg-4'><div my-stacked-bar value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div></div>";
+							$("#page-container").empty();
+							var template = getTemplateInicial();
+							console.log(template);
 							var linkFn = $compile(template);
 							var content = linkFn($scope);
 							$('#page-container').append(content);
@@ -57,6 +57,10 @@ app.directive('myChart',function(){
 				scope.$parent.$watchGroup(['pais','year','sector'], function(){
 					drawMap(scope,el,scope.$parent.datos);
 				});
+				
+				scope.$watch('value',function(){
+					drawMap(scope,el,scope.$parent.datos);
+				});
 			}
 		});
 		
@@ -64,8 +68,9 @@ app.directive('myChart',function(){
 			
 			d3.select(el[0]).selectAll("svg").remove();
 			
-			var w = el.width()-30,
-				h = el.width()-30;
+			var w = el.width()-50,
+				h = el.width()-100;
+				
 			var padding = 30;
 			
 			var data = datos[scope.$parent.pais];
@@ -198,6 +203,37 @@ app.directive('myChart',function(){
 				.attr("stroke-width", 0.5)
 				.attr("fill", "none");
 
+			d3.select(el[0].children[0]).selectAll(".mySelect").remove();
+			
+			var select = d3.select(el[0].children[0])
+				.append("select")
+				.attr("id","selectStacked")
+				.attr("class","mySelect");
+				
+			var select = d3.select(".mySelect");
+			
+			var options = select.selectAll("option")
+				.data(scope.$parent.values)
+				.enter()
+				.append("option")
+				.attr("class","options")
+				.attr("value",function(d){
+					return d;
+				})
+				.each(function(d){
+					if(d == scope.value) d3.select(this).attr("selected","selected");
+				})
+				.text(function(d){
+					return scope.$parent.values_indicator[d];
+				});
+				
+			select
+				.on("change",function(){
+					scope.$apply(function(){
+						var value = $("#selectStacked").val();
+						scope.value = value;
+					});
+				});
 		}
 	};
 	
@@ -308,9 +344,8 @@ app.directive('myMap',function($compile){
 						
 						if(scope.$parent.reconstruccion == false){
 							scope.$parent.reconstruccion = true;
-							$(".row").remove();
-							var template = 	
-							"<div class='row' id='row'><div class='col-lg-6'><div my-stacked-bar value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title' style='font-size:16px;padding:5px;'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div><div class='col-lg-6'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i>  {{sector}} at year : {{actual}}</h3></div><div class='panel-body'></div></div></div></div><div class='row' id='row2'><div class='col-lg-4'><div my-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div><div class='col-lg-4'><div my-chart value='1' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div><div class='col-lg-4'><div my-chart value='2' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div>";
+							$("#page-container").empty();
+							var template = 	getTemplateReconstruir();
 							var linkFn = $compile(template);
 							var content = linkFn(scope);
 							$('#page-container').append(content);
@@ -712,13 +747,14 @@ app.directive('myMap',function($compile){
 app.directive('myStackedBar',function(){
 	function link(scope,el,attr){
 		scope.$parent.$watch('datos',function(){
-			if(typeof scope.$parent.datos !== "undefined"){
-				
+			if(typeof scope.$parent.datos !== "undefined"){	
+			
 				scope.value = attr.value;
 				
 				scope.$parent.$watch('pais', function(){
 					drawMap(scope,el,scope.$parent.datos);
 				});
+				
 			}
 		});
 		
@@ -726,8 +762,12 @@ app.directive('myStackedBar',function(){
 			
 			d3.select(el[0]).selectAll("svg").remove();
 			
-			var w = el.width()-el.width()/4,
-				h = el.width()-el.width()/4;
+			/*var w = el.width()-el.width()/3.75,
+				h = el.width()-el.width()/3.75;*/
+				
+			var w = el.width()-50,
+				h = el.width()-100;
+				
 			var padding = el.width()/10;
 			
 			var data = datos[scope.$parent.pais];
@@ -836,78 +876,81 @@ app.directive('myStackedBar',function(){
 					return ((value/maximum)*h);  //Solo el dato
 				});
 				
-			var h_leyenda = h/4;
-			var w_rect = (w-padding)/4;
+			/*var h_leyenda = h/10;
+			var w_rect = (w-padding)/4;*/
+			
+			var h_leyenda = h/20;
+			var w_rect = w/4;
 			
 			var svg_leyenda = d3.select(el[0].children[1])
 				.append("svg")
-				.attr("width", w-padding)
-				.attr("height", h_leyenda)
+				.attr("width", w)
+				.attr("height", h_leyenda+padding/10)
 				.attr("class","leyenda_bars");
 			
 			svg_leyenda
 				.append("rect")
 				.attr("x",0)
-				.attr("y",padding/2)
+				.attr("y",padding/10)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda/4)
 				.attr("fill", "#00ACAC");			
 			svg_leyenda
 				.append("rect")
 				.attr("x",w_rect)
-				.attr("y",padding/2)
+				.attr("y",padding/10)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda/4)
 				.attr("fill", "#348FE2");
 			svg_leyenda
 				.append("rect")
 				.attr("x",w_rect*2)
-				.attr("y",padding/2)
+				.attr("y",padding/10)
 				.attr("width", w_rect)
 				.attr("height", h_leyenda/4)
 				.attr("fill", "#727CB6");
 			svg_leyenda
 				.append("rect")
 				.attr("x",w_rect*3)
-				.attr("y",padding/2)
-				.attr("width", w_rect)
+				.attr("y",padding/10)
+				.attr("width", w_rect-padding/3.5)
 				.attr("height", h_leyenda/4)
 				.attr("fill", "#2D353C");
 				
 			svg_leyenda
 				.append("text")
 				.attr("x",0)
-				.attr("y",h_leyenda/1.5)
+				.attr("y",padding/10+h_leyenda/1.5)
 				.attr("class","desc_leyenda")
 				.style("font-size",function(d){
-					return h_leyenda/7 + "px";
+					return h_leyenda/2 + "px";
 				})
 				.text("Business");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect)
-				.attr("y",h_leyenda/1.5)
+				.attr("y",padding/10+h_leyenda/1.5)
 				.attr("class","desc_leyenda")
 				.style("font-size",function(d){
-					return h_leyenda/7 + "px";
+					return h_leyenda/2 + "px";
 				})
 				.text("Government");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect*2)
-				.attr("y",h_leyenda/1.5)
+				.attr("y",padding/10+h_leyenda/1.5)
 				.attr("class","desc_leyenda")
 				.style("font-size",function(d){
-					return h_leyenda/7 + "px";
+					return h_leyenda/2 + "px";
 				})
 				.text("H.Education");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect*3)
-				.attr("y",h_leyenda/1.5)
+				.attr("y",padding/10+h_leyenda/1.5)
 				.attr("class","desc_leyenda")
 				.style("font-size",function(d){
-					return h_leyenda/7 + "px";
+					return h_leyenda/2 + "px";
 				})
 				.text("Private");
 		}
@@ -989,4 +1032,19 @@ function compare(a,b){
 		return 1;
 	}
 	return 0;
+}
+
+$(window).bind('resize', function(e){
+	if (window.RT) clearTimeout(window.RT);
+	window.RT = setTimeout(function(){
+		this.location.reload(false);
+	}, 100);
+});
+
+function getTemplateInicial(){
+	return "<div class='row' id='row2'><div class='col-lg-12'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-bar-chart-o fa-fw'></i> {{sector}} at year : {{actual}}</h3></div><div class='panel-body'></div></div></div></div><div class='row' id='row3'><div class='col-lg-4'><div my-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i> {{pais}} : </h3></div><div class='panel-body'></div></div></div><div class='col-lg-4'><div my-stacked-bar value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : I+D Sector by {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div></div>";
+}
+
+function getTemplateReconstruir(){
+	return "<div class='row' id='row'><div class='col-lg-6'><div my-stacked-bar value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title' style='font-size:16px;padding:5px;'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : I+D Sectors by {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div><div class='col-lg-6'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i>  {{sector}} at year : {{actual}}</h3></div><div class='panel-body'></div></div></div></div><div class='row' id='row2'><div class='col-lg-4'><div my-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div></div>";
 }

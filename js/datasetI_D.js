@@ -16,7 +16,7 @@ app.controller('Data', function($scope, $compile){
 				
 				$scope.pais = $scope.paisos[0];
 				$scope.year = $scope.years[0];
-				$scope.actual = $scope.year;
+				
 				$scope.sector = $scope.sectors[0];
 				
 				$scope.reconstruccion = false;
@@ -203,14 +203,14 @@ app.directive('myChart',function(){
 				.attr("stroke-width", 0.5)
 				.attr("fill", "none");
 
-			d3.select(el[0].children[0]).selectAll(".mySelect").remove();
+			d3.select(el[0].children[0]).selectAll("#selectStacked").remove();
 			
 			var select = d3.select(el[0].children[0])
 				.append("select")
 				.attr("id","selectStacked")
 				.attr("class","mySelect");
 				
-			var select = d3.select(".mySelect");
+			var select = d3.select("#selectStacked");
 			
 			var options = select.selectAll("option")
 				.data(scope.$parent.values)
@@ -248,6 +248,8 @@ app.directive('myMap',function($compile){
 	function link(scope,el,attr){
 		scope.$parent.$watch('datos',function(){
 			if(typeof scope.$parent.datos !== "undefined"){
+				
+				scope.actual = scope.$parent.year;
 				
 				scope.value = attr.value;
 				
@@ -378,7 +380,7 @@ app.directive('myMap',function($compile){
 			button
 				.on("click",function(){
 					scope.$apply(function(){
-						scope.$parent.actual = scope.$parent.year;
+						scope.actual = scope.$parent.year;
 					});
 					var subunits = svg.selectAll(".subunit");
 					subunits
@@ -455,7 +457,7 @@ app.directive('myMap',function($compile){
 								.delay(5000)
 								.each("end",function(){
 									scope.$apply (function(){
-										scope.$parent.actual = scope.$parent.year;
+										scope.actual = scope.$parent.year;
 									});
 								});
 							i_year++;
@@ -465,7 +467,7 @@ app.directive('myMap',function($compile){
 								.duration(1000) // this is 1s
 								.delay(300)
 								.each("end",repeatYear);
-							scope.$parent.actual = scope.$parent.years[i_year];
+							scope.actual = scope.$parent.years[i_year];
 							i_year++;
 						}
 					}
@@ -751,7 +753,7 @@ app.directive('myStackedBar',function(){
 			
 				scope.value = attr.value;
 				
-				scope.$parent.$watch('pais', function(){
+				scope.$parent.$watch('year', function(){
 					drawMap(scope,el,scope.$parent.datos);
 				});
 				
@@ -953,6 +955,89 @@ app.directive('myStackedBar',function(){
 					return h_leyenda/2 + "px";
 				})
 				.text("Private");
+		}
+	};
+	
+	return {
+		link: link,
+		restrict: 'AE',
+		scope: true
+	};
+});
+
+app.directive('myPieChart',function(){
+	function link(scope,el,attr){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
+				
+				scope.value = attr.value;
+				
+				scope.actual = scope.$parent.year;
+				
+				scope.$parent.$watchGroup(['year','sector'], function(){
+					drawMap(scope,el,scope.$parent.datos);
+				});
+			}
+		});
+		
+		function drawMap(scope, el, datos){
+			
+			d3.select(el[0]).selectAll("svg").remove();
+			
+			var w = el.width()-50,
+				h = el.width()-100,
+				r = 100;
+				
+			var color = d3.scale.category20c();
+				
+			var padding = 30;
+			
+			//var data = datos[scope.$parent.pais];
+			//coger datos de todos los paises
+			
+			var data = [];
+			
+			var paisos = scope.$parent.paisos.slice(3);
+			for (var i=0;i<paisos.length;i++){
+				var dicc = {}
+				dicc["label"] = paisos[i];
+				dicc["value"] = datos[paisos[i]][scope.$parent.sector][scope.actual][scope.value]["Value"];
+				data.push(dicc);
+			}
+			
+			console.log(data);
+	
+			d3.select(el[0].children[0]).select("#selectPie").remove();
+			
+			var select = d3.select(el[0].children[0])
+				.append("select")
+				.attr("id","selectPie")
+				.attr("class","mySelect");
+				
+			var select = d3.select("#selectPie");
+			
+			var options = select.selectAll("option")
+				.data(scope.$parent.years)
+				.enter()
+				.append("option")
+				.attr("class","options")
+				.attr("value",function(d){
+					return d;
+				})
+				.each(function(d){
+					if(d == scope.actual) d3.select(this).attr("selected","selected");
+				})
+				.text(function(d){
+					return d;
+				});
+				
+			select
+				.on("change",function(){
+					scope.$apply(function(){
+						var value = $("#selectStacked").val();
+						scope.value = value;
+					});
+				});
 		}
 	};
 	

@@ -6,7 +6,9 @@ app.controller('Data', function($scope, $compile){
 			if(error) throw error;
 			$scope.$apply(function(){
 				data = pivotID(json);
+				
 				$scope.datos = data;
+				
 				$scope.map = europe;
 				
 				$scope.paisos = Object.keys($scope.datos);
@@ -41,7 +43,6 @@ app.controller('Data', function($scope, $compile){
 					}
 					$scope.sector = sector;
 				}
-				
 			});
 		});
 	});
@@ -264,7 +265,7 @@ app.directive('myMap',function($compile){
 			
 			var nElem = 0;
 			var width = el.width()-50,
-				height = el.width()-100;
+				height = el.width()-140;
 			var padding = 20;
 			var i_pais,j_pais;		
 
@@ -730,13 +731,6 @@ app.directive('myMap',function($compile){
 					return h_leyenda/4 + "px";
 				})
 				.text("+30%");
-				
-				/*.on("click", function(d){
-					var subunits = svg.selectAll(".subunit");
-					subunits.transition().duration(0);
-					var year = svg.selectAll("#year");
-					year.transition().duration(0);
-				});*/
 		}
 	};
 	return {
@@ -763,15 +757,83 @@ app.directive('myStackedBar',function(){
 		function drawMap(scope, el, datos){
 			
 			d3.select(el[0]).selectAll("svg").remove();
-			
-			/*var w = el.width()-el.width()/3.75,
-				h = el.width()-el.width()/3.75;*/
 				
 			var w = el.width()-50,
-				h = el.width()-100;
+				h = el.width()-125;
 				
 			var padding = el.width()/10;
 			
+			var h_rect = h/4;
+			var w_leyenda = w/20;
+			
+			var svg_leyenda = d3.select(el[0].children[1])
+				.append("svg")
+				.attr("width", w_leyenda+padding/10)
+				.attr("height", h)
+				.attr("class","leyenda_bars");
+			
+			svg_leyenda
+				.append("rect")
+				.attr("x",0)
+				.attr("y",0)
+				.attr("width", w_leyenda/4)
+				.attr("height", h_rect)
+				.attr("fill", "#00ACAC");			
+			svg_leyenda
+				.append("rect")
+				.attr("x",0)
+				.attr("y",h_rect)
+				.attr("width", w_leyenda/4)
+				.attr("height", h_rect)
+				.attr("fill", "#348FE2");
+			svg_leyenda
+				.append("rect")
+				.attr("x",0)
+				.attr("y",h_rect*2)
+				.attr("width", w_leyenda/4)
+				.attr("height", h_rect)
+				.attr("fill", "#727CB6");
+			svg_leyenda
+				.append("rect")
+				.attr("x",0)
+				.attr("y",h_rect*3)
+				.attr("width", w_leyenda/4)
+				.attr("height", h_rect)
+				.attr("fill", "#2D353C");
+				
+			svg_leyenda
+				.append("text")
+				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return w_leyenda/2 + "px";
+				})
+				.attr("transform","translate("+padding/4+",0) rotate(90)")
+				.text("Business");
+			svg_leyenda
+				.append("text")
+				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return w_leyenda/2 + "px";
+				})
+				.attr("transform","translate("+padding/4+","+h_rect+") rotate(90)")
+				.text("Government");
+			svg_leyenda
+				.append("text")
+				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return w_leyenda/2 + "px";
+				})
+				.attr("transform","translate("+ padding/4 + "," + h_rect*2 + ") rotate(90)")
+				.text("H.Education");
+			svg_leyenda
+				.append("text")
+				.attr("class","desc_leyenda")
+				.style("font-size",function(d){
+					return w_leyenda/2 + "px";
+				})
+				.attr("transform","translate("+padding/4+","+h_rect*3+") rotate(90)")
+				.text("Private");
+				
 			var data = datos[scope.$parent.pais];
 			
 			var values = [];
@@ -808,7 +870,7 @@ app.directive('myStackedBar',function(){
 			
 			var xScale = d3.scale.linear()
 				.domain([scope.$parent.year, scope.$parent.years[scope.$parent.years.length-1]])
-				.range([0, w - padding]);
+				.range([0, w - padding*2]);
 				
 			var xAxis = d3.svg.axis()
 				.scale(xScale)
@@ -820,17 +882,17 @@ app.directive('myStackedBar',function(){
 				
 			var svg = d3.select(el[0].children[1])
 				.append("svg")
-				.attr("width", w)
-				.attr("height", h)
+				.attr("width", w-padding)
+				.attr("height", h+h/5)
 				.attr("class","stacked")
 				.attr("id","stacked-char");
 			
-			/*svg
+			svg
 				.append("g")
 				.attr("class", "axis")
-				.attr("transform", "translate(0,"+(h-padding/1.2)+")")
+				.attr("transform", "translate("+padding/3+","+(h+h/5-padding/1.2)+")")
 				.attr("fill","black")
-				.call(xAxis);*/
+				.call(xAxis);
 			
 			var anterior = 0;
 			var contador = 1;
@@ -865,7 +927,7 @@ app.directive('myStackedBar',function(){
 					contador++;
 					return a;
 				})
-				.attr("width", w/(scope.$parent.years.length+2))
+				.attr("width", (w-padding)/(scope.$parent.years.length+3))
 				.attr("height", function(d) {
 					var maximum;
 					var year = d.year;
@@ -875,86 +937,8 @@ app.directive('myStackedBar',function(){
 						}
 					}
 					var value = d.value;
-					return ((value/maximum)*h);  //Solo el dato
+					return ((value/maximum)*h);
 				});
-				
-			/*var h_leyenda = h/10;
-			var w_rect = (w-padding)/4;*/
-			
-			var h_leyenda = h/20;
-			var w_rect = w/4;
-			
-			var svg_leyenda = d3.select(el[0].children[1])
-				.append("svg")
-				.attr("width", w)
-				.attr("height", h_leyenda+padding/10)
-				.attr("class","leyenda_bars");
-			
-			svg_leyenda
-				.append("rect")
-				.attr("x",0)
-				.attr("y",padding/10)
-				.attr("width", w_rect)
-				.attr("height", h_leyenda/4)
-				.attr("fill", "#00ACAC");			
-			svg_leyenda
-				.append("rect")
-				.attr("x",w_rect)
-				.attr("y",padding/10)
-				.attr("width", w_rect)
-				.attr("height", h_leyenda/4)
-				.attr("fill", "#348FE2");
-			svg_leyenda
-				.append("rect")
-				.attr("x",w_rect*2)
-				.attr("y",padding/10)
-				.attr("width", w_rect)
-				.attr("height", h_leyenda/4)
-				.attr("fill", "#727CB6");
-			svg_leyenda
-				.append("rect")
-				.attr("x",w_rect*3)
-				.attr("y",padding/10)
-				.attr("width", w_rect-padding/3.5)
-				.attr("height", h_leyenda/4)
-				.attr("fill", "#2D353C");
-				
-			svg_leyenda
-				.append("text")
-				.attr("x",0)
-				.attr("y",padding/10+h_leyenda/1.5)
-				.attr("class","desc_leyenda")
-				.style("font-size",function(d){
-					return h_leyenda/2 + "px";
-				})
-				.text("Business");
-			svg_leyenda
-				.append("text")
-				.attr("x",w_rect)
-				.attr("y",padding/10+h_leyenda/1.5)
-				.attr("class","desc_leyenda")
-				.style("font-size",function(d){
-					return h_leyenda/2 + "px";
-				})
-				.text("Government");
-			svg_leyenda
-				.append("text")
-				.attr("x",w_rect*2)
-				.attr("y",padding/10+h_leyenda/1.5)
-				.attr("class","desc_leyenda")
-				.style("font-size",function(d){
-					return h_leyenda/2 + "px";
-				})
-				.text("H.Education");
-			svg_leyenda
-				.append("text")
-				.attr("x",w_rect*3)
-				.attr("y",padding/10+h_leyenda/1.5)
-				.attr("class","desc_leyenda")
-				.style("font-size",function(d){
-					return h_leyenda/2 + "px";
-				})
-				.text("Private");
 		}
 	};
 	
@@ -977,6 +961,10 @@ app.directive('myPieChart',function(){
 				scope.$parent.$watchGroup(['year','sector'], function(){
 					drawMap(scope,el,scope.$parent.datos);
 				});
+				
+				scope.$watch('actual',function(){
+					drawMap(scope,el,scope.$parent.datos);
+				})
 			}
 		});
 		
@@ -986,26 +974,95 @@ app.directive('myPieChart',function(){
 			
 			var w = el.width()-50,
 				h = el.width()-100,
-				r = 100;
+				r = Math.min(w, h)/ 2;
 				
 			var color = d3.scale.category20c();
 				
 			var padding = 30;
 			
-			//var data = datos[scope.$parent.pais];
-			//coger datos de todos los paises
-			
 			var data = [];
+			var cont = 0;
+			var resto = 0;
+			
+			var dic = crearDiccionarioEuropa();
 			
 			var paisos = scope.$parent.paisos.slice(3);
 			for (var i=0;i<paisos.length;i++){
-				var dicc = {}
-				dicc["label"] = paisos[i];
-				dicc["value"] = datos[paisos[i]][scope.$parent.sector][scope.actual][scope.value]["Value"];
-				data.push(dicc);
+				if (_.contains(Object.keys(dic), paisos[i])){
+					if(cont<10){
+						var dicc = {};
+						dicc["label"] = paisos[i];
+						dicc["value"] = parseFloat(datos[paisos[i]][scope.$parent.sector][scope.actual][scope.value]["Value"].replace(',',''));
+						if(!isNaN(dicc["value"])){
+							data.push(dicc);
+							cont++;
+						}
+					}
+					else{
+						resto = resto + parseFloat(datos[paisos[i]][scope.$parent.sector][scope.actual][scope.value]["Value"].replace(',',''));
+						cont++;
+					}
+				}
 			}
 			
-			console.log(data);
+			var resta = {};
+			resta["label"] = "Remainder";
+			resta["value"] = resto;
+			data.push(resta);
+			
+			var svg = d3.select(el[0].children[1])
+				.append("svg")
+				.attr("width", w)
+				.attr("height", h)
+				.append("g")
+				.attr("class","pie")
+				.attr("id","pie-char")
+				.attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");	
+			
+			var arc = d3.svg.arc()
+				.outerRadius(r - 10)
+				.innerRadius(0);
+				
+			var pie = d3.layout.pie()
+				.value(function(d) { return d.value; });
+
+			var g = svg.selectAll(".arc")
+				.data(pie(data))
+				.enter()
+				.append("g")
+				.attr("class", "arc");
+			
+			var tooltip;
+			
+			g.append("path")
+				.attr("d", arc)
+				.style("fill", function(d,i) { 
+					return color(i);			
+				})
+				.on("mouseover",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",0.5)
+						.style("stroke","black")
+					d3.selectAll('.tooltip-pie').remove();
+					tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+					var absoluteMousePos = d3.mouse(this);
+					tooltip
+						.style('left', (absoluteMousePos[0]+w/2)+'px')
+						.style('top', (absoluteMousePos[1]+h/1.5)+'px')
+						.style('position', 'absolute') 
+						.style('z-index', 1001);
+					var tooltipText = "<p id='tooltip_p'>" + d.data.label.split(" ")[0] + "</p>";
+					tooltip
+						.html(tooltipText);
+				})
+				.on("mouseleave",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",1)
+						.style("stroke","");
+					tooltip.remove();
+				});
 	
 			d3.select(el[0].children[0]).select("#selectPie").remove();
 			
@@ -1034,10 +1091,37 @@ app.directive('myPieChart',function(){
 			select
 				.on("change",function(){
 					scope.$apply(function(){
-						var value = $("#selectStacked").val();
-						scope.value = value;
+						var value = $("#selectPie").val();
+						scope.actual = value;
 					});
 				});
+		}
+	};
+	
+	return {
+		link: link,
+		restrict: 'AE',
+		scope: true
+	};
+});
+
+app.directive('myBubbleChart',function(){
+	function link(scope,el,attr){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
+				
+				scope.value = attr.value;
+				
+				scope.actual = scope.$parent.year;
+				
+				scope.$parent.$watchGroup(['year','sector'], function(){
+					drawMap(scope,el,scope.$parent.datos);
+				});
+			}
+		});
+		
+		function drawMap(scope, el, datos){
+			
 		}
 	};
 	
@@ -1127,9 +1211,9 @@ $(window).bind('resize', function(e){
 });
 
 function getTemplateInicial(){
-	return "<div class='row' id='row2'><div class='col-lg-12'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-bar-chart-o fa-fw'></i> {{sector}} at year : {{actual}}</h3></div><div class='panel-body'></div></div></div></div><div class='row' id='row3'><div class='col-lg-4'><div my-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i> {{pais}} : </h3></div><div class='panel-body'></div></div></div><div class='col-lg-4'><div my-stacked-bar value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : I+D Sector by {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div></div>";
+	return "<div class='row' id='row2'><div class='col-lg-12'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-bar-chart-o fa-fw'></i> {{sector}} at year:</h3></div><div class='panel-body'><h1 id='year-title'>{{actual}}</h1></div></div></div></div><div class='row' id='row3'><div class='col-lg-4'><div my-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i> {{pais}} : </h3></div><div class='panel-body'></div></div></div><div class='col-lg-4'><div my-stacked-bar value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : I+D Sector by {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div><div class='col-lg-4'><div my-pie-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : I+D Sector by {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div></div>";
 }
 
 function getTemplateReconstruir(){
-	return "<div class='row' id='row'><div class='col-lg-6'><div my-stacked-bar value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title' style='font-size:16px;padding:5px;'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : I+D Sectors by {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div><div class='col-lg-6'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i>  {{sector}} at year : {{actual}}</h3></div><div class='panel-body'></div></div></div></div><div class='row' id='row2'><div class='col-lg-4'><div my-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div></div>";
+	return "<div class='row' id='row'><div class='col-lg-6'><div my-pie-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title' style='font-size:16px;padding:5px;'><i class='fa fa-clock-o fa-fw'></i> All countries : I+D in {{sector}}</h3></div><div class='panel-body'></div></div></div><div class='col-lg-6'><div my-map value='0' class='panel panel-default big-panel'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-long-arrow-right fa-fw'></i>  {{sector}} at year :</h3></div><div class='panel-body'><h1 id='year-title'>{{actual}}</h1></div></div></div></div><div class='row' id='row2'><div class='col-lg-4'><div my-chart value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : {{values_indicator[value]}}</h3></div><div class='panel-body'></div></div></div><div class='col-lg-4'><div my-stacked-bar value='0' class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-clock-o fa-fw'></i> {{pais}} : I+D Sector by {{values_indicator[value]}}</h3></div><div class='panel-body'> </div></div></div></div>";
 }

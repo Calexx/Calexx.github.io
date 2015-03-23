@@ -117,6 +117,11 @@ body{
 	background-color: #2D353C!important;
 	border-width: 0px;
 }
+#year-title{
+	color: white;
+	padding-left: 50px;
+	margin:0px;
+}
 .panel-primary{
 	border-width: 0px;
 }
@@ -171,6 +176,9 @@ body{
 }
 #europe_svg{
 	background-color: #2D353C;
+}
+.leyenda_bars{
+	float: left;
 }
 .navbar-collapse{
 	background-color: #FFFFFF;

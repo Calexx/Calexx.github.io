@@ -1,0 +1,3938 @@
+[
+  {
+    "TIME":2003,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,489,822.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,922,511.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,715,277.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,825,015.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,808,446.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,715,277.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"282,256.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"18,759.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"87,959.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"193,353.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,217,050.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,698.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"144,839.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"178,570.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"803,472.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2003,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,637,438.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"30,702.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,391,312.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,781.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,476.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"25,778.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"74,944.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"4,794.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"505,833.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"230,999.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"192,274.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"146,158.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"52,931.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"26,303.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"30,115.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"151,569.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"293,444.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,720,436.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,025.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"202,368.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"311,606.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"4,385.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2003,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"18,738.0",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2003,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,175,654.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,015,561.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,395,107.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,035,842.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,156,694.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,138,457.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,035,842.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"298,357.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"20,901.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"95,878.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"202,317.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,267,580.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,706.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"155,470.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"193,013.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"861,420.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2004,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,710,760.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"33,464.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,449,016.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,812.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,735.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"18,237.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"27,551.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"83,106.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"4,867.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"520,322.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"241,505.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"204,848.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"152,371.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"61,404.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"27,736.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"34,756.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"158,477.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"307,433.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,849,513.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,065.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"212,908.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"316,990.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"4,577.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2004,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"19,966.6",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2004,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,868,076.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,502,133.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,782,958.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,316,705.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,451,320.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,430,318.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,316,705.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"311,150.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"23,582.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"109,394.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"212,906.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,297,820.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,260.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"169,152.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"199,152.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"930,566.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2005,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,771,978.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,508.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,490,409.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"14,906.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,733.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"21,002.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"29,771.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"90,027.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"5,142.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"540,656.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"253,009.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"244,822.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"158,652.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"80,225.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"29,235.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"39,335.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"164,387.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"313,218.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,940,128.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,524.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"248,332.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"327,755.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"5,032.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2005,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"21,103.3",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2005,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,524,636.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,168,082.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,361,208.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,741,675.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,894,993.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,870,914.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,741,675.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"327,368.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"26,827.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"123,743.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"225,592.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,390,200.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,518.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"183,759.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"217,830.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,007,974.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2006,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,853,267.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"40,197.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,549,188.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"16,097.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"17,239.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"24,079.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"33,303.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"90,950.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"5,386.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"573,444.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"266,478.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"273,417.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"166,248.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"98,418.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"31,561.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"45,435.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"172,614.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"334,876.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,059,064.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,675.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"275,289.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"342,123.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"5,472.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2006,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"24,434.6",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2006,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,035,281.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,900,956.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,964,559.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,245,773.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,392,906.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,363,866.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,210,621.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"345,069.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"31,883.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"138,004.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"233,439.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,510,110.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"16,241.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"196,748.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"232,831.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,080,807.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2007,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,945,670.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"43,925.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,610,304.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"17,406.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"22,623.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"29,040.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"35,953.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"101,240.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"5,757.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"608,729.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"282,346.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"313,654.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"175,467.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"125,403.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"35,152.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"56,063.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"186,584.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"356,434.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,164,064.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"15,676.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"293,128.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"348,864.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"6,095.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2007,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"29,451.6",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2007,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,563,735.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,986,407.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,925,489.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,487,721.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,627,011.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,594,314.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,424,873.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"355,066.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,450.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"160,961.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"241,087.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,558,020.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"16,511.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"186,870.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"242,096.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,116,207.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2008,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,995,850.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"48,129.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,632,933.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"18,768.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"24,403.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"32,696.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"37,522.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"107,150.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"6,128.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"635,794.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"291,930.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"363,691.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"178,872.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"142,396.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"37,951.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"65,679.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"193,711.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"352,317.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,907,212.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,761.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"316,813.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"376,326.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"6,744.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2008,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"33,704.5",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2008,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,007,207.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,245,901.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,303,488.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,224,550.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,284,439.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,257,504.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,100,023.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"349,703.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,078.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"148,357.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"230,213.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,456,660.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"14,138.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"168,114.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"237,431.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,079,034.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2009,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,939,017.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"45,090.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,573,655.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"18,423.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"18,816.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"26,934.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,093.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"93,371.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"6,138.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"617,650.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"286,188.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"314,689.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"175,448.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"120,409.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,166.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"63,798.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"181,029.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"309,678.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,663,573.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,182.3",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2009,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"278,386.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"388,781.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"6,765.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2009,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"30,654.7",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2009,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,337,467.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,789,852.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,777,525.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,479,403.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,540,128.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,512,127.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,350,317.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"365,747.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,764.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"156,369.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"241,516.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,576,220.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"14,709.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"164,928.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"226,209.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,080,913.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2010,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,998,481.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"45,004.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,605,694.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"19,062.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"18,015.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"28,001.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"39,370.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"97,814.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"6,599.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"631,512.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"294,207.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"359,816.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"179,929.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"126,746.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,219.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"67,204.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"187,100.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"369,076.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,816,615.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,013.3",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2010,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"323,587.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"439,140.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,108.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2010,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"29,766.3",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2010,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,287,923.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,173,516.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,113,184.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,748,035.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,799,479.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,768,232.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,598,223.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"379,991.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"40,103.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"163,579.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"246,074.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,699,100.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"16,403.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"171,042.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"207,751.9",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2011,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,075,147.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2011,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,059,284.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"44,708.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,638,857.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"19,486.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"20,197.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"31,247.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"42,410.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"100,350.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"6,902.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"642,929.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"308,675.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"377,028.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"176,166.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"133,305.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,868.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"70,159.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"196,869.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"404,945.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,863,940.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,551.1",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2011,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"358,248.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"501,642.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,550.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2011,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"33,423.8",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2011,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,147,916.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,425,648.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,353,209.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,790,042.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,845,573.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,812,259.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,637,591.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"388,254.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"40,926.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"160,947.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"250,786.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,749,900.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"17,636.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"172,754.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"194,203.7",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2012,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,055,158.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2012,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,091,059.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"43,933.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,615,131.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"19,411.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"22,217.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"33,314.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"43,812.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"98,699.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,226.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"640,644.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2012,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"317,213.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"386,143.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"169,668.2",
+    "Flag and Footnotes":"e"
+  },
+  {
+    "TIME":2012,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"133,806.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,006.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"72,184.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"199,793.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"423,340.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,041,491.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,076.0",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2012,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"396,678.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"518,204.8",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2012,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,585.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2012,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"31,683.1",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2012,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,580,323.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,519,751.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,424,716.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,872,380.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,930,601.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,895,645.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,718,241.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"395,262.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"41,047.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"157,284.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"252,938.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,809,480.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"18,738.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"174,791.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"182,438.3",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2013,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,049,181.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2013,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,113,687.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"43,561.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,609,462.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"18,118.9",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2013,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"23,265.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"34,955.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"45,288.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"100,536.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,571.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"642,851.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2013,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"322,594.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"395,962.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"171,211.1",
+    "Flag and Footnotes":"e"
+  },
+  {
+    "TIME":2013,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"144,282.2",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2013,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,144.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"73,593.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"201,995.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"436,342.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,017,193.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"11,583.3",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2013,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"393,098.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"516,068.1",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2013,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"8,122.6",
+    "Flag and Footnotes":"e"
+  },
+  {
+    "TIME":2013,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2013,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"34,262.9",
+    "Flag and Footnotes":"d"
+  },
+  {
+    "TIME":2013,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,625,630.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"European Union (28 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,920,541.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"European Union (15 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,797,303.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,074,570.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Euro area (19 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,110,857.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Euro area (18 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"10,074,570.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Euro area (12 countries)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"9,893,117.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Belgium",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"402,270.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Bulgaria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"42,010.5",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2014,
+    "GEO":"Czech Republic",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"154,939.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Denmark",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"256,937.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Germany (until 1990 former territory of the FRG)",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,903,790.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Estonia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"19,526.2",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Ireland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"185,411.7",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Greece",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"179,080.6",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2014,
+    "GEO":"Spain",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,058,469.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2014,
+    "GEO":"France",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,142,022.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Croatia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"43,084.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Italy",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"1,616,047.6",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Cyprus",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"17,506.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Latvia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"24,058.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Lithuania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"36,287.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Luxembourg",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Hungary",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"103,302.8",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Malta",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"7,961.5",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Netherlands",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"653,476.0",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2014,
+    "GEO":"Austria",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"328,996.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Poland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"412,189.1",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Portugal",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"174,384.2",
+    "Flag and Footnotes":"e"
+  },
+  {
+    "TIME":2014,
+    "GEO":"Romania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"150,664.8",
+    "Flag and Footnotes":"p"
+  },
+  {
+    "TIME":2014,
+    "GEO":"Slovenia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"37,246.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Slovakia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"75,214.9",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Finland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"204,015.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Sweden",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"429,468.4",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"United Kingdom",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"2,217,872.0",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Iceland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"12,853.6",
+    "Flag and Footnotes":"f"
+  },
+  {
+    "TIME":2014,
+    "GEO":"Norway",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"377,224.3",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Switzerland",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Former Yugoslav Republic of Macedonia, the",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Albania",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"Serbia",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":":",
+    "Flag and Footnotes":""
+  },
+  {
+    "TIME":2014,
+    "GEO":"United States",
+    "UNIT":"Current prices, million euro",
+    "NA_ITEM":"Gross domestic product at market prices",
+    "Value":"13,111,253.3",
+    "Flag and Footnotes":""
+  }
+]

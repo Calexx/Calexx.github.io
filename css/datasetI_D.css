@@ -54,7 +54,8 @@ body{
 	fill: black; 
 }
 .tooltip{ 
-	background-color:rgba(68,136,187,0.5);
+	background-color:#2D353C;
+	color: white;
 	padding: 3px; 
 	-webkit-border-radius:10px;
 	-moz-border-radius:10px;

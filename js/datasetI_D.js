@@ -85,11 +85,11 @@ app.directive('myChart',function(){
 			var padding = 30;
 			
 			var data = datos[scope.$parent.pais];
-			var initialValue = parseFloat(data[scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+			var initialValue = parseFloat(data[scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(/,/g,''));
 			
 			var values = [];
 			for (key in data[scope.sector]){
-				values.push(parseFloat(data[scope.$parent.sector][key][scope.value]["Value"].replace(',','')));
+				values.push(parseFloat(data[scope.$parent.sector][key][scope.value]["Value"].replace(/,/g,'')));
 			}
 			
 			var xScale = d3.scale.linear()
@@ -140,7 +140,7 @@ app.directive('myChart',function(){
 			var array = []
 			for (key in data[scope.$parent.sector]){
 				var value = {};
-				value[key] = parseFloat(data[scope.$parent.sector][key][scope.value]["Value"].replace(',',''));
+				value[key] = parseFloat(data[scope.$parent.sector][key][scope.value]["Value"].replace(/,/g,''));
 				array.push(value);
 			}
 			
@@ -303,7 +303,7 @@ app.directive('myMap',function($compile){
 			
 			for (key in data){
 				if (_.contains(Object.keys(dic), key)){
-					initialValues[key] = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+					initialValues[key] = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(/,/g,''));
 				}
 			}
 			
@@ -320,7 +320,7 @@ app.directive('myMap',function($compile){
 				.attr("class", function(d){
 					for (key in data){
 						if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
-							var tono = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+							var tono = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(/,/g,''));
 							if(tono<100){
 								return "subunit " + key + " " + "primero";
 							}
@@ -386,8 +386,6 @@ app.directive('myMap',function($compile){
 				.append("button")
 				.attr("class","myButton");
 				
-			var button = d3.select(".myButton");
-				
 			button
 				.on("click",function(){
 					scope.$apply(function(){
@@ -412,7 +410,7 @@ app.directive('myMap',function($compile){
 						for(key in data){
 							if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
 								var value = initialValues[key];
-								var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[1]][scope.value]["Value"].replace(',',''));
+								var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[1]][scope.value]["Value"].replace(/,/g,''));
 								var tono = value2-value;
 								if(isNaN(tono)){
 									return d3.select(this).style("fill");
@@ -497,7 +495,7 @@ app.directive('myMap',function($compile){
 								for(key in data){
 									if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
 										var value = initialValues[key];
-										var tono = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
+										var tono = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(/,/g,''));
 										if(isNaN(tono)){
 											return d3.select(this).style("fill");
 										}
@@ -543,7 +541,7 @@ app.directive('myMap',function($compile){
 								for(key in data){
 									if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
 										var value = initialValues[key];
-										var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[i_pais]][scope.value]["Value"].replace(',',''));
+										var value2 = parseFloat(data[key][scope.$parent.sector][scope.$parent.years[i_pais]][scope.value]["Value"].replace(/,/g,''));
 										var tono = value2-value;
 										if(isNaN(tono)){
 											return d3.select(this).style("fill");
@@ -854,7 +852,7 @@ app.directive('myStackedBar',function(){
 						var v = {};
 						v["year"] = year;
 						v["sector"] = sector;
-						v["value"] = parseFloat(data[sector][year][scope.value]["Value"].replace(',',''));
+						v["value"] = parseFloat(data[sector][year][scope.value]["Value"].replace(/,/g,''));
 						allValues.push(v);
 					}
 				}
@@ -864,7 +862,7 @@ app.directive('myStackedBar',function(){
 						var v = {};
 						v["year"] = year;
 						v["sector"] = sector;
-						v["value"] = parseFloat(data[sector][year][scope.value]["Value"].replace(',',''));
+						v["value"] = parseFloat(data[sector][year][scope.value]["Value"].replace(/,/g,''));
 						values.push(v);
 					}					
 				}
@@ -1002,14 +1000,14 @@ app.directive('myPieChart',function(){
 					if(cont<10){
 						var dicc = {};
 						dicc["label"] = paisos[i];
-						dicc["value"] = parseFloat(datos[paisos[i]][scope.$parent.sector][scope.actual][scope.value]["Value"].replace(',',''));
+						dicc["value"] = parseFloat(datos[paisos[i]][scope.$parent.sector][scope.actual][scope.value]["Value"].replace(/,/g,''));
 						if(!isNaN(dicc["value"])){
 							data.push(dicc);
 							cont++;
 						}
 					}
 					else{
-						resto = resto + parseFloat(datos[paisos[i]][scope.$parent.sector][scope.actual][scope.value]["Value"].replace(',',''));
+						resto = resto + parseFloat(datos[paisos[i]][scope.$parent.sector][scope.actual][scope.value]["Value"].replace(/,/g,''));
 						cont++;
 					}
 				}
@@ -1145,26 +1143,36 @@ app.directive('myBubbleChart',function(){
 				
 			var padding = el.width()/10;
 			
+			var color = d3.scale.category20c();
+			
 			var nElem = 0;
-			var i_circle,i_text,j_circle;
+			var i_circle,j_circle, i_year;
+			var formatBigNumbers = d3.format(".1s");
 			
 			var data = datos;
 			
 			var dic = crearDiccionarioEuropa();
+			var tooltip;
 			
-			var initialValues = {};
-			
+			var initialValues = [];
+						
 			for (key in data){
 				if (_.contains(Object.keys(dic), key)){
-					var dicc = {};
-					dicc["data"] = parseFloat(data[key][scope.$parent.sector][scope.$parent.year][scope.value]["Value"].replace(',',''));
-					dicc["population"] = parseFloat(population[key][scope.sex][scope.$parent.year][scope.value]["Value"].replace(',',''));
-					dicc["pib"] = parseFloat(pib[key][scope.item][scope.$parent.year][scope.value]["Value"].replace(',',''));
-					initialValues[key] = dicc;
-					nElem++;
+					var diccc = {};
+					var dc = {};
+					for (fecha in data[key][scope.$parent.sector]){
+						var dicc = {};
+						dicc["data"] = parseFloat(data[key][scope.$parent.sector][fecha][scope.value]["Value"].replace(/,/g,''));
+						dicc["population"] = parseFloat(population[key][scope.sex][fecha][scope.value]["Value"].replace(/,/g,''));
+						dicc["pib"] = parseFloat(pib[key][scope.item][fecha][scope.value]["Value"].replace(/,/g,''));
+						diccc[fecha] = dicc;
+					}
+					dc[key] = diccc;
+					initialValues.push(dc);
 				}
 			}
 			
+			//console.log(initialValues);
 			var svg = d3.select(el[0].children[1])
 				.append("svg")
 				.attr("id","bubble-europe")
@@ -1172,19 +1180,227 @@ app.directive('myBubbleChart',function(){
 				.attr("height", h)
 			
 			var pibValues = [];
+			var pobValues = [];
+			var values = [];
 			
-			for (key in initialValues){
-				
+			for (key in data){
+				if (_.contains(Object.keys(dic), key)){
+					for (fecha in data[key][scope.$parent.sector]){
+						values.push(parseFloat(data[key][scope.$parent.sector][fecha][scope.value]["Value"].replace(/,/g,'')));
+						pobValues.push(parseFloat(population[key][scope.sex][fecha][scope.value]["Value"].replace(/,/g,'')));
+						pibValues.push(parseFloat(pib[key][scope.item][fecha][scope.value]["Value"].replace(/,/g,'')));
+					}
+				}
 			}
-			var xScale = d3.scale.linear()
-				.domain([0, maxPob])
+					
+			var xScale = d3.scale.pow()
+				.exponent(.455)
+				.domain([0, d3.max(pibValues)])
 				.range([padding, w - padding]);
 			var yScale = d3.scale.linear()
-				.domain([0, maxRiq])
+				.domain([0, d3.max(values)])
 				.range([h-padding, padding]);
 			var rScale = d3.scale.linear()
-				.domain([0, maxPob])
+				.domain([0, d3.max(pobValues)])
 				.range([5, 20]);
+			
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.ticks(5)
+				.tickFormat(formatBigNumbers);
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.ticks(10);
+				
+			var circles = svg.selectAll("circle")
+				.data(initialValues)
+				.enter()
+				.append("circle")
+				.attr("fill",function(d,i){
+					return color(i);
+				})
+				.attr("class",function (d){
+					return "cercle " + Object.keys(d)[0].replace(/ /g,'');
+				})
+				.each(function(){
+					nElem++;
+				})
+				.attr("cx", function(d) {
+					return xScale(d[Object.keys(d)[0]][scope.$parent.year]['pib']);
+				})
+				.attr("cy", function(d) {
+					return yScale(d[Object.keys(d)[0]][scope.$parent.year]['data']);
+				})
+				.attr("r", function(d) {
+					return rScale(d[Object.keys(d)[0]][scope.$parent.year]['population']);
+				})
+				.on("mouseover",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",0.5);
+					d3.selectAll('.tooltip').remove();
+					tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+					var absoluteMousePos = d3.mouse(this);
+					tooltip
+						.style('left', (absoluteMousePos[0]/*+w/2*/)+'px')
+						.style('top', (absoluteMousePos[1]+h/6)+'px')
+						.style('position', 'absolute') 
+						.style('z-index', 1001);
+					var tooltipText = "<p id='tooltip_p'>" + Object.keys(d)[0] + "</p>";
+					tooltip
+						.html(tooltipText);
+				})
+				.on("mouseleave",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",1)
+						.style("stroke","");
+					tooltip.remove();
+				});
+			
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0,"+(h-padding)+")")
+				.attr("fill","black")
+				.call(xAxis);
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate("+padding+",0)")
+				.attr("fill","black")
+				.call(yAxis); 
+		  
+			svg
+				.append("text")
+				.attr("text-anchor", "middle") 
+				.attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)") 
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("R+D Inversion");
+
+			svg
+				.append("text")
+				.attr("text-anchor", "middle")  
+				.attr("transform", "translate("+((padding+w)/2)+","+(h-(padding/4))+")")
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("GDP");
+				
+			d3.select(el[0].children[0]).selectAll(".myButton").remove();
+			
+			var button = d3.select(el[0].children[0])
+				.append("button")
+				.attr("class","myButton");
+				
+			button
+				.on("click",function(){
+					scope.$apply(function(){
+						scope.actual = scope.$parent.year;
+					});
+					transitions();
+				});
+			
+			svg.append("text")
+				.attr("id","year");
+			
+			function transitions(){
+				var circles = svg.selectAll("circle");
+				var year = svg.select("#year");
+				
+				i_circle = 2;
+				i_year = 1;
+				j_circle = 2 * nElem;
+				
+				circles.transition()
+					.attr("cx", function(d) {
+						return xScale(d[Object.keys(d)[0]][scope.$parent.years[1]]['pib']);
+					})
+					.attr("cy", function(d) {
+						return yScale(d[Object.keys(d)[0]][scope.$parent.years[1]]['data']);
+					})
+					.attr("r", function(d) {
+						return rScale(d[Object.keys(d)[0]][scope.$parent.years[1]]['population']);
+					})
+					.duration(1000)
+					.delay(0)
+					.each("end",repeatCircles);
+					
+				year.transition()
+					.duration(1000)
+					.delay(0)
+					.each("end",repeatYear);
+			}
+			
+			function repeatCircles(){
+				i_circle = parseInt(j_circle/nElem);
+				if(i_circle<scope.$parent.years.length+1){
+					if(i_circle==scope.$parent.years.length){
+						d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][scope.$parent.year]['pib']);
+							})
+							.attr("cy", function(d) {
+								return yScale(d[Object.keys(d)[0]][scope.$parent.year]['data']);
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][scope.$parent.year]['population']);
+							})
+							.duration(3000)
+							.delay(0);
+						j_circle++;
+					}
+					else{
+						d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['pib']);
+							})
+							.attr("cy", function(d) {
+								if(!isNaN(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['data'])){
+									return yScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['data']);
+								}
+								else{
+									return yScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle-1]]['data']);
+								}
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['population']);
+							})
+							.duration(1000)
+							.delay(0)
+							.each("end",repeatCircles);
+						j_circle++;
+					}
+				}
+			}
+			
+			function repeatYear(){
+				scope.$apply (function(){
+					if(i_year<scope.$parent.years.length+1){
+						if(i_year==scope.$parent.years.length){
+							d3.select(this).transition()
+								.duration(3000) // this is 1s
+								.delay(0)
+								.each("end",function(){
+									scope.$apply (function(){
+										scope.actual = scope.$parent.year;
+									});
+								});
+							i_year++;
+						}
+						else{
+							d3.select(this).transition()
+								.duration(1000) // this is 1s
+								.delay(0)
+								.each("end",repeatYear);
+							scope.actual = scope.$parent.years[i_year];
+							i_year++;
+						}
+					}
+				});
+			}
 		}
 	};
 	

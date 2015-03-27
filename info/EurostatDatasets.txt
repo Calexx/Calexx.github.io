@@ -1,0 +1,5 @@
+http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=lfsa_ewpnig&lang=en
+http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=hrst_st_nsecsex2&lang=en
+http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=lfsa_egised&lang=en
+http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=edat_lfse_32&lang=en
+http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=ilc_di13&lang=en

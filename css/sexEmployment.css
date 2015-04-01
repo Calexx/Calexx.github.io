@@ -25,26 +25,17 @@ body{
 	fill: none;
 	stroke: #333333;
 }
-.bar.Businessenterprisesector{
-	fill: #00ACAC;
+.bar.Males{
+	fill: #3F7F93;
 	stroke-width: 1px;
 	stroke: white;
 }
-.bar.Governmentsector{
-	fill: #348FE2;
+.bar.Females{
+	fill: #DA6068;
 	stroke-width: 1px;
 	stroke: white;
 }
-.bar.Highereducationsector{
-	fill: #727CB6;
-	stroke-width: 1px;
-	stroke: white;
-}
-.bar.Privatenon-profitsector{
-	fill: #2D353C;
-	stroke-width: 1px;
-	stroke: white;
-}
+
 #year{
 	font-size: 40px;
 	fill: black;

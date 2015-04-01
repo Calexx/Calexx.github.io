@@ -4,14 +4,19 @@ app.controller('Data', function($scope, $compile){
 	d3.json("json/europe.topo.json", function(error, europe) {	
 		d3.json("json/educationEmployment.json", function(json) {
 			d3.json("json/population.json",function(json2){
+				d3.json("json/salary.json",function(json3){
 					if(error) throw error;
 					$scope.$apply(function(){
 						
 						var data = pivotID(json,['GEO','SEX','TIME','ISCED11','ISCO08']);
 						var population = pivotID(json2,['GEO','SEX','TIME']);
+						var salary = pivotID(json3,['GEO','SEX','TIME']);
 						
 						$scope.datos = data;
 						$scope.population = population;
+						$scope.salary = salary;
+						
+						console.log(salary);
 						
 						$scope.map = europe;
 						
@@ -20,7 +25,6 @@ app.controller('Data', function($scope, $compile){
 						$scope.years = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]]);
 						$scope.educations = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]][$scope.years[0]]);
 						$scope.activities = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]][$scope.years[0]][$scope.educations[0]]);
-						$scope.values = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]][$scope.years[0]][$scope.educations[0]][$scope.activities[0]]);
 						
 						$scope.pais = $scope.paisos[0];
 						$scope.year = $scope.years[0];
@@ -42,6 +46,7 @@ app.controller('Data', function($scope, $compile){
 							$scope.education = education;
 						}
 					});
+				});
 			});
 		});
 	});
@@ -90,7 +95,7 @@ app.directive('myChart',function(){
 				.range([padding, w - padding]);
 			
 			var yScale = d3.scale.linear()
-				.domain([d3.min(values), d3.max(values)])
+				.domain([0, d3.max(values)])
 				.range([h-padding, padding]);
 				
 			var xAxis = d3.svg.axis()
@@ -153,8 +158,8 @@ app.directive('myChart',function(){
 				.enter()
 				.append("circle")
 				.attr("fill",function(d){
-						if(d[Object.keys(d)[0]].sexo == "Males") return "blue";
-						else return "pink"
+						if(d[Object.keys(d)[0]].sexo == "Males") return "#3F7F93";
+						else return "#DA6068"
 				})
 				.attr("cx", function(d) {
 					return xScale(Object.keys(d)[0]);
@@ -204,13 +209,13 @@ app.directive('myChart',function(){
 				.attr("d", function(){
 					var men = [];
 					for (var i=0;i<array.length;i++){
-						if(array[i][Object.keys(array[i])[0]].sexo == "Males"){
+						if(array[i][Object.keys(array[i])[0]].sexo == "Males" && !isNaN(array[i][Object.keys(array[i])[0]].Value)){
 							men.push(array[i]);
 						}
 					}
 					return lineFunction(men);
 				})
-				.attr("stroke", "blue")
+				.attr("stroke", "#3F7F93")
 				.attr("stroke-width", 0.5)
 				.attr("fill", "none");
 				
@@ -218,24 +223,24 @@ app.directive('myChart',function(){
 				.attr("d", function(){
 					var women = [];
 					for (var i=0;i<array.length;i++){
-						if(array[i][Object.keys(array[i])[0]].sexo == "Females"){
+						if(array[i][Object.keys(array[i])[0]].sexo == "Females" && !isNaN(array[i][Object.keys(array[i])[0]].Value)){
 							women.push(array[i]);
 						}							
 					}
 					return lineFunction(women);
 				})
-				.attr("stroke", "pink")
+				.attr("stroke", "#DA6068")
 				.attr("stroke-width", 0.5)
 				.attr("fill", "none");
 
-			d3.select(el[0].children[0]).selectAll("#selectStacked").remove();
+			d3.select(el[0].children[0]).selectAll("#selectChart").remove();
 			
 			var select = d3.select(el[0].children[0])
 				.append("select")
-				.attr("id","selectStacked")
+				.attr("id","selectChart")
 				.attr("class","mySelect");
 				
-			var select = d3.select("#selectStacked");
+			var select = d3.select("#selectChart");
 			
 			var options = select.selectAll("option")
 				.data(scope.$parent.activities)
@@ -255,7 +260,7 @@ app.directive('myChart',function(){
 			select
 				.on("change",function(){
 					scope.$apply(function(){
-						var value = $("#selectStacked").val();
+						var value = $("#selectChart").val();
 						scope.activity = value;
 					});
 				});
@@ -876,27 +881,25 @@ app.directive('myStackedBar',function(){
 			
 			var values = [];
 			var allValues = [];
-			for (sector in data){
-				if(sector == scope.$parent.sectors[0]){
-					for (year in data[sector]){
+			for (sexo in data){
+				if(sexo == scope.$parent.sexos[0]){
+					for (year in data[sexo]){
 						var v = {};
 						v["year"] = year;
-						v["sector"] = sector;
-						v["value"] = parseFloat(data[sector][year][scope.value]["Value"].replace(/,/g,''));
+						v["value"] = parseFloat(data[sexo][year][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,''));
 						allValues.push(v);
 					}
 				}
 				else{
 					var element = []
-					for (year in data[sector]){
+					for (year in data[sexo]){
 						var v = {};
 						v["year"] = year;
-						v["sector"] = sector;
-						v["value"] = parseFloat(data[sector][year][scope.value]["Value"].replace(/,/g,''));
+						v["sexo"] = sexo;
+						v["value"] = parseFloat(data[sexo][year][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,''));
 						values.push(v);
 					}					
 				}
-				
 			}
 			
 			values.sort(compare);
@@ -944,7 +947,7 @@ app.directive('myStackedBar',function(){
 					return xScale(d.year);
 				})
 				.attr("class",function(d){
-					return "bar" + " " + d.sector.replace(/ /g,'');
+					return "bar" + " " + d.sexo;
 				})
 				.attr("y", function(d) {
 					var a = anterior;
@@ -956,7 +959,7 @@ app.directive('myStackedBar',function(){
 						}
 					}
 					var value = d.value;
-					if(contador%(scope.$parent.sectors.length-1)==0){
+					if(contador%(scope.$parent.sexos.length-1)==0){
 						anterior = 0;
 					}
 					else{
@@ -977,6 +980,476 @@ app.directive('myStackedBar',function(){
 					var value = d.value;
 					return ((value/maximum)*h);
 				});
+				
+				d3.select(el[0].children[0]).selectAll("#selectStacked").remove();
+			
+				var select = d3.select(el[0].children[0])
+					.append("select")
+					.attr("id","selectStacked")
+					.attr("class","mySelect");
+					
+				var select = d3.select("#selectStacked");
+				
+				var options = select.selectAll("option")
+					.data(scope.$parent.activities)
+					.enter()
+					.append("option")
+					.attr("class","options")
+					.attr("value",function(d){
+						return d;
+					})
+					.each(function(d){
+						if(d == scope.activity) d3.select(this).attr("selected","selected");
+					})
+					.text(function(d){
+						return d;
+					});
+					
+				select
+					.on("change",function(){
+						scope.$apply(function(){
+							var value = $("#selectStacked").val();
+							scope.activity = value;
+						});
+					});
+		}
+	};
+	
+	return {
+		link: link,
+		restrict: 'AE',
+		scope: true
+	};
+});
+
+app.directive('myPieChart',function(){
+	function link(scope,el,attr){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
+				
+				scope.value = '0';
+				scope.activity = 'Total';
+				
+				scope.actual = scope.$parent.year;
+				
+				scope.$parent.$watchGroup(['pais','education'], function(){
+					drawChart(scope,el,scope.$parent.datos);
+				});
+				
+				scope.$watch('actual',function(){
+					drawChart(scope,el,scope.$parent.datos);
+				})
+			}
+		});
+		
+		function drawChart(scope, el, datos){
+			
+			d3.select(el[0]).selectAll("svg").remove();
+			
+			var w = el.width()-50,
+				h = el.width()-100,
+				r = Math.min(w, h)/ 2;
+				
+			var padding = 30;
+			
+			var data = [];
+			var cont = 0;
+			var resto = 0;
+			
+			var dic = crearDiccionarioEuropa();
+			
+			var sexos = scope.$parent.sexos.slice(1);
+			for (var i=0;i<sexos.length;i++){
+				var dicc = {};
+				dicc["label"] = sexos[i];
+				dicc["value"] = parseFloat(datos[scope.$parent.pais][sexos[i]][scope.actual][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,''));
+				data.push(dicc);
+			}
+			
+			var svg = d3.select(el[0].children[1])
+				.append("svg")
+				.attr("width", w)
+				.attr("height", h)
+				.append("g")
+				.attr("class","pie")
+				.attr("id","pie-char")
+				.attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");	
+			
+			var arc = d3.svg.arc()
+				.outerRadius(r - 10)
+				.innerRadius(0);
+				
+			var pie = d3.layout.pie()
+				.value(function(d) { return d.value; });
+
+			var g = svg.selectAll(".arc")
+				.data(pie(data))
+				.enter()
+				.append("g")
+				.attr("class", "arc");
+			
+			var tooltip;
+			
+			g.append("path")
+				.attr("d", arc)
+				.style("fill", function(d,i) { 
+					if(d.data.label=="Males") return "#3F7F93";	
+					else return "#DA6068";
+				})
+				.on("mouseover",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",0.5)
+						.style("stroke","black")
+					d3.selectAll('.tooltip-pie').remove();
+					tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+					var absoluteMousePos = d3.mouse(this);
+					tooltip
+						.style('left', (absoluteMousePos[0]+w/2)+'px')
+						.style('top', (absoluteMousePos[1]+h/1.5)+'px')
+						.style('position', 'absolute') 
+						.style('z-index', 1001);
+					var tooltipText = "<p id='tooltip_p'>" + d.data.label.split(" ")[0] + "</p>";
+					tooltip
+						.html(tooltipText);
+				})
+				.on("mouseleave",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",1)
+						.style("stroke","");
+					tooltip.remove();
+				});
+	
+			d3.select(el[0].children[0]).select("#selectPie").remove();
+			
+			var select = d3.select(el[0].children[0])
+				.append("select")
+				.attr("id","selectPie")
+				.attr("class","mySelect");
+				
+			var select = d3.select("#selectPie");
+			
+			var options = select.selectAll("option")
+				.data(scope.$parent.years)
+				.enter()
+				.append("option")
+				.attr("class","options")
+				.attr("value",function(d){
+					return d;
+				})
+				.each(function(d){
+					if(d == scope.actual) d3.select(this).attr("selected","selected");
+				})
+				.text(function(d){
+					return d;
+				});
+				
+			select
+				.on("change",function(){
+					scope.$apply(function(){
+						var value = $("#selectPie").val();
+						scope.actual = value;
+					});
+				});
+		}
+	};
+	
+	return {
+		link: link,
+		restrict: 'AE',
+		scope: true
+	};
+});
+
+app.directive('myBubbleChart',function(){
+	function link(scope,el,attr){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
+				
+				scope.actual = scope.$parent.year;
+				
+				scope.value = attr.value;
+				
+				scope.sex = scope.$parent.sex[0];
+				scope.item = scope.$parent.item[0];
+				
+				scope.$parent.$watchGroup(['sector','year'], function(){
+					drawMap(scope,el,scope.$parent.datos,scope.$parent.population,scope.$parent.pib);
+				});
+				
+				scope.$watch('sex', function(){
+					drawMap(scope,el,scope.$parent.datos,scope.$parent.population,scope.$parent.pib);
+				});
+			}
+		});
+		
+		function drawMap(scope, el, datos, population, pib){
+			d3.select(el[0]).selectAll("svg").remove();
+			
+			var w = el.width()-50,
+				h = el.width()-100;
+				
+			var padding = el.width()/10;
+			
+			var color = d3.scale.category20c();
+			
+			var nElem = 0;
+			var i_circle,j_circle, i_year;
+			var formatBigNumbers = d3.format(".1s");
+			
+			var data = datos;
+			
+			var dic = crearDiccionarioEuropa();
+			var tooltip;
+			
+			var initialValues = [];
+						
+			for (key in data){
+				if (_.contains(Object.keys(dic), key)){
+					var diccc = {};
+					var dc = {};
+					for (fecha in data[key][scope.$parent.sector]){
+						var dicc = {};
+						dicc["data"] = parseFloat(data[key][scope.$parent.sector][fecha][scope.value]["Value"].replace(/,/g,''));
+						dicc["population"] = parseFloat(population[key][scope.sex][fecha][scope.value]["Value"].replace(/,/g,''));
+						dicc["pib"] = parseFloat(pib[key][scope.item][fecha][scope.value]["Value"].replace(/,/g,''));
+						diccc[fecha] = dicc;
+					}
+					dc[key] = diccc;
+					initialValues.push(dc);
+				}
+			}
+			
+			//console.log(initialValues);
+			var svg = d3.select(el[0].children[1])
+				.append("svg")
+				.attr("id","bubble-europe")
+				.attr("width", w)
+				.attr("height", h)
+			
+			var pibValues = [];
+			var pobValues = [];
+			var values = [];
+			
+			for (key in data){
+				if (_.contains(Object.keys(dic), key)){
+					for (fecha in data[key][scope.$parent.sector]){
+						values.push(parseFloat(data[key][scope.$parent.sector][fecha][scope.value]["Value"].replace(/,/g,'')));
+						pobValues.push(parseFloat(population[key][scope.sex][fecha][scope.value]["Value"].replace(/,/g,'')));
+						pibValues.push(parseFloat(pib[key][scope.item][fecha][scope.value]["Value"].replace(/,/g,'')));
+					}
+				}
+			}
+					
+			var xScale = d3.scale.pow()
+				.exponent(.455)
+				.domain([0, d3.max(pibValues)])
+				.range([padding, w - padding]);
+			var yScale = d3.scale.linear()
+				.domain([0, d3.max(values)])
+				.range([h-padding, padding]);
+			var rScale = d3.scale.linear()
+				.domain([0, d3.max(pobValues)])
+				.range([5, 20]);
+			
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.ticks(5)
+				.tickFormat(formatBigNumbers);
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.ticks(10);
+				
+			var circles = svg.selectAll("circle")
+				.data(initialValues)
+				.enter()
+				.append("circle")
+				.attr("fill",function(d,i){
+					return color(i);
+				})
+				.attr("class",function (d){
+					return "cercle " + Object.keys(d)[0].replace(/ /g,'');
+				})
+				.each(function(){
+					nElem++;
+				})
+				.attr("cx", function(d) {
+					return xScale(d[Object.keys(d)[0]][scope.$parent.year]['pib']);
+				})
+				.attr("cy", function(d) {
+					return yScale(d[Object.keys(d)[0]][scope.$parent.year]['data']);
+				})
+				.attr("r", function(d) {
+					return rScale(d[Object.keys(d)[0]][scope.$parent.year]['population']);
+				})
+				.on("mouseover",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",0.5);
+					d3.selectAll('.tooltip').remove();
+					tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+					var absoluteMousePos = d3.mouse(this);
+					tooltip
+						.style('left', (absoluteMousePos[0]/*+w/2*/)+'px')
+						.style('top', (absoluteMousePos[1]+h/6)+'px')
+						.style('position', 'absolute') 
+						.style('z-index', 1001);
+					var tooltipText = "<p id='tooltip_p'>" + Object.keys(d)[0] + "</p>";
+					tooltip
+						.html(tooltipText);
+				})
+				.on("mouseleave",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",1)
+						.style("stroke","");
+					tooltip.remove();
+				});
+			
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0,"+(h-padding)+")")
+				.attr("fill","black")
+				.call(xAxis);
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate("+padding+",0)")
+				.attr("fill","black")
+				.call(yAxis); 
+		  
+			svg
+				.append("text")
+				.attr("text-anchor", "middle") 
+				.attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)") 
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("R+D Inversion");
+
+			svg
+				.append("text")
+				.attr("text-anchor", "middle")  
+				.attr("transform", "translate("+((padding+w)/2)+","+(h-(padding/4))+")")
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("GDP");
+				
+			d3.select(el[0].children[0]).selectAll(".myButton").remove();
+			
+			var button = d3.select(el[0].children[0])
+				.append("button")
+				.attr("class","myButton");
+				
+			button
+				.on("click",function(){
+					scope.$apply(function(){
+						scope.actual = scope.$parent.year;
+					});
+					transitions();
+				});
+			
+			svg.append("text")
+				.attr("id","year");
+			
+			function transitions(){
+				var circles = svg.selectAll("circle");
+				var year = svg.select("#year");
+				
+				i_circle = 2;
+				i_year = 1;
+				j_circle = 2 * nElem;
+				
+				circles.transition()
+					.attr("cx", function(d) {
+						return xScale(d[Object.keys(d)[0]][scope.$parent.years[1]]['pib']);
+					})
+					.attr("cy", function(d) {
+						return yScale(d[Object.keys(d)[0]][scope.$parent.years[1]]['data']);
+					})
+					.attr("r", function(d) {
+						return rScale(d[Object.keys(d)[0]][scope.$parent.years[1]]['population']);
+					})
+					.duration(1000)
+					.delay(0)
+					.each("end",repeatCircles);
+					
+				year.transition()
+					.duration(1000)
+					.delay(0)
+					.each("end",repeatYear);
+			}
+			
+			function repeatCircles(){
+				i_circle = parseInt(j_circle/nElem);
+				if(i_circle<scope.$parent.years.length+1){
+					if(i_circle==scope.$parent.years.length){
+						d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][scope.$parent.year]['pib']);
+							})
+							.attr("cy", function(d) {
+								return yScale(d[Object.keys(d)[0]][scope.$parent.year]['data']);
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][scope.$parent.year]['population']);
+							})
+							.duration(3000)
+							.delay(0);
+						j_circle++;
+					}
+					else{
+						d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['pib']);
+							})
+							.attr("cy", function(d) {
+								if(!isNaN(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['data'])){
+									return yScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['data']);
+								}
+								else{
+									return yScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle-1]]['data']);
+								}
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['population']);
+							})
+							.duration(1000)
+							.delay(0)
+							.each("end",repeatCircles);
+						j_circle++;
+					}
+				}
+			}
+			
+			function repeatYear(){
+				scope.$apply (function(){
+					if(i_year<scope.$parent.years.length+1){
+						if(i_year==scope.$parent.years.length){
+							d3.select(this).transition()
+								.duration(3000) // this is 1s
+								.delay(0)
+								.each("end",function(){
+									scope.$apply (function(){
+										scope.actual = scope.$parent.year;
+									});
+								});
+							i_year++;
+						}
+						else{
+							d3.select(this).transition()
+								.duration(1000) // this is 1s
+								.delay(0)
+								.each("end",repeatYear);
+							scope.actual = scope.$parent.years[i_year];
+							i_year++;
+						}
+					}
+				});
+			}
 		}
 	};
 	

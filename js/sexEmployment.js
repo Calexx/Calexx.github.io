@@ -16,8 +16,6 @@ app.controller('Data', function($scope, $compile){
 						$scope.population = population;
 						$scope.salary = salary;
 						
-						console.log(salary);
-						
 						$scope.map = europe;
 						
 						$scope.paisos = Object.keys($scope.datos);
@@ -26,7 +24,7 @@ app.controller('Data', function($scope, $compile){
 						$scope.educations = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]][$scope.years[0]]);
 						$scope.activities = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]][$scope.years[0]][$scope.educations[0]]);
 						
-						$scope.pais = $scope.paisos[0];
+						$scope.pais = $scope.paisos[1];
 						$scope.year = $scope.years[0];
 						$scope.education = $scope.educations[0];
 						
@@ -1080,7 +1078,8 @@ app.directive('myPieChart',function(){
 				.innerRadius(0);
 				
 			var pie = d3.layout.pie()
-				.value(function(d) { return d.value; });
+				.value(function(d) { return d.value; })
+				.sort(null);
 
 			var g = svg.selectAll(".arc")
 				.data(pie(data))
@@ -1168,23 +1167,20 @@ app.directive('myBubbleChart',function(){
 			if(typeof scope.$parent.datos !== "undefined"){
 				
 				scope.actual = scope.$parent.year;
+				scope.inicial = scope.$parent.years[1];
 				
-				scope.value = attr.value;
+				scope.value = '0';
+				scope.activity = 'Total';
+				scope.calculo = '0';
 				
-				scope.sex = scope.$parent.sex[0];
-				scope.item = scope.$parent.item[0];
-				
-				scope.$parent.$watchGroup(['sector','year'], function(){
-					drawMap(scope,el,scope.$parent.datos,scope.$parent.population,scope.$parent.pib);
+				scope.$parent.$watchGroup(['pais','education','year'], function(){
+					drawChart(scope,el,scope.$parent.datos,scope.$parent.population,scope.$parent.salary);
 				});
-				
-				scope.$watch('sex', function(){
-					drawMap(scope,el,scope.$parent.datos,scope.$parent.population,scope.$parent.pib);
-				});
+			
 			}
 		});
 		
-		function drawMap(scope, el, datos, population, pib){
+		function drawChart(scope, el, datos, population, salary){
 			d3.select(el[0]).selectAll("svg").remove();
 			
 			var w = el.width()-50,
@@ -1192,34 +1188,36 @@ app.directive('myBubbleChart',function(){
 				
 			var padding = el.width()/10;
 			
-			var color = d3.scale.category20c();
-			
 			var nElem = 0;
 			var i_circle,j_circle, i_year;
 			var formatBigNumbers = d3.format(".1s");
 			
 			var data = datos;
-			
+
 			var dic = crearDiccionarioEuropa();
 			var tooltip;
 			
 			var initialValues = [];
-						
-			for (key in data){
-				if (_.contains(Object.keys(dic), key)){
-					var diccc = {};
-					var dc = {};
-					for (fecha in data[key][scope.$parent.sector]){
-						var dicc = {};
-						dicc["data"] = parseFloat(data[key][scope.$parent.sector][fecha][scope.value]["Value"].replace(/,/g,''));
-						dicc["population"] = parseFloat(population[key][scope.sex][fecha][scope.value]["Value"].replace(/,/g,''));
-						dicc["pib"] = parseFloat(pib[key][scope.item][fecha][scope.value]["Value"].replace(/,/g,''));
-						diccc[fecha] = dicc;
+			for (sexo in data[scope.$parent.pais]){
+				var diccc = {};
+				var dicc = {};
+				if(sexo!='Total'){
+					for (fecha in data[scope.$parent.pais][sexo]){
+						if(fecha>=scope.inicial){
+							var dic = {};
+							dic["employment"] = parseFloat(data[scope.$parent.pais][sexo][fecha][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,''));
+							dic["population"] = parseFloat(population[scope.$parent.pais][sexo][fecha][scope.value]["Value"].replace(/,/g,''));
+							dic["salary"] = parseFloat(salary[scope.$parent.pais][sexo][fecha][scope.value]["Value"].replace(/,/g,''));
+							
+							dicc[fecha] = dic;
+						}
 					}
-					dc[key] = diccc;
-					initialValues.push(dc);
+					diccc[sexo] = dicc;
+					initialValues.push(diccc);
 				}
 			}
+			
+			var years = Object.keys(initialValues[0][Object.keys(initialValues[0])[0]]);
 			
 			//console.log(initialValues);
 			var svg = d3.select(el[0].children[1])
@@ -1228,30 +1226,34 @@ app.directive('myBubbleChart',function(){
 				.attr("width", w)
 				.attr("height", h)
 			
-			var pibValues = [];
+			var salaryValues = [];
 			var pobValues = [];
 			var values = [];
 			
-			for (key in data){
-				if (_.contains(Object.keys(dic), key)){
-					for (fecha in data[key][scope.$parent.sector]){
-						values.push(parseFloat(data[key][scope.$parent.sector][fecha][scope.value]["Value"].replace(/,/g,'')));
-						pobValues.push(parseFloat(population[key][scope.sex][fecha][scope.value]["Value"].replace(/,/g,'')));
-						pibValues.push(parseFloat(pib[key][scope.item][fecha][scope.value]["Value"].replace(/,/g,'')));
+			for (sexo in data[scope.$parent.pais]){
+				if(sexo!='Total'){
+					for (fecha in data[scope.$parent.pais][sexo]){
+						if(fecha>=scope.inicial){
+							values.push(parseFloat(data[scope.$parent.pais][sexo][fecha][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,'')));
+							pobValues.push(parseFloat(population[scope.$parent.pais][sexo][fecha][scope.value]["Value"].replace(/,/g,'')));
+							salaryValues.push(parseFloat(salary[scope.$parent.pais][sexo][fecha][scope.value]["Value"].replace(/,/g,'')));
+						}
 					}
+					
 				}
 			}
-					
+			console.log(initialValues);
+			
 			var xScale = d3.scale.pow()
 				.exponent(.455)
-				.domain([0, d3.max(pibValues)])
+				.domain([d3.min(salaryValues)/2, d3.max(salaryValues)])
 				.range([padding, w - padding]);
 			var yScale = d3.scale.linear()
-				.domain([0, d3.max(values)])
+				.domain([d3.min(values)/2, d3.max(values)])
 				.range([h-padding, padding]);
 			var rScale = d3.scale.linear()
-				.domain([0, d3.max(pobValues)])
-				.range([5, 20]);
+				.domain([d3.min(pobValues), d3.max(pobValues)])
+				.range([10, 30]);
 			
 			var xAxis = d3.svg.axis()
 				.scale(xScale)
@@ -1261,29 +1263,31 @@ app.directive('myBubbleChart',function(){
 			var yAxis = d3.svg.axis()
 				.scale(yScale)
 				.orient("left")
-				.ticks(10);
+				.tickFormat(formatBigNumbers)
+				.ticks(5);
 				
 			var circles = svg.selectAll("circle")
 				.data(initialValues)
 				.enter()
 				.append("circle")
 				.attr("fill",function(d,i){
-					return color(i);
+					if(Object.keys(d)[0] == 'Males') return "#3F7F93";
+					else return "#DA6068";
 				})
 				.attr("class",function (d){
-					return "cercle " + Object.keys(d)[0].replace(/ /g,'');
+					return "cercle " + Object.keys(d)[0];
 				})
 				.each(function(){
 					nElem++;
 				})
 				.attr("cx", function(d) {
-					return xScale(d[Object.keys(d)[0]][scope.$parent.year]['pib']);
+					return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
 				})
 				.attr("cy", function(d) {
-					return yScale(d[Object.keys(d)[0]][scope.$parent.year]['data']);
+					return yScale(d[Object.keys(d)[0]][scope.inicial]['employment']);
 				})
 				.attr("r", function(d) {
-					return rScale(d[Object.keys(d)[0]][scope.$parent.year]['population']);
+					return rScale(d[Object.keys(d)[0]][scope.inicial]['population']);
 				})
 				.on("mouseover",function(d){
 					var cr = d3.select(this);
@@ -1293,7 +1297,7 @@ app.directive('myBubbleChart',function(){
 					tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
 					var absoluteMousePos = d3.mouse(this);
 					tooltip
-						.style('left', (absoluteMousePos[0]/*+w/2*/)+'px')
+						.style('left', (absoluteMousePos[0])+'px')
 						.style('top', (absoluteMousePos[1]+h/6)+'px')
 						.style('position', 'absolute') 
 						.style('z-index', 1001);
@@ -1328,7 +1332,7 @@ app.directive('myBubbleChart',function(){
 				.attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)") 
 				.attr("font-size", "10px")
 				.attr("fill","black")
-				.text("R+D Inversion");
+				.text("Employment");
 
 			svg
 				.append("text")
@@ -1336,7 +1340,7 @@ app.directive('myBubbleChart',function(){
 				.attr("transform", "translate("+((padding+w)/2)+","+(h-(padding/4))+")")
 				.attr("font-size", "10px")
 				.attr("fill","black")
-				.text("GDP");
+				.text("Salary");
 				
 			d3.select(el[0].children[0]).selectAll(".myButton").remove();
 			
@@ -1365,13 +1369,14 @@ app.directive('myBubbleChart',function(){
 				
 				circles.transition()
 					.attr("cx", function(d) {
-						return xScale(d[Object.keys(d)[0]][scope.$parent.years[1]]['pib']);
+						console.log(Object.keys(d[Object.keys(d)[0]])[1]);
+						return xScale(d[Object.keys(d)[0]][years[1]]['salary']);
 					})
 					.attr("cy", function(d) {
-						return yScale(d[Object.keys(d)[0]][scope.$parent.years[1]]['data']);
+						return yScale(d[Object.keys(d)[0]][years[1]]['employment']);
 					})
 					.attr("r", function(d) {
-						return rScale(d[Object.keys(d)[0]][scope.$parent.years[1]]['population']);
+						return rScale(d[Object.keys(d)[0]][years[1]]['population']);
 					})
 					.duration(1000)
 					.delay(0)
@@ -1385,17 +1390,17 @@ app.directive('myBubbleChart',function(){
 			
 			function repeatCircles(){
 				i_circle = parseInt(j_circle/nElem);
-				if(i_circle<scope.$parent.years.length+1){
-					if(i_circle==scope.$parent.years.length){
+				if(i_circle<years.length+1){
+					if(i_circle==years.length){
 						d3.select(this).transition()
 							.attr("cx", function(d) {
-								return xScale(d[Object.keys(d)[0]][scope.$parent.year]['pib']);
+								return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
 							})
 							.attr("cy", function(d) {
-								return yScale(d[Object.keys(d)[0]][scope.$parent.year]['data']);
+								return yScale(d[Object.keys(d)[0]][scope.inicial]['employment']);
 							})
 							.attr("r", function(d) {
-								return rScale(d[Object.keys(d)[0]][scope.$parent.year]['population']);
+								return rScale(d[Object.keys(d)[0]][scope.inicial]['population']);
 							})
 							.duration(3000)
 							.delay(0);
@@ -1404,18 +1409,20 @@ app.directive('myBubbleChart',function(){
 					else{
 						d3.select(this).transition()
 							.attr("cx", function(d) {
-								return xScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['pib']);
+								console.log(years[i_circle]);
+								console.log(d);
+								return xScale(d[Object.keys(d)[0]][years[i_circle]]['salary']);
 							})
 							.attr("cy", function(d) {
-								if(!isNaN(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['data'])){
-									return yScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['data']);
+								if(!isNaN(d[Object.keys(d)[0]][years[i_circle]]['employment'])){
+									return yScale(d[Object.keys(d)[0]][years[i_circle]]['employment']);
 								}
 								else{
-									return yScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle-1]]['data']);
+									return yScale(d[Object.keys(d)[0]][years[i_circle]]['employment']);
 								}
 							})
 							.attr("r", function(d) {
-								return rScale(d[Object.keys(d)[0]][scope.$parent.years[i_circle]]['population']);
+								return rScale(d[Object.keys(d)[0]][years[i_circle]]['population']);
 							})
 							.duration(1000)
 							.delay(0)
@@ -1427,14 +1434,14 @@ app.directive('myBubbleChart',function(){
 			
 			function repeatYear(){
 				scope.$apply (function(){
-					if(i_year<scope.$parent.years.length+1){
-						if(i_year==scope.$parent.years.length){
+					if(i_year<years.length+1){
+						if(i_year==years.length){
 							d3.select(this).transition()
 								.duration(3000) // this is 1s
 								.delay(0)
 								.each("end",function(){
 									scope.$apply (function(){
-										scope.actual = scope.$parent.year;
+										scope.actual = scope.inicial;
 									});
 								});
 							i_year++;
@@ -1444,7 +1451,7 @@ app.directive('myBubbleChart',function(){
 								.duration(1000) // this is 1s
 								.delay(0)
 								.each("end",repeatYear);
-							scope.actual = scope.$parent.years[i_year];
+							scope.actual = years[i_year];
 							i_year++;
 						}
 					}

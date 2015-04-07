@@ -1281,7 +1281,14 @@ app.directive('myBubbleChart',function(){
 					nElem++;
 				})
 				.attr("cx", function(d) {
-					return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+					if (!isNaN(d[Object.keys(d)[0]][scope.inicial]['salary'])){
+						d3.select(this).style("opacity",1);
+						return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+					}
+					else {
+						console.log(d[Object.keys(d)[0]][scope.inicial]['salary']);
+						d3.select(this).style("opacity",0);
+					}
 				})
 				.attr("cy", function(d) {
 					return yScale(d[Object.keys(d)[0]][scope.inicial]['employment']);
@@ -1369,8 +1376,12 @@ app.directive('myBubbleChart',function(){
 				
 				circles.transition()
 					.attr("cx", function(d) {
-						console.log(Object.keys(d[Object.keys(d)[0]])[1]);
-						return xScale(d[Object.keys(d)[0]][years[1]]['salary']);
+						if (!isNaN(d[Object.keys(d)[0]][years[1]]['salary'])){
+							d3.select(this).style("opacity",1);
+							return xScale(d[Object.keys(d)[0]][years[1]]['salary']);
+						}else{
+							d3.select(this).style("opacity",0);
+						}
 					})
 					.attr("cy", function(d) {
 						return yScale(d[Object.keys(d)[0]][years[1]]['employment']);
@@ -1394,7 +1405,13 @@ app.directive('myBubbleChart',function(){
 					if(i_circle==years.length){
 						d3.select(this).transition()
 							.attr("cx", function(d) {
-								return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+								if (!isNaN(d[Object.keys(d)[0]][scope.inicial]['salary'])){
+									d3.select(this).style("opacity",1);
+									return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+								}
+								else{
+									d3.select(this).style("opacity",0);
+								}
 							})
 							.attr("cy", function(d) {
 								return yScale(d[Object.keys(d)[0]][scope.inicial]['employment']);
@@ -1409,9 +1426,13 @@ app.directive('myBubbleChart',function(){
 					else{
 						d3.select(this).transition()
 							.attr("cx", function(d) {
-								console.log(years[i_circle]);
-								console.log(d);
-								return xScale(d[Object.keys(d)[0]][years[i_circle]]['salary']);
+								if (!isNaN(d[Object.keys(d)[0]][years[i_circle]]['salary'])){
+									d3.select(this).style("opacity",1);
+									return xScale(d[Object.keys(d)[0]][years[i_circle]]['salary']);
+								}
+								else{
+									d3.select(this).style("opacity",0);
+								}
 							})
 							.attr("cy", function(d) {
 								if(!isNaN(d[Object.keys(d)[0]][years[i_circle]]['employment'])){

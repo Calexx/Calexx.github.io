@@ -1219,7 +1219,8 @@ app.directive('myBubbleChart',function(){
 			
 			var years = Object.keys(initialValues[0][Object.keys(initialValues[0])[0]]);
 			
-			//console.log(initialValues);
+			scope.actual = years[0];
+			
 			var svg = d3.select(el[0].children[1])
 				.append("svg")
 				.attr("id","bubble-europe")
@@ -1242,7 +1243,6 @@ app.directive('myBubbleChart',function(){
 					
 				}
 			}
-			console.log(initialValues);
 			
 			var xScale = d3.scale.pow()
 				.exponent(.455)
@@ -1253,18 +1253,20 @@ app.directive('myBubbleChart',function(){
 				.range([h-padding, padding]);
 			var rScale = d3.scale.linear()
 				.domain([d3.min(pobValues), d3.max(pobValues)])
-				.range([10, 30]);
+				.range([20, 30]);
 			
 			var xAxis = d3.svg.axis()
 				.scale(xScale)
 				.orient("bottom")
-				.ticks(5)
-				.tickFormat(formatBigNumbers);
+				.ticks(4);
+				
 			var yAxis = d3.svg.axis()
 				.scale(yScale)
 				.orient("left")
-				.tickFormat(formatBigNumbers)
-				.ticks(5);
+				.tickFormat(function(d){
+					return d/1000 + 'M';
+				})
+				.ticks(4);
 				
 			var circles = svg.selectAll("circle")
 				.data(initialValues)
@@ -1286,7 +1288,6 @@ app.directive('myBubbleChart',function(){
 						return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
 					}
 					else {
-						console.log(d[Object.keys(d)[0]][scope.inicial]['salary']);
 						d3.select(this).style("opacity",0);
 					}
 				})
@@ -1308,7 +1309,7 @@ app.directive('myBubbleChart',function(){
 						.style('top', (absoluteMousePos[1]+h/6)+'px')
 						.style('position', 'absolute') 
 						.style('z-index', 1001);
-					var tooltipText = "<p id='tooltip_p'>" + Object.keys(d)[0] + "</p>";
+					var tooltipText = "<p class='tooltip_p'>" + "Population:" + d[Object.keys(d)[0]][scope.actual].population + "</p>";
 					tooltip
 						.html(tooltipText);
 				})

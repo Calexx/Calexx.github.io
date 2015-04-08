@@ -53,7 +53,7 @@ body{
 	border-radius:10px;
 	opacity: 1;
 }
-#tooltip_p{
+.tooltip_p{
 	margin:0px;
 }
 .myButton {

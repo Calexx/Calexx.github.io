@@ -1248,7 +1248,7 @@ app.directive('myBubbleChart',function(){
 						.style('top', (absoluteMousePos[1]+h/6)+'px')
 						.style('position', 'absolute') 
 						.style('z-index', 1001);
-					var tooltipText = "<p id='tooltip_p'>" + Object.keys(d)[0] + "</p>";
+					var tooltipText = "<p id='tooltip_p'>" + Object.keys(d)[0].salary + "</p>";
 					tooltip
 						.html(tooltipText);
 				})

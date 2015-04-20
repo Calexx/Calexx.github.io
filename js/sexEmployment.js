@@ -5,44 +5,54 @@ app.controller('Data', function($scope, $compile){
 		d3.json("json/educationEmployment.json", function(json) {
 			d3.json("json/population.json",function(json2){
 				d3.json("json/salary.json",function(json3){
-					if(error) throw error;
-					$scope.$apply(function(){
-						
-						var data = pivotID(json,['GEO','SEX','TIME','ISCED11','ISCO08']);
-						var population = pivotID(json2,['GEO','SEX','TIME']);
-						var salary = pivotID(json3,['GEO','SEX','TIME']);
-						
-						$scope.datos = data;
-						$scope.population = population;
-						$scope.salary = salary;
-						
-						$scope.map = europe;
-						
-						$scope.paisos = Object.keys($scope.datos);
-						$scope.sexos = Object.keys($scope.datos[$scope.paisos[0]]);
-						$scope.years = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]]);
-						$scope.educations = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]][$scope.years[0]]);
-						$scope.activities = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]][$scope.years[0]][$scope.educations[0]]);
-						
-						$scope.pais = $scope.paisos[1];
-						$scope.year = $scope.years[0];
-						$scope.education = $scope.educations[0];
-						
-						$scope.reconstruccion = false;
-						
-						$scope.changeValue = function(education){
-							if($scope.education == education){
-								if($scope.reconstruccion == true){
-									$scope.reconstruccion = false;
-									$("#page-container").empty();
-									var template = getTemplateInicial();
-									var linkFn = $compile(template);
-									var content = linkFn($scope);
-									$('#page-container').append(content);
+					d3.json("json/pibCapita.json",function(json4){
+						d3.json("json/expenditureEducation.json",function(json5){
+							
+							if(error) throw error;
+							$scope.$apply(function(){
+								
+								var data = pivotID(json,['GEO','SEX','TIME','ISCED11','ISCO08']);
+								var population = pivotID(json2,['GEO','SEX','TIME']);
+								var salary = pivotID(json3,['GEO','SEX','TIME']);							
+								var pib = pivotID(json4,['GEO','NA_ITEM','TIME']);
+								var expenditure = pivotID(json5,['GEO','INDIC_ED','TIME']);
+								
+								$scope.datos = data;
+								$scope.population = population;
+								$scope.salary = salary;
+								$scope.pib = pib;
+								$scope.expenditure = expenditure;
+								
+								$scope.map = europe;
+
+								$scope.paisos = Object.keys($scope.datos);
+								$scope.sexos = Object.keys($scope.datos[$scope.paisos[0]]);
+								$scope.years = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]]);
+								$scope.educations = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]][$scope.years[0]]);
+								$scope.activities = Object.keys($scope.datos[$scope.paisos[0]][$scope.sexos[0]][$scope.years[0]][$scope.educations[0]]);
+								
+								$scope.pais = $scope.paisos[1];
+								
+								$scope.year = $scope.years[0];
+								$scope.education = $scope.educations[0];
+								
+								$scope.reconstruccion = false;
+								
+								$scope.changeValue = function(education){
+									if($scope.education == education){
+										if($scope.reconstruccion == true){
+											$scope.reconstruccion = false;
+											$("#page-container").empty();
+											var template = getTemplateInicial();
+											var linkFn = $compile(template);
+											var content = linkFn($scope);
+											$('#page-container').append(content);
+										}
+									}
+									$scope.education = education;
 								}
-							}
-							$scope.education = education;
-						}
+							});
+						});
 					});
 				});
 			});
@@ -79,6 +89,7 @@ app.directive('myChart',function(){
 			var formatBigNumbers = d3.format(".1s");
 			var data = datos[scope.$parent.pais];
 			
+			/* Valores para dominio ejes */
 			var values = [];
 			for (sexo in scope.$parent.sexos){
 				if(scope.$parent.sexos[sexo]!="Total"){
@@ -133,8 +144,8 @@ app.directive('myChart',function(){
 				.attr("fill","black")
 				.call(yAxis); 
 			
+			/* Valores para mostrar */
 			var array = [];
-			
 			for (sexo in data){
 				if(sexo!="Total"){
 					for (year in data[sexo]){
@@ -147,7 +158,6 @@ app.directive('myChart',function(){
 					}
 				}
 			}
-			
 			
 			var tooltip;
 			
@@ -316,17 +326,6 @@ app.directive('myMap',function($compile){
 
 			var dic = crearDiccionarioEuropa();
 			
-			var initialValues = {};
-			
-			for (key in data){
-				if (_.contains(Object.keys(dic), key)){
-					var dicc = {};
-					dicc["Males"] = parseFloat(data[key]["Males"][scope.$parent.year][scope.$parent.education]["Total"][scope.value]["Value"].replace(/,/g,''));
-					dicc["Females"] = parseFloat(data[key]["Females"][scope.$parent.year][scope.$parent.education]["Total"][scope.value]["Value"].replace(/,/g,''));
-					initialValues[key] = dicc;
-				}
-			}
-			
 			svg.selectAll(".subunits")
 				.data(topojson.feature(europe, europe.objects.regions).features.filter(function(d){
 					if(d.properties.NUTS_ID.length == 2){
@@ -360,10 +359,10 @@ app.directive('myMap',function($compile){
 								}
 							}
 							else if (tono>0){
-								if(tono<10){
+								if(tono<2){
 									return "#E9F2F5"
 								}
-								else if (tono<20){
+								else if (tono<4){
 									return "#93B8C3"
 								}
 								else{
@@ -470,10 +469,10 @@ app.directive('myMap',function($compile){
 										}
 									}
 									else if (tono>0){
-										if(tono<10){
+										if(tono<2){
 											return "#E9F2F5"
 										}
-										else if (tono<20){
+										else if (tono<4){
 											return "#93B8C3"
 										}
 										else{
@@ -500,8 +499,8 @@ app.directive('myMap',function($compile){
 			function repeatYear(){
 				scope.$apply (function(){
 					if(i_year<scope.$parent.years.length+1){
-						if(i_year==scope.$parent.years.length){
-							d3.select(this).transition()
+						if(i_year!=scope.$parent.years.length){
+							/*d3.select(this).transition()
 								.duration(1000) // this is 1s
 								.delay(5000)
 								.each("end",function(){
@@ -511,7 +510,7 @@ app.directive('myMap',function($compile){
 								});
 							i_year++;
 						}
-						else{
+						else{*/
 							d3.select(this).transition()
 								.duration(1000) // this is 1s
 								.delay(300)
@@ -529,8 +528,8 @@ app.directive('myMap',function($compile){
 				//ultima transicion o no
 				if(i_pais<scope.$parent.years.length+1){
 					//ultimo año
-					if(i_pais == scope.$parent.years.length){
-						d3.select(this).transition()
+					if(i_pais != scope.$parent.years.length){
+						/*d3.select(this).transition()
 							.style("fill",function(d){
 								for(key in data){
 									if (dic[key] == d.properties.NUTS_ID.substring(0,2)){
@@ -554,10 +553,10 @@ app.directive('myMap',function($compile){
 												}
 											}
 											else if (tono>0){
-												if(tono<10){
+												if(tono<2){
 													return "#E9F2F5"
 												}
-												else if (tono<20){
+												else if (tono<4){
 													return "#93B8C3"
 												}
 												else{
@@ -575,7 +574,7 @@ app.directive('myMap',function($compile){
 							.delay(5000);
 						j_pais++;
 					}
-					else{
+					else{*/
 						d3.select(this).transition()
 							.style("fill",function(d){
 								for(key in data){
@@ -600,10 +599,10 @@ app.directive('myMap',function($compile){
 												}
 											}
 											else if (tono>0){
-												if(tono<10){
+												if(tono<2){
 													return "#E9F2F5"
 												}
-												else if (tono<20){
+												else if (tono<4){
 													return "#93B8C3"
 												}
 												else{
@@ -759,7 +758,7 @@ app.directive('myMap',function($compile){
 				.style("font-size",function(d){
 					return h_leyenda/6 + "px";
 				})
-				.text(">10%");
+				.text(">0%");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect*5+w_rect/3)
@@ -768,7 +767,7 @@ app.directive('myMap',function($compile){
 				.style("font-size",function(d){
 					return h_leyenda/6 + "px";
 				})
-				.text(">20%");
+				.text(">2%");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect*6+w_rect/3)
@@ -777,7 +776,7 @@ app.directive('myMap',function($compile){
 				.style("font-size",function(d){
 					return h_leyenda/6 + "px";
 				})
-				.text(">30%");
+				.text(">4%");
 			svg_leyenda
 				.append("text")
 				.attr("x",w_rect+w_rect/3)
@@ -877,6 +876,7 @@ app.directive('myStackedBar',function(){
 				
 			var data = datos[scope.$parent.pais];
 			
+			/* values-> Hombre/Mujer allValues-> Todos */
 			var values = [];
 			var allValues = [];
 			for (sexo in data){
@@ -1056,6 +1056,7 @@ app.directive('myPieChart',function(){
 			
 			var dic = crearDiccionarioEuropa();
 			
+			/* organizar datos con formato {label,value} para PIE*/
 			var sexos = scope.$parent.sexos.slice(1);
 			for (var i=0;i<sexos.length;i++){
 				var dicc = {};
@@ -1471,6 +1472,977 @@ app.directive('myBubbleChart',function(){
 						else{
 							d3.select(this).transition()
 								.duration(1000) // this is 1s
+								.delay(0)
+								.each("end",repeatYear);
+							scope.actual = years[i_year];
+							i_year++;
+						}
+					}
+				});
+			}
+		}
+	};
+	
+	return {
+		link: link,
+		restrict: 'AE',
+		scope: true
+	};
+});
+
+app.directive('myBubbleChartSex',function(){
+	function link(scope,el,attr){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
+				
+				// definir years de actuacion;
+				var d = [];
+				d.push(scope.$parent.population);
+				d.push(scope.$parent.pib);
+				d.push(scope.$parent.salary);
+				
+				scope.years = defineYears(d);
+				scope.inicial = scope.years[0];
+				scope.actual = scope.inicial;
+				
+				scope.value = '0';
+				scope.sex = attr.sex;
+				
+				/*scope.$parent.$watch('year', function(){
+					drawChart(scope,el,scope.$parent.datos,scope.$parent.population,scope.$parent.pib,scope.$parent.salary);
+				});*/
+				
+				drawChart(scope,el,scope.$parent.population,scope.$parent.pib,scope.$parent.salary);
+			}
+		});
+		
+		function drawChart(scope, el, population, pib, salary){
+			d3.select(el[0]).selectAll("svg").remove();
+			
+			var w = el.width()-50,
+				h = el.width()-100;
+				
+			var padding = el.width()/10;
+			
+			var nElem = 0;
+			var i_circle,j_circle, i_year;
+			var formatBigNumbers = d3.format(".1s");
+			var color = d3.scale.category20c();
+			
+			//var data = datos;
+
+			var dic = crearDiccionarioEuropa();
+			var tooltip;
+			
+			// definir rango de actuacion --> min and max de componentes
+			var years = scope.years;
+			
+			/* definir valores */
+			var initialValues = [];
+			var paisosDic = {};			
+			for (pais in dic){
+				var paisosDic = {};
+				var diccc = {};
+				for (var j=0;j<years.length;j++){
+					var dicc = {};
+					dicc["pib"] = parseFloat(pib[pais][Object.keys(pib[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
+					dicc["population"] = parseFloat(population[pais][scope.sex][years[j]][scope.value]["Value"].replace(/,/g,''));
+					dicc["salary"] = parseFloat(salary[pais][scope.sex][years[j]][scope.value]["Value"].replace(/,/g,''));
+					
+					diccc[years[j]] = dicc;
+				}
+				paisosDic[pais] = diccc;
+				initialValues.push(paisosDic);
+			}		
+			
+			
+			scope.actual = years[0];
+			
+			var svg = d3.select(el[0].children[1])
+				.append("svg")
+				.attr("id","bubble-europe")
+				.attr("width", w)
+				.attr("height", h)
+			
+			
+			/* Definir dominio ejes */
+			var salaryValues = [];
+			var pobValues = [];
+			var values = [];
+			
+			for (pais in dic){
+				for (var j=0;j<years.length;j++){
+					pobValues.push(parseFloat(population[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
+					salaryValues.push(parseFloat(salary[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
+					values.push(parseFloat(pib[pais][Object.keys(pib[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,'')));
+				}
+			}
+			
+			var xScale = d3.scale.linear()
+				.domain([0, d3.max(salaryValues)])
+				.range([padding, w - padding]);
+			var yScale = d3.scale.linear()
+				.domain([0, d3.max(values)])
+				.range([h-padding, padding]);
+			var rScale = d3.scale.linear()
+				.domain([d3.min(pobValues), d3.max(pobValues)])
+				.range([5, 30]);
+			
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.ticks(4);
+				
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.tickFormat(function(d){
+					return d/1000 + 'M';
+				})
+				.ticks(4);
+				
+			var circles = svg.selectAll("circle")
+				.data(initialValues)
+				.enter()
+				.append("circle")
+				.attr("fill",function(d,i){
+					return color(i);
+				})
+				.attr("class",function (d){
+					return "cercle " + Object.keys(d)[0];
+				})
+				.each(function(){
+					nElem++;
+				})
+				.attr("cx", function(d) {
+					return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+				})
+				.attr("cy", function(d) {
+					return yScale(d[Object.keys(d)[0]][scope.inicial]['pib']);
+				})
+				.attr("r", function(d) {
+					return rScale(d[Object.keys(d)[0]][scope.inicial]['population']);
+				})
+				.style("visibility",function(d){
+					if(isNaN(d[Object.keys(d)[0]][scope.inicial]['pib']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['salary']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['population']))
+						return "hidden";
+					else return "visible";
+				})
+				.on("mouseover",function(d){
+					/*var cr = d3.select(this);
+					cr
+						.style("opacity",0.5);*/
+					d3.selectAll('.tooltip').remove();
+					tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+					var absoluteMousePos = d3.mouse(this);
+					tooltip
+						.style('left', (absoluteMousePos[0])+'px')
+						.style('top', (absoluteMousePos[1]+h/6)+'px')
+						.style('position', 'absolute') 
+						.style('z-index', 1001);
+					var tooltipText = "<p class='tooltip_p'>" + "Pais:" + d[Object.keys(d)[0]].salary + "</p>";
+					tooltip
+						.html(tooltipText);
+				})
+				.on("mouseleave",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",1)
+						.style("stroke","");
+					tooltip.remove();
+				});
+			
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0,"+(h-padding)+")")
+				.attr("fill","black")
+				.call(xAxis);
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate("+padding+",0)")
+				.attr("fill","black")
+				.call(yAxis); 
+		  
+			svg
+				.append("text")
+				.attr("text-anchor", "middle") 
+				.attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)") 
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("GDP");
+
+			svg
+				.append("text")
+				.attr("text-anchor", "middle")  
+				.attr("transform", "translate("+((padding+w)/2)+","+(h-(padding/4))+")")
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("Salary");
+				
+			d3.select(el[0].children[0]).selectAll(".myButton").remove();
+			
+			var button = d3.select(el[0].children[0])
+				.append("button")
+				.attr("class","myButton");
+				
+			button
+				.on("click",function(){
+					scope.$apply(function(){
+						scope.actual = scope.inicial;
+					});
+					transitions();
+				});
+			
+			svg.append("text")
+				.attr("id","year");
+			
+			function transitions(){
+				var circles = svg.selectAll("circle");
+				var year = svg.select("#year");
+					
+				i_circle = 2;
+				i_year = 1;
+				j_circle = 2 * nElem;
+				
+				circles.transition()
+					.attr("cx", function(d) {
+						return xScale(d[Object.keys(d)[0]][years[1]]['salary']);
+					})
+					.attr("cy", function(d) {
+						return yScale(d[Object.keys(d)[0]][years[1]]['pib']);
+					})
+					.attr("r", function(d) {
+						return rScale(d[Object.keys(d)[0]][years[1]]['population']);
+					})
+					.style("visibility",function(d){
+						if(isNaN(d[Object.keys(d)[0]][years[1]]['pib']) || isNaN(d[Object.keys(d)[0]][years[1]]['salary']) || isNaN(d[Object.keys(d)[0]][years[1]]['population']))
+							return "hidden";
+						else return "visible";
+					})
+					.duration(2000)
+					.delay(0)
+					.each("end",repeatCircles);
+					
+				year.transition()
+					.duration(2000)
+					.delay(0)
+					.each("end",repeatYear);
+			}
+			
+			function repeatCircles(){
+				i_circle = parseInt(j_circle/nElem);
+				if(i_circle<years.length+1){
+					if(i_circle!=years.length){
+						/*d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+							})
+							.attr("cy", function(d) {
+								return yScale(d[Object.keys(d)[0]][scope.inicial]['pib']);
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][scope.inicial]['population']);
+							})
+							.style("visibility",function(d){
+								if(isNaN(d[Object.keys(d)[0]][scope.inicial]['pib']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['salary']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['population']))
+									return "hidden";
+								else return "visible";
+							})
+							.duration(3000)
+							.delay(0);
+						j_circle++;
+					}
+					else{*/
+						d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][years[i_circle]]['salary']);
+							})
+							.attr("cy", function(d) {
+								return yScale(d[Object.keys(d)[0]][years[i_circle]]['pib']);
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][years[i_circle]]['population']);
+							})
+							.style("visibility",function(d){
+								if(isNaN(d[Object.keys(d)[0]][years[i_circle]]['pib']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['salary']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['population']))
+									return "hidden";
+								else return "visible";
+							})
+							.duration(2000)
+							.delay(0)
+							.each("end",repeatCircles);
+						j_circle++;
+					}
+				}
+			}
+			
+			function repeatYear(){
+				scope.$apply (function(){
+					if(i_year<years.length+1){
+						if(i_year!=years.length){
+							/*d3.select(this).transition()
+								.duration(3000) // this is 1s
+								.delay(0)
+								.each("end",function(){
+									scope.$apply (function(){
+										scope.actual = scope.inicial;
+									});
+								});
+							i_year++;
+						}
+						else{*/
+							d3.select(this).transition()
+								.duration(2000) // this is 1s
+								.delay(0)
+								.each("end",repeatYear);
+							scope.actual = years[i_year];
+							i_year++;
+						}
+					}
+				});
+			}
+		}
+	};
+	
+	return {
+		link: link,
+		restrict: 'AE',
+		scope: true
+	};
+});
+
+app.directive('myBubbleChartCompare',function(){
+	function link(scope,el,attr){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
+				
+				// definir years de actuacion;
+				var d = [];
+				d.push(scope.$parent.population);
+				d.push(scope.$parent.expenditure);
+				d.push(scope.$parent.salary);
+				
+				scope.years = defineYears(d);
+				scope.inicial = scope.years[0];
+				scope.actual = scope.inicial;
+				
+				scope.value = '0';
+				
+				/*scope.$parent.$watch('year', function(){
+					drawChart(scope,el,scope.$parent.datos,scope.$parent.population,scope.$parent.pib,scope.$parent.salary);
+				});*/
+				
+				drawChart(scope,el,scope.$parent.population,scope.$parent.expenditure,scope.$parent.salary);
+			}
+		});
+		
+		function drawChart(scope, el, population, expenditure, salary){
+			d3.select(el[0]).selectAll("svg").remove();
+			
+			var w = el.width()-50,
+				h = el.width()-100;
+				
+			var padding = el.width()/10;
+			
+			var nElem = 0;
+			var i_circle,j_circle, i_year;
+			var formatBigNumbers = d3.format(".1s");
+			var color = d3.scale.category20c();
+			
+			//var data = datos;
+
+			var dic = crearDiccionarioEuropa();
+			var tooltip;
+			
+			// definir rango de actuacion --> min and max de componentes
+			var years = scope.years;
+			
+			/* definir valores */
+			var sexos = scope.$parent.sexos.slice(1);
+			var total = scope.$parent.sexos[0];
+			
+			var initialValues = [];
+			var paisosDic = {};			
+			for (pais in dic){
+				var paisosDic = {};
+				var diccc = {};
+				for (var j=0;j<years.length;j++){
+					var dicc = {};
+					dicc["expenditure"] = parseFloat(expenditure[pais][Object.keys(expenditure[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
+					dicc["population"] = parseFloat(population[pais][total][years[j]][scope.value]["Value"].replace(/,/g,''));
+					var males = parseFloat(salary[pais][sexos[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
+					var females = parseFloat(salary[pais][sexos[1]][years[j]][scope.value]["Value"].replace(/,/g,''));
+					var percen = ((males-females)/(males+females))*100;
+					dicc["salary"] = percen;
+					diccc[years[j]] = dicc;
+				}
+				paisosDic[pais] = diccc;
+				initialValues.push(paisosDic);
+			}		
+			
+			scope.actual = years[0];
+			
+			var svg = d3.select(el[0].children[1])
+				.append("svg")
+				.attr("id","bubble-europe")
+				.attr("width", w)
+				.attr("height", h)
+			
+			
+			/* Definir dominio ejes */
+			var pobValues = [];
+			var values = [];
+			
+			for (pais in dic){
+				for (var j=0;j<years.length;j++){
+					pobValues.push(parseFloat(population[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
+					values.push(parseFloat(expenditure[pais][Object.keys(expenditure[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,'')));
+				}
+			}
+			
+			var xScale = d3.scale.linear()
+				.domain([-10, 10])
+				.range([padding, w - padding]);
+			var yScale = d3.scale.linear()
+				.domain([0, d3.max(values)])
+				.range([h-padding, padding]);
+			var rScale = d3.scale.linear()
+				.domain([d3.min(pobValues), d3.max(pobValues)])
+				.range([5, 30]);
+			
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.ticks(4);
+				
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.tickFormat(function(d){
+					return d/1000 + 'k';
+				})
+				.ticks(4);
+				
+			var circles = svg.selectAll("circle")
+				.data(initialValues)
+				.enter()
+				.append("circle")
+				.attr("fill",function(d,i){
+					return color(i);
+				})
+				.attr("class",function (d){
+					return "cercle " + Object.keys(d)[0];
+				})
+				.each(function(){
+					nElem++;
+				})
+				.attr("cx", function(d) {
+					return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+				})
+				.attr("cy", function(d) {
+					return yScale(d[Object.keys(d)[0]][scope.inicial]['expenditure']);
+				})
+				.attr("r", function(d) {
+					return rScale(d[Object.keys(d)[0]][scope.inicial]['population']);
+				})
+				.style("visibility",function(d){
+					if(isNaN(d[Object.keys(d)[0]][scope.inicial]['expenditure']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['salary']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['population']))
+						return "hidden";
+					else return "visible";
+				})
+				.on("mouseover",function(d){
+					/*var cr = d3.select(this);
+					cr
+						.style("opacity",0.5);*/
+					d3.selectAll('.tooltip').remove();
+					tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+					var absoluteMousePos = d3.mouse(this);
+					tooltip
+						.style('left', (absoluteMousePos[0])+'px')
+						.style('top', (absoluteMousePos[1]+h/6)+'px')
+						.style('position', 'absolute') 
+						.style('z-index', 1001);
+					var tooltipText = "<p class='tooltip_p'>" + "Pais:" + d[Object.keys(d)[0]].salary + "</p>";
+					tooltip
+						.html(tooltipText);
+				})
+				.on("mouseleave",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",1)
+						.style("stroke","");
+					tooltip.remove();
+				});
+			
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0,"+(h-padding)+")")
+				.attr("fill","black")
+				.call(xAxis);
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate("+padding+",0)")
+				.attr("fill","black")
+				.call(yAxis); 
+		  
+			svg
+				.append("text")
+				.attr("text-anchor", "middle") 
+				.attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)") 
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("Expenditure in Education");
+
+			svg
+				.append("text")
+				.attr("text-anchor", "middle")  
+				.attr("transform", "translate("+((padding+w)/2)+","+(h-(padding/4))+")")
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("Salary Difference");
+				
+			d3.select(el[0].children[0]).selectAll(".myButton").remove();
+			
+			var button = d3.select(el[0].children[0])
+				.append("button")
+				.attr("class","myButton");
+				
+			button
+				.on("click",function(){
+					scope.$apply(function(){
+						scope.actual = scope.inicial;
+					});
+					transitions();
+				});
+			
+			svg.append("text")
+				.attr("id","year");
+			
+			function transitions(){
+				var circles = svg.selectAll("circle");
+				var year = svg.select("#year");
+					
+				i_circle = 2;
+				i_year = 1;
+				j_circle = 2 * nElem;
+				
+				circles.transition()
+					.attr("cx", function(d) {
+						return xScale(d[Object.keys(d)[0]][years[1]]['salary']);
+					})
+					.attr("cy", function(d) {
+						return yScale(d[Object.keys(d)[0]][years[1]]['expenditure']);
+					})
+					.attr("r", function(d) {
+						return rScale(d[Object.keys(d)[0]][years[1]]['population']);
+					})
+					.style("visibility",function(d){
+						if(isNaN(d[Object.keys(d)[0]][years[1]]['expenditure']) || isNaN(d[Object.keys(d)[0]][years[1]]['salary']) || isNaN(d[Object.keys(d)[0]][years[1]]['population']))
+							return "hidden";
+						else return "visible";
+					})
+					.duration(2000)
+					.delay(0)
+					.each("end",repeatCircles);
+					
+				year.transition()
+					.duration(2000)
+					.delay(0)
+					.each("end",repeatYear);
+			}
+			
+			function repeatCircles(){
+				i_circle = parseInt(j_circle/nElem);
+				if(i_circle<years.length+1){
+					if(i_circle!=years.length){
+						/*d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+							})
+							.attr("cy", function(d) {
+								return yScale(d[Object.keys(d)[0]][scope.inicial]['pib']);
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][scope.inicial]['population']);
+							})
+							.style("visibility",function(d){
+								if(isNaN(d[Object.keys(d)[0]][scope.inicial]['pib']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['salary']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['population']))
+									return "hidden";
+								else return "visible";
+							})
+							.duration(3000)
+							.delay(0);
+						j_circle++;
+					}
+					else{*/
+						d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][years[i_circle]]['salary']);
+							})
+							.attr("cy", function(d) {
+								return yScale(d[Object.keys(d)[0]][years[i_circle]]['expenditure']);
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][years[i_circle]]['population']);
+							})
+							.style("visibility",function(d){
+								if(isNaN(d[Object.keys(d)[0]][years[i_circle]]['expenditure']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['salary']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['population']))
+									return "hidden";
+								else return "visible";
+							})
+							.duration(2000)
+							.delay(0)
+							.each("end",repeatCircles);
+						j_circle++;
+					}
+				}
+			}
+			
+			function repeatYear(){
+				scope.$apply (function(){
+					if(i_year<years.length+1){
+						if(i_year!=years.length){
+							/*d3.select(this).transition()
+								.duration(3000) // this is 1s
+								.delay(0)
+								.each("end",function(){
+									scope.$apply (function(){
+										scope.actual = scope.inicial;
+									});
+								});
+							i_year++;
+						}
+						else{*/
+							d3.select(this).transition()
+								.duration(2000) // this is 1s
+								.delay(0)
+								.each("end",repeatYear);
+							scope.actual = years[i_year];
+							i_year++;
+						}
+					}
+				});
+			}
+		}
+	};
+	
+	return {
+		link: link,
+		restrict: 'AE',
+		scope: true
+	};
+});
+
+app.directive('myBubbleChartReference',function(){
+	function link(scope,el,attr){
+		scope.$parent.$watch('datos',function(){
+			if(typeof scope.$parent.datos !== "undefined"){
+				
+				// definir years de actuacion;
+				var d = [];
+				d.push(scope.$parent.population);
+				d.push(scope.$parent.expenditure);
+				d.push(scope.$parent.salary);
+				
+				scope.years = defineYears(d);
+				scope.inicial = scope.years[0];
+				scope.actual = scope.inicial;
+				
+				scope.value = '0';
+				
+				/*scope.$parent.$watch('year', function(){
+					drawChart(scope,el,scope.$parent.datos,scope.$parent.population,scope.$parent.pib,scope.$parent.salary);
+				});*/
+				
+				drawChart(scope,el,scope.$parent.population,scope.$parent.expenditure,scope.$parent.salary);
+			}
+		});
+		
+		function drawChart(scope, el, population, expenditure, salary){
+			d3.select(el[0]).selectAll("svg").remove();
+			
+			var w = el.width()-50,
+				h = el.width()-100;
+				
+			var padding = el.width()/10;
+			
+			var nElem = 0;
+			var i_circle,j_circle, i_year;
+			var formatBigNumbers = d3.format(".1s");
+			var color = d3.scale.category20c();
+			
+			//var data = datos;
+
+			var dic = crearDiccionarioEuropa();
+			var tooltip;
+			
+			// definir rango de actuacion --> min and max de componentes
+			var years = scope.years;
+			
+			/* definir valores */
+			var sexos = scope.$parent.sexos.slice(1);
+			var total = scope.$parent.sexos[0];
+			
+			var initialValues = [];
+			var paisosDic = {};			
+			for (pais in dic){
+				var paisosDic = {};
+				var diccc = {};
+				for (var j=0;j<years.length;j++){
+					var dicc = {};
+					dicc["expenditure"] = parseFloat(expenditure[pais][Object.keys(expenditure[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
+					dicc["population"] = parseFloat(population[pais][total][years[j]][scope.value]["Value"].replace(/,/g,''));
+					var males = parseFloat(salary[pais][sexos[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
+					var females = parseFloat(salary[pais][sexos[1]][years[j]][scope.value]["Value"].replace(/,/g,''));
+					var percen = ((males-females)/(males+females))*100;
+					dicc["salary"] = percen;
+					diccc[years[j]] = dicc;
+				}
+				paisosDic[pais] = diccc;
+				initialValues.push(paisosDic);
+			}		
+			
+			scope.actual = years[0];
+			
+			var svg = d3.select(el[0].children[1])
+				.append("svg")
+				.attr("id","bubble-europe")
+				.attr("width", w)
+				.attr("height", h)
+			
+			
+			/* Definir dominio ejes */
+			var pobValues = [];
+			var values = [];
+			
+			for (pais in dic){
+				for (var j=0;j<years.length;j++){
+					pobValues.push(parseFloat(population[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
+					values.push(parseFloat(expenditure[pais][Object.keys(expenditure[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,'')));
+				}
+			}
+			
+			var xScale = d3.scale.linear()
+				.domain([-10, 10])
+				.range([padding, w - padding]);
+			var yScale = d3.scale.linear()
+				.domain([0, d3.max(values)])
+				.range([h-padding, padding]);
+			var rScale = d3.scale.linear()
+				.domain([d3.min(pobValues), d3.max(pobValues)])
+				.range([5, 30]);
+			
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.ticks(4);
+				
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.tickFormat(function(d){
+					return d/1000 + 'k';
+				})
+				.ticks(4);
+				
+			var circles = svg.selectAll("circle")
+				.data(initialValues)
+				.enter()
+				.append("circle")
+				.attr("fill",function(d,i){
+					return color(i);
+				})
+				.attr("class",function (d){
+					return "cercle " + Object.keys(d)[0];
+				})
+				.each(function(){
+					nElem++;
+				})
+				.attr("cx", function(d) {
+					return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+				})
+				.attr("cy", function(d) {
+					return yScale(d[Object.keys(d)[0]][scope.inicial]['expenditure']);
+				})
+				.attr("r", function(d) {
+					return rScale(d[Object.keys(d)[0]][scope.inicial]['population']);
+				})
+				.style("visibility",function(d){
+					if(isNaN(d[Object.keys(d)[0]][scope.inicial]['expenditure']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['salary']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['population']))
+						return "hidden";
+					else return "visible";
+				})
+				.on("mouseover",function(d){
+					/*var cr = d3.select(this);
+					cr
+						.style("opacity",0.5);*/
+					d3.selectAll('.tooltip').remove();
+					tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+					var absoluteMousePos = d3.mouse(this);
+					tooltip
+						.style('left', (absoluteMousePos[0])+'px')
+						.style('top', (absoluteMousePos[1]+h/6)+'px')
+						.style('position', 'absolute') 
+						.style('z-index', 1001);
+					var tooltipText = "<p class='tooltip_p'>" + "Pais:" + d[Object.keys(d)[0]].salary + "</p>";
+					tooltip
+						.html(tooltipText);
+				})
+				.on("mouseleave",function(d){
+					var cr = d3.select(this);
+					cr
+						.style("opacity",1)
+						.style("stroke","");
+					tooltip.remove();
+				});
+			
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0,"+(h-padding)+")")
+				.attr("fill","black")
+				.call(xAxis);
+			svg
+				.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate("+padding+",0)")
+				.attr("fill","black")
+				.call(yAxis); 
+		  
+			svg
+				.append("text")
+				.attr("text-anchor", "middle") 
+				.attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)") 
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("Expenditure in Education");
+
+			svg
+				.append("text")
+				.attr("text-anchor", "middle")  
+				.attr("transform", "translate("+((padding+w)/2)+","+(h-(padding/4))+")")
+				.attr("font-size", "10px")
+				.attr("fill","black")
+				.text("Salary Difference");
+				
+			d3.select(el[0].children[0]).selectAll(".myButton").remove();
+			
+			var button = d3.select(el[0].children[0])
+				.append("button")
+				.attr("class","myButton");
+				
+			button
+				.on("click",function(){
+					scope.$apply(function(){
+						scope.actual = scope.inicial;
+					});
+					transitions();
+				});
+			
+			svg.append("text")
+				.attr("id","year");
+			
+			function transitions(){
+				var circles = svg.selectAll("circle");
+				var year = svg.select("#year");
+					
+				i_circle = 2;
+				i_year = 1;
+				j_circle = 2 * nElem;
+				
+				circles.transition()
+					.attr("cx", function(d) {
+						return xScale(d[Object.keys(d)[0]][years[1]]['salary']);
+					})
+					.attr("cy", function(d) {
+						return yScale(d[Object.keys(d)[0]][years[1]]['expenditure']);
+					})
+					.attr("r", function(d) {
+						return rScale(d[Object.keys(d)[0]][years[1]]['population']);
+					})
+					.style("visibility",function(d){
+						if(isNaN(d[Object.keys(d)[0]][years[1]]['expenditure']) || isNaN(d[Object.keys(d)[0]][years[1]]['salary']) || isNaN(d[Object.keys(d)[0]][years[1]]['population']))
+							return "hidden";
+						else return "visible";
+					})
+					.duration(2000)
+					.delay(0)
+					.each("end",repeatCircles);
+					
+				year.transition()
+					.duration(2000)
+					.delay(0)
+					.each("end",repeatYear);
+			}
+			
+			function repeatCircles(){
+				i_circle = parseInt(j_circle/nElem);
+				if(i_circle<years.length+1){
+					if(i_circle!=years.length){
+						/*d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
+							})
+							.attr("cy", function(d) {
+								return yScale(d[Object.keys(d)[0]][scope.inicial]['pib']);
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][scope.inicial]['population']);
+							})
+							.style("visibility",function(d){
+								if(isNaN(d[Object.keys(d)[0]][scope.inicial]['pib']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['salary']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['population']))
+									return "hidden";
+								else return "visible";
+							})
+							.duration(3000)
+							.delay(0);
+						j_circle++;
+					}
+					else{*/
+						d3.select(this).transition()
+							.attr("cx", function(d) {
+								return xScale(d[Object.keys(d)[0]][years[i_circle]]['salary']);
+							})
+							.attr("cy", function(d) {
+								return yScale(d[Object.keys(d)[0]][years[i_circle]]['expenditure']);
+							})
+							.attr("r", function(d) {
+								return rScale(d[Object.keys(d)[0]][years[i_circle]]['population']);
+							})
+							.style("visibility",function(d){
+								if(isNaN(d[Object.keys(d)[0]][years[i_circle]]['expenditure']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['salary']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['population']))
+									return "hidden";
+								else return "visible";
+							})
+							.duration(2000)
+							.delay(0)
+							.each("end",repeatCircles);
+						j_circle++;
+					}
+				}
+			}
+			
+			function repeatYear(){
+				scope.$apply (function(){
+					if(i_year<years.length+1){
+						if(i_year!=years.length){
+							/*d3.select(this).transition()
+								.duration(3000) // this is 1s
+								.delay(0)
+								.each("end",function(){
+									scope.$apply (function(){
+										scope.actual = scope.inicial;
+									});
+								});
+							i_year++;
+						}
+						else{*/
+							d3.select(this).transition()
+								.duration(2000) // this is 1s
 								.delay(0)
 								.each("end",repeatYear);
 							scope.actual = years[i_year];

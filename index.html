@@ -243,7 +243,7 @@
                 <!-- /.row -->
 				
 				<div class="row" id="row4">
-					<div class="col-lg-6">
+					<!--<div class="col-lg-4">
                         <div my-bubble-chart class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title transitioning-title"><i class="fa fa-clock-o fa-fw"></i> {{pais}} Salary/Employment evaluation at year :</h3>
@@ -252,18 +252,50 @@
 								<h1 id="year-title-black">{{actual}}</h1>
                             </div>
                         </div>
-                    </div>
-					<!--<div class="col-lg-6">
-                        <div my-compare-chart class="panel panel-default">
+                    </div>-->
+					<div class="col-lg-6">
+                        <div my-bubble-chart-sex  sex="Males" class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> All countries : I+D in {{sector}}</h3>
+                                <h3 class="panel-title transitioning-title"><i class="fa fa-clock-o fa-fw"></i> All countries : Males salary/GDP </h3>
                             </div>
                             <div class="panel-body"> 
+								<h1 id="year-title-black">{{actual}}</h1>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
+					<div class="col-lg-6">
+                        <div my-bubble-chart-sex  sex="Females" class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title transitioning-title"><i class="fa fa-clock-o fa-fw"></i> All countries : Females salary/GDP</h3>
+                            </div>
+                            <div class="panel-body"> 
+								<h1 id="year-title-black">{{actual}}</h1>
+                            </div>
+                        </div>
+                    </div>
 				</div>
-
+				<div class="row" id="row4">
+					<div class="col-lg-6">
+                        <div my-bubble-chart-compare class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title transitioning-title"><i class="fa fa-clock-o fa-fw"></i> All countries : Salary diference/Education expenditure</h3>
+                            </div>
+                            <div class="panel-body"> 
+								<h1 id="year-title-black">{{actual}}</h1>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-lg-6">
+                        <div my-bubble-chart-reference class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title transitioning-title"><i class="fa fa-clock-o fa-fw"></i> Employment/Salary Difference</h3>
+                            </div>
+                            <div class="panel-body"> 
+								<h1 id="year-title-black">{{actual}}</h1>
+                            </div>
+                        </div>
+                    </div>
+				</div>
             </div>
             <!-- /.container-fluid -->
 

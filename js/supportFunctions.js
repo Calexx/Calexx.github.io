@@ -69,6 +69,15 @@ function compare(a,b){
 	return 0;
 }
 
+function defineYears(data){
+	var years = [];
+	for (var i=0;i<data.length;i++){
+		years.push(Object.keys(data[i][Object.keys(data[i])[0]][Object.keys(data[i][Object.keys(data[i])[0]])[0]]));
+	}
+	var selectedIntersection = _.intersection.apply(_, years);
+	return selectedIntersection;
+}
+
 $(window).bind('resize', function(e){
 	if (window.RT) clearTimeout(window.RT);
 	window.RT = setTimeout(function(){

@@ -117,9 +117,10 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 							}
 							
 							if(scope.$parent.reconstruccion == false){
+								console.log("entra a reconstruccion");
 								scope.$parent.reconstruccion = true;
 								$("#page-container").empty();
-								var template = 	"<div ng-include src=''views/sexondaryView.tpl.html''></div>";
+								var template = "<div ng-include src=''views/secondaryView.tpl.html''></div>";
 								var linkFn = $compile(template);
 								var content = linkFn(scope);
 								$('#page-container').append(content);

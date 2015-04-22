@@ -159,7 +159,6 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 							.style('top', (absoluteMousePos[1]+h/6)+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						console.log(d);
 						var tooltipText = "<p class='tooltip_p'>" +  Object.keys(d)[0] +":" + d[Object.keys(d)[0]][scope.actual].salary + "</p>";
 						tooltip
 							.html(tooltipText);

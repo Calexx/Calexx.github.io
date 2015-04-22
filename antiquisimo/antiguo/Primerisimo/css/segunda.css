@@ -1,0 +1,39 @@
+svg{
+	display:block;
+	margin: auto;
+}
+.subunit-boundary {
+  fill: none;
+  stroke: #f6f5f5;
+  stroke-dasharray: 2,2;
+  stroke-linejoin: round;
+}
+.subunit-boundary.IRL {
+  stroke: #aaa;
+}
+.subunit.SCT { 
+	fill: #5ebdb2; 
+}
+.subunit.WLS { 
+	fill: #f0ddaa; 
+}
+.subunit.NIR { 
+	fill: #e47c5d; 
+}
+.subunit.ENG { 
+	fill: #e42d40; 
+}
+.subunit.IRL { 
+	display: none; 
+}
+.subunit-label {
+	fill: #142b3b;
+	fill-opacity: .5;
+	font-size: 20px;
+	font-weight: 300;
+	text-anchor: middle;
+}
+.place-label{
+	font-size : 11px;
+	fill: black;
+}

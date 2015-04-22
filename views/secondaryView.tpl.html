@@ -1,0 +1,74 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header"> {{education}}
+			<small> Stadistics by Sex </small>
+		</h1>
+	</div>
+</div>
+
+<div class='row' id='row'>
+	<div class='col-lg-6'>
+		<div my-bubble-chart class='panel panel-default'>
+			<div class='panel-heading'>
+				<h3 class='panel-title transitioning-title'>
+					<i class='fa fa-long-arrow-right fa-fw'></i>
+					{{pais}} Salary/Employment evaluation at year :
+				</h3>
+			</div>
+			<div class='panel-body'>
+				<h1 id='year-title-black'>{{actual}}</h1>
+			</div>
+		</div>
+	</div>
+	<div class='col-lg-6'>
+		<div my-map class='panel panel-default big-panel'>
+			<div class='panel-heading'>
+				<h3 class='panel-title'>
+					<i class='fa fa-long-arrow-right fa-fw'></i>
+					Employment Comparison at year:
+				</h3>
+			</div>
+			<div class='panel-body'>
+				<h1 id='year-title'>{{actual}}</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class='row' id='row2'>
+	<div class='col-lg-4'>
+		<div my-chart class='panel panel-default'>
+			<div class='panel-heading'>
+				<h3 class='panel-title'>
+					<i class='fa fa-clock-o fa-fw'></i> 
+					{{pais}} Employment in:
+				</h3>
+			</div>
+			<div class='panel-body'>
+			</div>
+		</div>
+	</div>
+	<div class='col-lg-4'>
+		<div my-stacked-bar class='panel panel-default'>
+			<div class='panel-heading'>
+				<h3 class='panel-title'>
+					<i class='fa fa-clock-o fa-fw'></i> 
+					{{pais}} Employment in :
+				</h3>
+			</div>
+			<div class='panel-body'>
+			</div>
+		</div>
+	</div>
+	<div class='col-lg-4'>
+		<div my-pie-chart class='panel panel-default'>
+			<div class='panel-heading'>
+				<h3 class='panel-title' style='font-size:16px;padding:5px;'>
+					<i class='fa fa-clock-o fa-fw'></i> 
+					{{pais}} Employment in :
+				</h3>
+			</div>
+			<div class='panel-body'>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,231 @@
+svg{
+	display:block;
+	margin: auto;
+}
+body{
+	background-color: #2D353C;
+}
+.subunit{
+	fill: #f0ddaa;
+	stroke: #333333;
+}
+.subunit.primero{
+	fill: #F2F2F2;
+}
+.subunit.segundo{
+	fill: #F2F2F2;
+}
+.subunit.tercero{
+	fill: #F2F2F2;
+}
+.subunit.cuarto{
+	fill: #F2F2F2;
+}
+.subunit-boundary{
+	fill: none;
+	stroke: #333333;
+}
+.bar.Businessenterprisesector{
+	fill: #00ACAC;
+	stroke-width: 1px;
+	stroke: white;
+}
+.bar.Governmentsector{
+	fill: #348FE2;
+	stroke-width: 1px;
+	stroke: white;
+}
+.bar.Highereducationsector{
+	fill: #727CB6;
+	stroke-width: 1px;
+	stroke: white;
+}
+.bar.Privatenon-profitsector{
+	fill: #2D353C;
+	stroke-width: 1px;
+	stroke: white;
+}
+#year{
+	font-size: 40px;
+	fill: black;
+}
+#sector{
+	font-size: 40px;
+	fill: black; 
+}
+.tooltip{ 
+	background-color:#2D353C;
+	color: white;
+	padding: 3px; 
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	opacity: 1;
+}
+#tooltip_p{
+	margin:0px;
+}
+.myButton {
+	width:3%;
+	height:20px;
+	border:0px;
+	cursor:pointer;
+	background-image: url(../img/button-play.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-color: transparent;
+}
+.options{
+	background-color: #2D353C;
+	font-size: 10px;
+}
+
+.mySelect {
+	background-color: #2D353C;
+	width: 100%;
+	font-size: 10px;
+}
+
+.navbar-brand{
+	color: #AFAFAF!important;
+}
+.big-panel .panel-heading .panel-title{
+	width:95%;
+	float:left;
+	padding:5px;
+	font-size:16px;
+}
+.panel-title{
+	font-size: 10px;
+}
+.transitioning-title{
+	width:95%;
+	float:left;
+	padding:5px;
+}
+.panel{
+	border-radius: 8px;
+}
+#green{
+	background-color: #00ACAC!important;
+	border-width: 0px;
+}
+#blue{
+	background-color: #348FE2!important;
+	border-width: 0px;
+}
+#purple{
+	background-color: #727CB6!important;
+	border-width: 0px;
+}
+#black{
+	background-color: #2D353C!important;
+	border-width: 0px;
+}
+#year-title{
+	color: white;
+	padding-left: 50px;
+	margin:0px;
+}
+#year-title-black{
+	margin:0px;
+}
+.panel-primary{
+	border-width: 0px;
+}
+.panel-green{
+	border-width: 0px;
+}
+.panel-yellow{
+	border-width: 0px;
+}
+.panel-red{
+	border-width: 0px;
+}
+.panel-primary a .panel-footer{
+	background-color: #00ACAC!important;
+	color: #ffffff;
+}
+.panel-green a .panel-footer{
+	background-color: #348FE2!important;
+	color: #ffffff;
+}
+.panel-yellow a .panel-footer{
+	background-color: #727CB6!important;
+	color: #ffffff;
+}
+.panel-red a .panel-footer{
+	background-color: #2D353C!important;
+	color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #00ACAC!important;
+}
+.panel-heading{
+	background-color: #242A30!important;
+	color: #ffffff!important;
+	border-width: 0px; 
+}
+.collapse a{
+	cursor:pointer;
+}
+.navbar{
+	border-width:0px;
+}
+.big-panel{
+	background-color: #2D353C!important;
+}
+.side-nav{
+	background-color: #2D353C;
+}
+
+#page-wrapper{
+	background-color: #D9E0E7;
+}
+#europe_svg{
+	background-color: #2D353C;
+}
+.leyenda_bars{
+	float: left;
+}
+.navbar-collapse{
+	background-color: #FFFFFF;
+}
+.title-option{
+	width: 100%;
+	height: 50px;
+	color: #FFFFF1;
+	background-color: #1A2229;
+	text-align: center;
+	
+}
+.title-option p{
+	padding: 15px;
+}
+
+.leyenda{
+	margin-top: 10px;
+}
+
+.leyenda text{
+	fill: #ffffff;
+}		
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+.axis text {
+	font-family: sans-serif;
+	font-size: 11px;
+}
+.xlabel{
+	font-family: sans-serif;
+	font-size: 11px;
+}
+.ylabel{
+	font-family: sans-serif;
+	font-size: 11px;
+}

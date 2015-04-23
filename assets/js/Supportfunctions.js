@@ -22,6 +22,7 @@ function compare(a,b){
 	return 0;
 }
 
+
 // Define la interseccion de multiples arrays con years
 function defineYears(data){
 	var years = [];

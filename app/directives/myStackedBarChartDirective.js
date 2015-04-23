@@ -136,6 +136,8 @@ angular.module('visualDataApp.directives.myStackedBarChartDirective',[])
 				var contador = 1;
 				var cont = 1;
 				
+				console.log(values);
+				
 				var rect = svg.selectAll("rect")
 					.data(values)
 					.enter()

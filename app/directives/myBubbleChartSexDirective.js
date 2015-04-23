@@ -96,7 +96,7 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 				var xAxis = d3.svg.axis()
 					.scale(xScale)
 					.orient("bottom")
-					.ticks(4);
+					.ticks(5);
 					
 				var yAxis = d3.svg.axis()
 					.scale(yScale)
@@ -106,27 +106,14 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 					})
 					.ticks(4);
 					
-				var lineData = [{"x":0, "y":0},{"x":d3.max(salaryValues),"y":d3.max(values)}];
+				//var lineData = [{"x":0, "y":0},{"x":d3.max(salaryValues),"y":d3.max(values)}];
 				
-				var lineFunction = d3.svg.line()
-					.x (function(d){
-						return xScale(d.x);
-					})
-					.y (function(d){
-						return yScale(d.y);
-					})
-					.interpolate("linear");
-					
-				var linepath = svg.append("path")
-					.attr("d",lineFunction(lineData))
-					.attr("stroke","black")
-					.attr("stroke-width",0.5)
-					.attr("fill","none");
-					
 				var circles = svg.selectAll("circle")
 					.data(initialValues)
 					.enter()
 					.append("circle")
+					.style("opacity",0.8)
+					.style("cursor","pointer")
 					.attr("fill",function(d,i){
 						return color(i);
 					})
@@ -153,22 +140,52 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 					.on("mouseover",function(d){
 						d3.selectAll('.tooltip').remove();
 						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+						var cr = d3.select(this);
+						cr
+							.style("opacity",1);
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
 							.style('left', (absoluteMousePos[0])+'px')
-							.style('top', (absoluteMousePos[1]+h/6)+'px')
+							.style('top', (absoluteMousePos[1]-padding)+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<p class='tooltip_p'>" +  Object.keys(d)[0] +":" + d[Object.keys(d)[0]][scope.actual].salary + "</p>";
+						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><p>"+ d[Object.keys(d)[0]][scope.actual].salary + "</p>";
 						tooltip
 							.html(tooltipText);
+						
+						var lineData = [{"x":0,"y":d[Object.keys(d)[0]][scope.actual].pib},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":d[Object.keys(d)[0]][scope.actual].pib},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":0}];
+						
+						var lineFunction = d3.svg.line()
+							.x (function(d){
+								return xScale(d.x);
+							})
+							.y (function(d){
+								return yScale(d.y);
+							})
+							.interpolate("linear");
+					
+						var linepath = svg.append("path")
+							.attr("class","mousepath")
+							.attr("d",lineFunction(lineData))
+							.attr("stroke","grey")
+							.attr("stroke-width",0.8)
+							.attr("fill","none");
 					})
+					
+					
 					.on("mouseleave",function(d){
+						var linepath = svg.selectAll(".mousepath").remove();
 						var cr = d3.select(this);
 						cr
-							.style("opacity",1)
+							.style("opacity",0.8)
 							.style("stroke","");
 						tooltip.remove();
+					})
+					
+					.on("click",function(d){
+						scope.$apply(function(){
+							scope.$parent.pais = Object.keys(d)[0];
+						});
 					});
 				
 				svg

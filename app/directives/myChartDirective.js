@@ -108,6 +108,7 @@ angular.module('visualDataApp.directives.myChartDirective',[])
 					.data(array)
 					.enter()
 					.append("circle")
+					.style("cursor","auto")
 					.attr("fill",function(d){
 							if(d[Object.keys(d)[0]].sexo == "Males") return "#3F7F93";
 							else return "#DA6068"
@@ -134,10 +135,10 @@ angular.module('visualDataApp.directives.myChartDirective',[])
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
 							.style('left', (absoluteMousePos[0])+'px')
-							.style('top', (absoluteMousePos[1]+padding)+'px')
+							.style('top', (absoluteMousePos[1])+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<p id='tooltip_p'>" + d[Object.keys(d)[0]].Value + "</p>";
+						var tooltipText = "<h3>Employment</h3><p>"+d[Object.keys(d)[0]].Value+"</p>";
 						tooltip
 							.html(tooltipText);
 					})

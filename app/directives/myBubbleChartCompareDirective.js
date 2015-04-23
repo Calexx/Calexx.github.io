@@ -62,7 +62,7 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					}
 					paisosDic[pais] = diccc;
 					initialValues.push(paisosDic);
-				}		
+				}
 				
 				scope.actual = years[0];
 				
@@ -128,6 +128,8 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					.data(initialValues)
 					.enter()
 					.append("circle")
+					.style("opacity",0.8)
+					.style("cursor","pointer")
 					.attr("fill",function(d,i){
 						return color(i);
 					})
@@ -152,27 +154,53 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 						else return "visible";
 					})
 					.on("mouseover",function(d){
-						/*var cr = d3.select(this);
+						var cr = d3.select(this);
 						cr
-							.style("opacity",0.5);*/
+							.style("opacity",1);
 						d3.selectAll('.tooltip').remove();
 						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
 							.style('left', (absoluteMousePos[0])+'px')
-							.style('top', (absoluteMousePos[1]+h/6)+'px')
+							.style('top', (absoluteMousePos[1]	)+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<p class='tooltip_p'>" + "Pais:" + d[Object.keys(d)[0]].salary + "</p>";
+						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><p>"+ d[Object.keys(d)[0]][scope.actual].salary + "%</p>";
 						tooltip
 							.html(tooltipText);
+						
+						var lineData = [{"x":-10,"y":d[Object.keys(d)[0]][scope.actual].expenditure},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":d[Object.keys(d)[0]][scope.actual].expenditure},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":0}];
+						
+						var lineFunction = d3.svg.line()
+							.x (function(d){
+								return xScale(d.x);
+							})
+							.y (function(d){
+								return yScale(d.y);
+							})
+							.interpolate("linear");
+					
+						var linepath = svg.append("path")
+							.attr("class","mousepath")
+							.attr("d",lineFunction(lineData))
+							.attr("stroke","grey")
+							.attr("stroke-width",0.8)
+							.attr("fill","none");
+							
 					})
 					.on("mouseleave",function(d){
+						var linepath = svg.selectAll(".mousepath").remove();
 						var cr = d3.select(this);
 						cr
-							.style("opacity",1)
+							.style("opacity",0.8)
 							.style("stroke","");
 						tooltip.remove();
+					})
+					
+					.on("click",function(d){
+						scope.$apply(function(){
+							scope.$parent.pais = Object.keys(d)[0];
+						});
 					});
 				
 				svg

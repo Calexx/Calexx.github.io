@@ -247,6 +247,33 @@ svg{
 	stroke: white;
 }
 
+/*BUBBLES*/
+
+.cercle.Males{
+	fill: #3F7F93;
+}
+.cercle.Females{
+	fill: #DA6068;
+}
+
+.axis-males{
+	stroke: #3F7F93;
+}
+
+.axis-females{
+	stroke: #DA6068;
+}
+
+/*AREACHART*/
+
+.area-path-expenditure{
+	fill: #3F7F93;
+}
+
+.area-path-pib{
+	fill: #DA6068;
+}
+
 /*TOOLTIP*/
 
 .tooltip{ 

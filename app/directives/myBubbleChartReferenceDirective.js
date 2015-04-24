@@ -1,26 +1,50 @@
-angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
-	.directive('myBubbleChartCompare',function(){
+angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
+	.directive('myBubbleChartReference',function(){
 		function link(scope,el,attr){
 			scope.$parent.$watch('employment',function(){
 				if(typeof scope.$parent.employment !== "undefined"){
 					
 					// definir years de actuacion;
 					var d = [];
-					d.push(scope.$parent.population);
-					d.push(scope.$parent.expenditure);
+					d.push(scope.$parent.employment);
+					d.push(scope.$parent.educationLevel);
 					d.push(scope.$parent.salary);
+					d.push(scope.$parent.population);
 					
 					scope.years = defineYears(d);
 					scope.inicial = scope.years[0];
 					scope.actual = scope.inicial;
+					scope.activity = "Total";
 					
 					scope.value = '0';
+					scope.mostrar = "Females";
 					
-					drawChart(scope,el,scope.$parent.population,scope.$parent.expenditure,scope.$parent.salary);
+					scope.$parent.$watchGroup(['education','pais'], function(){
+						drawChart(scope,el,scope.$parent.population,scope.$parent.educationLevel,scope.$parent.employment,scope.$parent.salary,scope.$parent.education);
+					});
+					
+					scope.$watch('mostrar', function(){
+						drawChart(scope,el,scope.$parent.population,scope.$parent.educationLevel,scope.$parent.employment,scope.$parent.salary,scope.$parent.education);
+					});
 				}
 			});
 			
-			function drawChart(scope, el, population, expenditure, salary){
+			/*AHORA MISMO EMPLOYMENT ESTÁ EN MILLONES DE HABITANTES POR GRUPO
+			LO IDONEO SERIA TENER EN VEZ DE MILLONES DE HABITANTES, % DE HABITANTES CON ESOS ESTUDIOS QUE ESTÁN TRABAJANDO
+			PARA ELLO NECESITO:
+			
+				- SABER CUANTOS HOMBRES/MUJERES DE UN GRUPO ESTAN TRABAJANDO --> EMPLOYMENT
+				- SABER CUANTOS HOMBRES/MUJERES HAY CON ESOS ESTUDIOS -> EDUCATION LEVEL
+				- SABER CUANTOS HOMBRES/MUJERES VIVEN EN EL PAIS -> POPULATION
+				
+				- COMBINARLO TODO CON EXPENDITURE IN EDUCATION
+				
+				PASOS:
+					1- SACAR MILLONES DE HOMBRES/MUJERES CON NIVEL DE ESTUDIO SELECTED
+					2- SACAR PORCENTAJE DE EMPLOYMENT SOBRE EL PASO 1 Y NO SOBRE EL GLOBAL
+					3- COMBINARLO CON EXPENDITURE
+			*/
+			function drawChart(scope, el, population, educationLevel, employment, salary, education){
 				d3.select(el[0]).selectAll("svg").remove();
 				
 				var w = el.width()-50,
@@ -31,7 +55,7 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 				var nElem = 0;
 				var i_circle,j_circle, i_year;
 				var formatBigNumbers = d3.format(".1s");
-				var color = d3.scale.category20c();
+				//var color = d3.scale.category20c();
 				
 				//var data = datos;
 
@@ -45,24 +69,32 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 				var sexos = scope.$parent.sexos.slice(1);
 				var total = scope.$parent.sexos[0];
 				
-				var initialValues = [];
-				var paisosDic = {};			
-				for (pais in dic){
-					var paisosDic = {};
-					var diccc = {};
+				var mapEducation = mappingEducation(education);
+				
+				var initialValues = [];	
+				for (var i=0;i<sexos.length;i++){
+					var diccV = {};
+					var diccY = {};
 					for (var j=0;j<years.length;j++){
-						var dicc = {};
-						dicc["expenditure"] = parseFloat(expenditure[pais][Object.keys(expenditure[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
-						dicc["population"] = parseFloat(population[pais][total][years[j]][scope.value]["Value"].replace(/,/g,''));
-						var males = parseFloat(salary[pais][sexos[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
-						var females = parseFloat(salary[pais][sexos[1]][years[j]][scope.value]["Value"].replace(/,/g,''));
-						var percen = ((males-females)/(males+females))*100;
-						dicc["salary"] = percen;
-						diccc[years[j]] = dicc;
+						dicc = {};
+						dicc["salary"] = parseFloat(salary[scope.$parent.pais][sexos[i]][years[j]][scope.value]["Value"].replace(/,/g,''));
+						if(mapEducation==-1){
+							var pop = parseFloat(population[scope.$parent.pais][sexos[i]][years[j]][scope.value]["Value"].replace(/,/g,''));
+							dicc["population"] = pop;
+							var employ = ((parseFloat(employment[scope.$parent.pais][sexos[i]][years[j]][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,''))*1000)/pop)*100;
+							dicc["employment"] = employ;
+						}
+						else{
+							// CALCULO %;
+						}
+						diccY[years[j]] = dicc;
 					}
-					paisosDic[pais] = diccc;
-					initialValues.push(paisosDic);
-				}
+					diccV[sexos[i]] = diccY;
+					diccV["pais"] = scope.$parent.pais;
+					initialValues.push(diccV);
+				}	
+				
+				//console.log(initialValues);
 				
 				scope.actual = years[0];
 				
@@ -73,25 +105,32 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					.attr("height", h)
 				
 				
-				/* Definir dominio ejes */
 				var pobValues = [];
-				var values = [];
+				var salaryValues = [];
+				var empValues = [];
 				
-				for (pais in dic){
-					for (var j=0;j<years.length;j++){
-						pobValues.push(parseFloat(population[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
-						values.push(parseFloat(expenditure[pais][Object.keys(expenditure[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,'')));
+				for (var j=0;j<years.length;j++){
+					if(scope.mostrar == "Females"){
+						salaryValues.push(initialValues[0][sexos[0]][years[j]]["salary"]);
+						empValues.push(initialValues[0][sexos[0]][years[j]]["employment"]);
 					}
+					else{
+						salaryValues.push(initialValues[1][sexos[1]][years[j]]["salary"]);
+						empValues.push(initialValues[1][sexos[1]][years[j]]["employment"]);
+					}
+					
+					var pob = initialValues[1][sexos[1]][years[j]]["population"] + initialValues[0][sexos[0]][years[j]]["population"];
+					pobValues.push(pob);
 				}
 				
 				var xScale = d3.scale.linear()
-					.domain([-10, 10])
+					.domain([d3.mean(salaryValues)-d3.mean(salaryValues)/2, d3.mean(salaryValues)+d3.mean(salaryValues)/2])
 					.range([padding, w - padding]);
 				var yScale = d3.scale.linear()
-					.domain([0, d3.max(values)])
+					.domain([d3.mean(empValues)-d3.mean(empValues)/2, d3.mean(empValues)+d3.mean(empValues)/2])
 					.range([h-padding, padding/2]);
 				var rScale = d3.scale.linear()
-					.domain([d3.min(pobValues), d3.max(pobValues)])
+					.domain([0, d3.max(pobValues)])
 					.range([5, 30]);
 				
 				var xAxis = d3.svg.axis()
@@ -103,11 +142,13 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					.scale(yScale)
 					.orient("left")
 					.tickFormat(function(d){
-						return d/1000 + 'k';
+						return Math.trunc(d);
 					})
 					.ticks(4);
 					
-				var lineData = [{"x":0, "y":0},{"x":0,"y":d3.max(values)}];
+				var lineDataX = [{"x":d3.mean(salaryValues)-d3.mean(salaryValues)/2, "y":d3.mean(empValues)},{"x":d3.mean(salaryValues)+d3.mean(salaryValues)/2,"y":d3.mean(empValues)}];
+				
+				var lineDataY = [{"x":d3.mean(salaryValues), "y":d3.mean(empValues)-d3.mean(empValues)/2},{"x":d3.mean(salaryValues),"y":d3.mean(empValues)+d3.mean(empValues)/2}];
 				
 				var lineFunction = d3.svg.line()
 					.x (function(d){
@@ -119,8 +160,24 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					.interpolate("linear");
 					
 				var linepath = svg.append("path")
-					.attr("d",lineFunction(lineData))
-					.attr("stroke","black")
+					.attr("class", function(d){
+						if (scope.mostrar == "Females"){
+							return "axis-males";
+						}
+						else return "axis-females";
+					})
+					.attr("d",lineFunction(lineDataX))
+					.attr("stroke-width",0.5)
+					.attr("fill","none");
+					
+				var linepath2 = svg.append("path")
+					.attr("class", function(d){
+						if (scope.mostrar == "Females"){
+							return "axis-males";
+						}
+						else return "axis-females";
+					})
+					.attr("d",lineFunction(lineDataY))
 					.attr("stroke-width",0.5)
 					.attr("fill","none");
 					
@@ -128,10 +185,8 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					.data(initialValues)
 					.enter()
 					.append("circle")
-					.style("opacity",0.8)
-					.style("cursor","pointer")
-					.attr("fill",function(d,i){
-						return color(i);
+					.filter(function (d){
+						return Object.keys(d)[0] == scope.mostrar;
 					})
 					.attr("class",function (d){
 						return "cercle " + Object.keys(d)[0];
@@ -143,33 +198,33 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 						return xScale(d[Object.keys(d)[0]][scope.inicial]['salary']);
 					})
 					.attr("cy", function(d) {
-						return yScale(d[Object.keys(d)[0]][scope.inicial]['expenditure']);
+						return yScale(d[Object.keys(d)[0]][scope.inicial]['employment']);
 					})
 					.attr("r", function(d) {
 						return rScale(d[Object.keys(d)[0]][scope.inicial]['population']);
 					})
 					.style("visibility",function(d){
-						if(isNaN(d[Object.keys(d)[0]][scope.inicial]['expenditure']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['salary']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['population']))
+						if(isNaN(d[Object.keys(d)[0]][scope.inicial]['employment']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['salary']) || isNaN(d[Object.keys(d)[0]][scope.inicial]['population']))
 							return "hidden";
 						else return "visible";
 					})
 					.on("mouseover",function(d){
 						var cr = d3.select(this);
 						cr
-							.style("opacity",1);
+							.style("opacity",0.5);
 						d3.selectAll('.tooltip').remove();
 						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
 							.style('left', (absoluteMousePos[0])+'px')
-							.style('top', (absoluteMousePos[1]	)+'px')
+							.style('top', (absoluteMousePos[1])+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><p>"+ d[Object.keys(d)[0]][scope.actual].salary + "%</p>";
+						var tooltipText = "<h3>Salary</h3><p>"+ d[Object.keys(d)[0]][scope.actual].salary + "</p>";
 						tooltip
 							.html(tooltipText);
-						
-						var lineData = [{"x":-10,"y":d[Object.keys(d)[0]][scope.actual].expenditure},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":d[Object.keys(d)[0]][scope.actual].expenditure},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":0}];
+							
+						var lineData = [{"x":d3.mean(salaryValues)-d3.mean(salaryValues)/2,"y":d[Object.keys(d)[0]][scope.actual].employment},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":d[Object.keys(d)[0]][scope.actual].employment},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":d3.mean(empValues)-d3.mean(empValues)/2}];
 						
 						var lineFunction = d3.svg.line()
 							.x (function(d){
@@ -186,21 +241,14 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 							.attr("stroke","grey")
 							.attr("stroke-width",0.8)
 							.attr("fill","none");
-							
 					})
 					.on("mouseleave",function(d){
 						var linepath = svg.selectAll(".mousepath").remove();
 						var cr = d3.select(this);
 						cr
-							.style("opacity",0.8)
+							.style("opacity",1)
 							.style("stroke","");
 						tooltip.remove();
-					})
-					
-					.on("click",function(d){
-						scope.$apply(function(){
-							scope.$parent.pais = Object.keys(d)[0];
-						});
 					});
 				
 				svg
@@ -222,7 +270,7 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					.attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)") 
 					.attr("font-size", "10px")
 					.attr("fill","black")
-					.text("Expenditure in Education");
+					.text("Employment in %");
 
 				svg
 					.append("text")
@@ -230,7 +278,7 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					.attr("transform", "translate("+((padding+w)/2.3)+","+(h-(padding/4))+")")
 					.attr("font-size", "10px")
 					.attr("fill","black")
-					.text("Salary Difference in %");
+					.text("Salary");
 					
 				d3.select(el[0].children[0]).selectAll(".myButton").remove();
 				
@@ -250,7 +298,11 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					.attr("id","year");
 				
 				function transitions(){
-					var circles = svg.selectAll("circle");
+					var circles = svg.selectAll("circle")
+						.filter(function (d){
+							return Object.keys(d)[0] == scope.mostrar;
+						});
+						
 					var year = svg.select("#year");
 						
 					i_circle = 2;
@@ -262,13 +314,13 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 							return xScale(d[Object.keys(d)[0]][years[1]]['salary']);
 						})
 						.attr("cy", function(d) {
-							return yScale(d[Object.keys(d)[0]][years[1]]['expenditure']);
+							return yScale(d[Object.keys(d)[0]][years[1]]['employment']);
 						})
 						.attr("r", function(d) {
 							return rScale(d[Object.keys(d)[0]][years[1]]['population']);
 						})
 						.style("visibility",function(d){
-							if(isNaN(d[Object.keys(d)[0]][years[1]]['expenditure']) || isNaN(d[Object.keys(d)[0]][years[1]]['salary']) || isNaN(d[Object.keys(d)[0]][years[1]]['population']))
+							if(isNaN(d[Object.keys(d)[0]][years[1]]['employment']) || isNaN(d[Object.keys(d)[0]][years[1]]['salary']) || isNaN(d[Object.keys(d)[0]][years[1]]['population']))
 								return "hidden";
 							else return "visible";
 						})
@@ -291,13 +343,13 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 									return xScale(d[Object.keys(d)[0]][years[i_circle]]['salary']);
 								})
 								.attr("cy", function(d) {
-									return yScale(d[Object.keys(d)[0]][years[i_circle]]['expenditure']);
+									return yScale(d[Object.keys(d)[0]][years[i_circle]]['employment']);
 								})
 								.attr("r", function(d) {
 									return rScale(d[Object.keys(d)[0]][years[i_circle]]['population']);
 								})
 								.style("visibility",function(d){
-									if(isNaN(d[Object.keys(d)[0]][years[i_circle]]['expenditure']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['salary']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['population']))
+									if(isNaN(d[Object.keys(d)[0]][years[i_circle]]['employment']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['salary']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['population']))
 										return "hidden";
 									else return "visible";
 								})
@@ -323,6 +375,38 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 						}
 					});
 				}
+				
+				d3.select(el[0].children[0]).selectAll("#selectBubble").remove();
+				
+				var select = d3.select(el[0].children[0])
+					.append("select")
+					.attr("id","selectBubble")
+					.attr("class","mySelect");
+					
+				var select = d3.select("#selectBubble");
+				
+				var options = select.selectAll("option")
+					.data(sexos)
+					.enter()
+					.append("option")
+					.attr("class","options")
+					.attr("value",function(d){
+						return d;
+					})
+					.each(function(d){
+						if(d == scope.mostrar) d3.select(this).attr("selected","selected");
+					})
+					.text(function(d){
+						return d;
+					});
+					
+				select
+					.on("change",function(){
+						scope.$apply(function(){
+							var value = $("#selectBubble").val();
+							scope.mostrar = value;
+						});
+					});
 			}
 		};
 		

@@ -41,10 +41,16 @@ angular.module('visualDataApp.directives.myPieChartDirective',[])
 				
 				/* organizar datos con formato {label,value} para PIE*/
 				var sexos = scope.$parent.sexos.slice(1);
+
 				for (var i=0;i<sexos.length;i++){
 					var dicc = {};
 					dicc["label"] = sexos[i];
 					dicc["value"] = parseFloat(datos[scope.$parent.pais][sexos[i]][scope.actual][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,''));
+					
+					var total = parseFloat(datos[scope.$parent.pais]["Total"][scope.actual][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,''));
+					
+					dicc["percentage"] = ((parseFloat(datos[scope.$parent.pais][sexos[i]][scope.actual][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,'')))/total)*100;
+
 					data.push(dicc);
 				}
 				
@@ -88,11 +94,12 @@ angular.module('visualDataApp.directives.myPieChartDirective',[])
 						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
-							.style('left', (absoluteMousePos[0]+w/2)+'px')
-							.style('top', (absoluteMousePos[1]+h/1.5)+'px')
+							.style('left', (absoluteMousePos[0]+padding*2)+'px')
+							.style('top', (absoluteMousePos[1]+padding*3)+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<p id='tooltip_p'>" + d.data.label.split(" ")[0] + "</p>";
+							
+						var tooltipText = "<h3>"+d.data.label.split(" ")[0]+"</h3><p>"+ Math.round(d.data.percentage)+"%" + "</p>";
 						tooltip
 							.html(tooltipText);
 					})

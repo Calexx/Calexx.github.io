@@ -75,7 +75,6 @@ angular.module('visualDataApp.directives.myStackedBarChartDirective',[])
 					
 				var data = datos[scope.$parent.pais];
 				
-				/* values-> Hombre/Mujer allValues-> Todos */
 				var values = [];
 				var allValues = [];
 				for (sexo in data){
@@ -135,8 +134,6 @@ angular.module('visualDataApp.directives.myStackedBarChartDirective',[])
 				var anterior = 0;
 				var contador = 1;
 				var cont = 1;
-				
-				console.log(values);
 				
 				var rect = svg.selectAll("rect")
 					.data(values)

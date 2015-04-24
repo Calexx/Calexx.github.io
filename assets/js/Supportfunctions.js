@@ -19,7 +19,7 @@ function compare(a,b){
 	if(a.year>b.year){
 		return 1;
 	}
-	if(a.year==b.year){
+	if(a.year == b.year){
 		if(a.sexo == 'Females' && b.sexo == 'Males') return 1;
 		if(b.sexo == 'Females' && a.sexo == 'Males') return -1;
 		return 0;
@@ -35,4 +35,30 @@ function defineYears(data){
 	}
 	var selectedIntersection = _.intersection.apply(_, years);
 	return selectedIntersection;
+}
+
+// Define la union de multiples arrays
+function unionValues(data){
+	var selectedUnion = _.union.apply(_, data);
+	return selectedUnion;
+}
+
+// Mapea los niveles de educacion
+function mappingEducation(level){
+	console.log(level);
+	if (level == "All ISCED 2011 levels ") {
+		return -1;
+	}
+	
+	if (level == "Less than primary, primary and lower secondary education (levels 0-2)"){
+		return 0;
+	}
+	
+	if (level == "Upper secondary and post-secondary non-tertiary education (levels 3 and 4)"){
+		return 1;
+	}
+	
+	if (level == "Tertiary education (levels 5-8)"){
+		return 2;
+	}
 }

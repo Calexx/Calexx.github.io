@@ -10,6 +10,7 @@ angular.module('visualDataApp.controllers',[])
 				$scope.salary = pivotID(data.getSalary(),['GEO','SEX','TIME']);							
 				$scope.pib = pivotID(data.getPib(),['GEO','NA_ITEM','TIME']);
 				$scope.expenditure = pivotID(data.getExpenditure(),['GEO','INDIC_ED','TIME']);
+				$scope.educationLevel = pivotID(data.getEducation(),['GEO','SEX','TIME']);
 				
 				//Carga TOPOJSON
 				$scope.map = data.getEurope();

@@ -27,8 +27,8 @@ angular.module('visualDataApp.directives.myPieChartDirective',[])
 				
 				d3.select(el[0]).selectAll("svg").remove();
 				
-				var w = el.width()-50,
-					h = el.width()-100,
+				var w = el.width()-el.width()/10,
+					h = el.width()-el.width()/4;
 					r = Math.min(w, h)/ 2;
 					
 				var padding = 30;

@@ -22,7 +22,7 @@ angular.module('visualDataApp.directives.myAreaChartDirective',[])
 				d3.select(el[0]).selectAll("svg").remove();
 				
 				var w = el.width()-el.width()/10,
-					h = el.height()*2.9;
+					h = el.width()-el.width()/1.5;
 					
 				var padding = 20;
 				var formatBigNumbers = d3.format(".1s");
@@ -119,7 +119,7 @@ angular.module('visualDataApp.directives.myAreaChartDirective',[])
 							.style('top', (absoluteMousePos[1]-padding)+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<p>GDP</p>";
+						var tooltipText = "<h3>GDP</h3>";
 						tooltip
 							.html(tooltipText);
 						
@@ -168,7 +168,7 @@ angular.module('visualDataApp.directives.myAreaChartDirective',[])
 							.style('top', (absoluteMousePos[1]-padding)+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<p>Expenditure in education</p>";
+						var tooltipText = "<h3>Expenditure in education</h3>";
 						tooltip
 							.html(tooltipText);
 						

@@ -26,7 +26,7 @@ angular.module('visualDataApp.directives.myChartDirective',[])
 				d3.select(el[0]).selectAll("svg").remove();
 				
 				var w = el.width()-el.width()/10,
-					h = el.height()*2.65;
+					h = el.width()-el.width()/4;
 					
 				var padding = 30;
 				var formatBigNumbers = d3.format(".1s");
@@ -44,7 +44,7 @@ angular.module('visualDataApp.directives.myChartDirective',[])
 
 				var xScale = d3.scale.linear()
 					.domain([scope.years[0], scope.years[scope.years.length-1]])
-					.range([padding, w - padding]);
+					.range([padding+padding/2, w - padding]);
 				
 				var yScale = d3.scale.linear()
 					.domain([0, d3.max(values)])
@@ -62,7 +62,7 @@ angular.module('visualDataApp.directives.myChartDirective',[])
 					.scale(yScale)
 					.orient("left")
 					.tickFormat(function(d){
-						return d/1000;
+						return d/1000 + "M";
 					})
 					.ticks(5);
 					
@@ -83,7 +83,7 @@ angular.module('visualDataApp.directives.myChartDirective',[])
 				svg
 					.append("g")
 					.attr("class", "axis")
-					.attr("transform", "translate("+padding+",0)")
+					.attr("transform", "translate("+(padding+padding/2)+",0)")
 					.attr("fill","black")
 					.call(yAxis); 
 				
@@ -138,7 +138,7 @@ angular.module('visualDataApp.directives.myChartDirective',[])
 							.style('top', (absoluteMousePos[1])+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<h3>Employment</h3><p>"+d[Object.keys(d)[0]].Value+"</p>";
+						var tooltipText = "<h3>"+d[Object.keys(d)[0]].sexo+"</h3><table><tr><td>Employees:</td><td>"+Math.round(d[Object.keys(d)[0]].Value/1000)+"M</td></tr></table>";
 						tooltip
 							.html(tooltipText);
 					})

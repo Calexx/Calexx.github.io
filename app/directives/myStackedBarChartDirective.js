@@ -27,8 +27,8 @@ angular.module('visualDataApp.directives.myStackedBarChartDirective',[])
 				
 				d3.select(el[0]).selectAll("svg").remove();
 					
-				var w = el.width()-50,
-					h = el.width()-125;
+				var w = el.width()-el.width()/10,
+					h = el.width()-el.width()/2.75;
 					
 				var padding = el.width()/10;
 				

@@ -7,7 +7,8 @@ angular.module('visualDataApp.controllers',[])
 				// Carga de datos
 				$scope.employment = pivotID(data.getEmployment(),['GEO','SEX','TIME','ISCED11','ISCO08']);
 				$scope.population = pivotID(data.getPopulation(),['GEO','SEX','TIME']);
-				$scope.salary = pivotID(data.getSalary(),['GEO','SEX','TIME']);							
+				$scope.salary = pivotID(data.getSalaryEducation(),['GEO','SEX','TIME','ISCED97']);
+				$scope.salaryTotal = pivotID(data.getSalary(),['GEO','SEX','TIME']);				
 				$scope.pib = pivotID(data.getPib(),['GEO','NA_ITEM','TIME']);
 				$scope.expenditure = pivotID(data.getExpenditure(),['GEO','INDIC_ED','TIME']);
 				$scope.educationLevel = pivotID(data.getEducation(),['GEO','SEX','TIME']);
@@ -15,6 +16,8 @@ angular.module('visualDataApp.controllers',[])
 				//Carga TOPOJSON
 				$scope.map = data.getEurope();
 				$scope.diccEurope = diccionarioEuropa.getDicc();
+				
+				console.log($scope.salary);
 				
 				//Asignamos scopes para visualizacion inicial
 				var paisos = Object.keys($scope.employment);

@@ -61,3 +61,16 @@ function mappingEducation(level){
 		return 2;
 	}
 }
+
+// Map Salary Education
+function mappingSalary(level){
+	if(level==0){
+		return "Pre-primary, primary and lower secondary education (levels 0-2)";
+	}
+	if(level==1){
+		return "Upper secondary and post-secondary non-tertiary education (levels 3 and 4)";
+	}
+	if(level==2){
+		return "First and second stage of tertiary education (levels 5 and 6)";
+	}
+}

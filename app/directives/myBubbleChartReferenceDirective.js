@@ -8,6 +8,7 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 					var d = [];
 					d.push(scope.$parent.employment);
 					d.push(scope.$parent.educationLevel);
+					d.push(scope.$parent.salaryTotal);
 					d.push(scope.$parent.salary);
 					d.push(scope.$parent.population);
 					
@@ -20,35 +21,28 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 					scope.mostrar = "Females";
 					
 					scope.$parent.$watchGroup(['education','pais'], function(){
-						drawChart(scope,el,scope.$parent.population,scope.$parent.educationLevel,scope.$parent.employment,scope.$parent.salary,scope.$parent.education);
+						drawChart(scope,el);
 					});
 					
 					scope.$watch('mostrar', function(){
-						drawChart(scope,el,scope.$parent.population,scope.$parent.educationLevel,scope.$parent.employment,scope.$parent.salary,scope.$parent.education);
+						drawChart(scope,el);
 					});
 				}
 			});
-			
-			/*AHORA MISMO EMPLOYMENT ESTÁ EN MILLONES DE HABITANTES POR GRUPO
-			LO IDONEO SERIA TENER EN VEZ DE MILLONES DE HABITANTES, % DE HABITANTES CON ESOS ESTUDIOS QUE ESTÁN TRABAJANDO
-			PARA ELLO NECESITO:
-			
-				- SABER CUANTOS HOMBRES/MUJERES DE UN GRUPO ESTAN TRABAJANDO --> EMPLOYMENT
-				- SABER CUANTOS HOMBRES/MUJERES HAY CON ESOS ESTUDIOS -> EDUCATION LEVEL
-				- SABER CUANTOS HOMBRES/MUJERES VIVEN EN EL PAIS -> POPULATION
+		
+			function drawChart(scope, el){
 				
-				- COMBINARLO TODO CON EXPENDITURE IN EDUCATION
+				var population = scope.$parent.population;
+				var educationLevel = scope.$parent.educationLevel;
+				var employment = scope.$parent.employment;
+				var salary = scope.$parent.salary;
+				var education = scope.$parent.education;
+				var salaryTotal = scope.$parent.salaryTotal;
 				
-				PASOS:
-					1- SACAR MILLONES DE HOMBRES/MUJERES CON NIVEL DE ESTUDIO SELECTED
-					2- SACAR PORCENTAJE DE EMPLOYMENT SOBRE EL PASO 1 Y NO SOBRE EL GLOBAL
-					3- COMBINARLO CON EXPENDITURE
-			*/
-			function drawChart(scope, el, population, educationLevel, employment, salary, education){
 				d3.select(el[0]).selectAll("svg").remove();
 				
-				var w = el.width()-50,
-					h = el.width()-100;
+				var w = el.width()-el.width()/10,
+					h = el.width()-el.width()/3.5;
 					
 				var padding = el.width()/10;
 				
@@ -77,14 +71,16 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 					var diccY = {};
 					for (var j=0;j<years.length;j++){
 						dicc = {};
-						dicc["salary"] = parseFloat(salary[scope.$parent.pais][sexos[i]][years[j]][scope.value]["Value"].replace(/,/g,''));
 						if(mapEducation==-1){
+							dicc["salary"] = parseFloat(salaryTotal[scope.$parent.pais][sexos[i]][years[j]][scope.value]["Value"].replace(/,/g,''));
 							var pop = parseFloat(population[scope.$parent.pais][sexos[i]][years[j]][scope.value]["Value"].replace(/,/g,''));
 							dicc["population"] = pop;
 							var employ = ((parseFloat(employment[scope.$parent.pais][sexos[i]][years[j]][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,''))*1000)/pop)*100;
 							dicc["employment"] = employ;
 						}
 						else{
+							var se = mappingSalary(mapEducation);
+							dicc["salary"] = parseFloat(salary[scope.$parent.pais][sexos[i]][years[j]][se][scope.value]["Value"].replace(/,/g,''));
 							var perc_pop = parseFloat(educationLevel[scope.$parent.pais][sexos[i]][years[j]][mapEducation.toString()]["Value"].replace(/,/g,''));
 							var pop = parseFloat(population[scope.$parent.pais][sexos[i]][years[j]][scope.value]["Value"].replace(/,/g,''));
 							var perc = pop*perc_pop/100;
@@ -127,10 +123,10 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 				}
 				
 				var xScale = d3.scale.linear()
-					.domain([d3.mean(salaryValues)-d3.mean(salaryValues)/2, d3.mean(salaryValues)+d3.mean(salaryValues)/2])
+					.domain([d3.mean(salaryValues)-d3.mean(salaryValues)/1.5, d3.mean(salaryValues)+d3.mean(salaryValues)/1.5])
 					.range([padding, w - padding]);
 				var yScale = d3.scale.linear()
-					.domain([d3.mean(empValues)-d3.mean(empValues)/2, d3.mean(empValues)+d3.mean(empValues)/2])
+					.domain([d3.mean(empValues)-d3.mean(empValues)/1.5, d3.mean(empValues)+d3.mean(empValues)/1.5])
 					.range([h-padding, padding/2]);
 				var rScale = d3.scale.linear()
 					.domain([0, d3.max(pobValues)])
@@ -149,9 +145,9 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 					})
 					.ticks(4);
 					
-				var lineDataX = [{"x":d3.mean(salaryValues)-d3.mean(salaryValues)/2, "y":d3.mean(empValues)},{"x":d3.mean(salaryValues)+d3.mean(salaryValues)/2,"y":d3.mean(empValues)}];
+				var lineDataX = [{"x":d3.mean(salaryValues)-d3.mean(salaryValues)/1.5, "y":d3.mean(empValues)},{"x":d3.mean(salaryValues)+d3.mean(salaryValues)/1.5,"y":d3.mean(empValues)}];
 				
-				var lineDataY = [{"x":d3.mean(salaryValues), "y":d3.mean(empValues)-d3.mean(empValues)/2},{"x":d3.mean(salaryValues),"y":d3.mean(empValues)+d3.mean(empValues)/2}];
+				var lineDataY = [{"x":d3.mean(salaryValues), "y":d3.mean(empValues)-d3.mean(empValues)/1.5},{"x":d3.mean(salaryValues),"y":d3.mean(empValues)+d3.mean(empValues)/1.5}];
 				
 				var lineFunction = d3.svg.line()
 					.x (function(d){
@@ -223,11 +219,11 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 							.style('top', (absoluteMousePos[1])+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<h3>Salary</h3><p>"+ d[Object.keys(d)[0]][scope.actual].salary + "</p>";
+						var tooltipText = "<h3>"+scope.$parent.pais.split('(')[0]+"</h3><table><tr><td>Salary:</td><td>"+d[Object.keys(d)[0]][scope.actual].salary+"â‚¬</td></tr><tr><td>Employment difference:</td><td>"+Math.round(d[Object.keys(d)[0]][scope.actual].employment)+"%</td></tr></table>";
 						tooltip
 							.html(tooltipText);
 							
-						var lineData = [{"x":d3.mean(salaryValues)-d3.mean(salaryValues)/2,"y":d[Object.keys(d)[0]][scope.actual].employment},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":d[Object.keys(d)[0]][scope.actual].employment},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":d3.mean(empValues)-d3.mean(empValues)/2}];
+						var lineData = [{"x":d3.mean(salaryValues)-d3.mean(salaryValues)/1.5,"y":d[Object.keys(d)[0]][scope.actual].employment},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":d[Object.keys(d)[0]][scope.actual].employment},{"x":d[Object.keys(d)[0]][scope.actual].salary,"y":d3.mean(empValues)-d3.mean(empValues)/1.5}];
 						
 						var lineFunction = d3.svg.line()
 							.x (function(d){

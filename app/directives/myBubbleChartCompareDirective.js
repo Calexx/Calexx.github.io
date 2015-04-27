@@ -9,6 +9,7 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					d.push(scope.$parent.population);
 					d.push(scope.$parent.expenditure);
 					d.push(scope.$parent.salary);
+					d.push(scope.$parent.salaryTotal);
 					
 					scope.years = defineYears(d);
 					scope.inicial = scope.years[0];
@@ -16,15 +17,26 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					
 					scope.value = '0';
 					
-					drawChart(scope,el,scope.$parent.population,scope.$parent.expenditure,scope.$parent.salary);
+					scope.$parent.$watch('education', function(){
+						drawChart(scope,el);
+					});	
 				}
 			});
 			
 			function drawChart(scope, el, population, expenditure, salary){
+				
+				var population = scope.$parent.population;
+				var expenditure = scope.$parent.expenditure;
+				var salary = scope.$parent.salary;
+				var salaryTotal = scope.$parent.salaryTotal;
+				var education = scope.$parent.education;
+				
+				var mapEducation = mappingEducation(education);
+				
 				d3.select(el[0]).selectAll("svg").remove();
 				
-				var w = el.width()-50,
-					h = el.width()-100;
+				var w = el.width()-el.width()/10,
+					h = el.width()-el.width()/5;
 					
 				var padding = el.width()/10;
 				
@@ -54,10 +66,19 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 						var dicc = {};
 						dicc["expenditure"] = parseFloat(expenditure[pais][Object.keys(expenditure[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
 						dicc["population"] = parseFloat(population[pais][total][years[j]][scope.value]["Value"].replace(/,/g,''));
-						var males = parseFloat(salary[pais][sexos[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
-						var females = parseFloat(salary[pais][sexos[1]][years[j]][scope.value]["Value"].replace(/,/g,''));
-						var percen = ((males-females)/(males+females))*100;
-						dicc["salary"] = percen;
+						if(mapEducation==-1){
+							var males = parseFloat(salaryTotal[pais][sexos[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
+							var females = parseFloat(salaryTotal[pais][sexos[1]][years[j]][scope.value]["Value"].replace(/,/g,''));
+							var percen = ((males-females)/(males+females))*100;
+							dicc["salary"] = percen;
+						}
+						else{
+							var se = mappingSalary(mapEducation);
+							var males = parseFloat(salary[pais][sexos[0]][years[j]][se][scope.value]["Value"].replace(/,/g,''));
+							var females = parseFloat(salary[pais][sexos[1]][years[j]][se][scope.value]["Value"].replace(/,/g,''));
+							var percen = ((males-females)/(males+females))*100;
+							dicc["salary"] = percen;
+						}
 						diccc[years[j]] = dicc;
 					}
 					paisosDic[pais] = diccc;
@@ -161,11 +182,14 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
-							.style('left', (absoluteMousePos[0])+'px')
-							.style('top', (absoluteMousePos[1]	)+'px')
+							.style('left', (absoluteMousePos[0]-padding)+'px')
+							.style('top', (absoluteMousePos[1]-padding)+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
 						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><p>"+ d[Object.keys(d)[0]][scope.actual].salary + "%</p>";
+						
+						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><table><tr><td>Salary Difference:</td><td>"+d[Object.keys(d)[0]][scope.actual].salary+"%</td></tr><tr><td>Expenditure:</td><td>"+d[Object.keys(d)[0]][scope.actual].expenditure+"€</td></tr></table>";
+						
 						tooltip
 							.html(tooltipText);
 						

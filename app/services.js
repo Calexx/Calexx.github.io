@@ -11,15 +11,18 @@ angular.module('visualDataApp.services',[])
 						d3.json("assets/json/pibCapita.json",function(pib){
 							d3.json("assets/json/expenditureEducation.json",function(expenditure){
 								d3.json("assets/json/education.json",function(education){
-									if(error) throw error;
-									data["europe"] = europe;
-									data["employment"] = employment;
-									data["population"] = population;
-									data["salary"] = salary;
-									data["pib"] = pib;
-									data["expenditure"] = expenditure;
-									data["education"] = education;
-									deferred.resolve(data);
+									d3.json("assets/json/salaryEducation.json",function(salaryEducation){
+										if(error) throw error;
+										data["europe"] = europe;
+										data["employment"] = employment;
+										data["population"] = population;
+										data["salary"] = salary;
+										data["pib"] = pib;
+										data["expenditure"] = expenditure;
+										data["education"] = education;
+										data["salaryEducation"] = salaryEducation;
+										deferred.resolve(data);
+									});
 								});
 							});	
 						});
@@ -54,6 +57,10 @@ angular.module('visualDataApp.services',[])
 		
 		data.getEducation = function(){
 			return data["education"];
+		}
+		
+		data.getSalaryEducation = function(){
+			return data["salaryEducation"];
 		}
 		
 		return deferred.promise;

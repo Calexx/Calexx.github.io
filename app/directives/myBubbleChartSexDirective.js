@@ -8,6 +8,7 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 					d.push(scope.$parent.population);
 					d.push(scope.$parent.pib);
 					d.push(scope.$parent.salary);
+					d.push(scope.$parent.salaryTotal);
 					
 					scope.years = defineYears(d);
 					scope.inicial = scope.years[0];
@@ -16,15 +17,24 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 					scope.value = '0';
 					scope.sex = attr.sex;
 					
-					drawChart(scope,el,scope.$parent.population,scope.$parent.pib,scope.$parent.salary);
+					scope.$parent.$watch('education', function(){
+						drawChart(scope,el);
+					});
 				}
 			});
 			
-			function drawChart(scope, el, population, pib, salary){
+			function drawChart(scope, el){
+				
+				var population = scope.$parent.population;
+				var pib = scope.$parent.pib;
+				var salary = scope.$parent.salary;
+				var salaryTotal = scope.$parent.salaryTotal;
+				var education = scope.$parent.education;
+				
 				d3.select(el[0]).selectAll("svg").remove();
 				
 				var w = el.width()-el.width()/10,
-					h = el.height()*3.65;
+					h = el.width()-el.width()/1.5;
 					
 				//var padding_v = el.height()/5;
 				//var padding_h = el.width()/15;
@@ -40,6 +50,8 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 				var dic = scope.$parent.diccEurope;
 				var tooltip;
 				
+				var mapEducation = mappingEducation(education);
+				
 				// definir rango de actuacion --> min and max de componentes
 				var years = scope.years;
 				
@@ -53,8 +65,14 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 						var dicc = {};
 						dicc["pib"] = parseFloat(pib[pais][Object.keys(pib[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,''));
 						dicc["population"] = parseFloat(population[pais][scope.sex][years[j]][scope.value]["Value"].replace(/,/g,''));
-						dicc["salary"] = parseFloat(salary[pais][scope.sex][years[j]][scope.value]["Value"].replace(/,/g,''));
-						
+						if(mapEducation==-1){
+							dicc["salary"] = parseFloat(salaryTotal[pais][scope.sex][years[j]][scope.value]["Value"].replace(/,/g,''));
+						}
+						else{
+							var se = mappingSalary(mapEducation);
+							dicc["salary"] = parseFloat(salary[pais][scope.sex][years[j]][se][scope.value]["Value"].replace(/,/g,''));
+							console.log(dicc["salary"]);
+						}
 						diccc[years[j]] = dicc;
 					}
 					paisosDic[pais] = diccc;
@@ -78,13 +96,13 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 				for (pais in dic){
 					for (var j=0;j<years.length;j++){
 						pobValues.push(parseFloat(population[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
-						salaryValues.push(parseFloat(salary[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
+						salaryValues.push(parseFloat(salaryTotal[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
 						values.push(parseFloat(pib[pais][Object.keys(pib[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,'')));
 					}
 				}
 				
 				var xScale = d3.scale.linear()
-					.domain([0, d3.max(salaryValues)])
+					.domain([0, d3.max(salaryValues)+d3.min(salaryValues)])
 					.range([padding*2.3, w - padding/2]);
 				var yScale = d3.scale.linear()
 					.domain([0, d3.max(values)])
@@ -145,11 +163,12 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 							.style("opacity",1);
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
-							.style('left', (absoluteMousePos[0])+'px')
-							.style('top', (absoluteMousePos[1]-padding)+'px')
+							.style('left', (absoluteMousePos[0]+padding*3)+'px')
+							.style('top', (absoluteMousePos[1])+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><p>"+ d[Object.keys(d)[0]][scope.actual].salary + "</p>";
+						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><table><tr><td>Salary:</td><td>"+d[Object.keys(d)[0]][scope.actual].salary+"€</td></tr><tr><td>GDP:</td><td>"+d[Object.keys(d)[0]][scope.actual].pib/1000+"M</td></tr></table>";
+
 						tooltip
 							.html(tooltipText);
 						

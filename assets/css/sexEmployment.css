@@ -234,6 +234,15 @@ svg{
 	background-color: #2D353C;
 }
 
+/*LINEBAR*/
+
+.rect.Males{
+	fill: #3F7F93;
+}
+.rect.Females{
+	fill: #DA6068;
+}
+
 /*STACKEDBARCHART*/
 
 .bar.Males{

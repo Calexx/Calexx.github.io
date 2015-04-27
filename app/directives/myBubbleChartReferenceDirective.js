@@ -85,7 +85,12 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 							dicc["employment"] = employ;
 						}
 						else{
-							// CALCULO %;
+							var perc_pop = parseFloat(educationLevel[scope.$parent.pais][sexos[i]][years[j]][mapEducation.toString()]["Value"].replace(/,/g,''));
+							var pop = parseFloat(population[scope.$parent.pais][sexos[i]][years[j]][scope.value]["Value"].replace(/,/g,''));
+							var perc = pop*perc_pop/100;
+							dicc["population"] = perc;
+							var employ = ((parseFloat(employment[scope.$parent.pais][sexos[i]][years[j]][scope.$parent.education][scope.activity][scope.value]["Value"].replace(/,/g,''))*1000)/perc)*100;
+							dicc["employment"] = employ;
 						}
 						diccY[years[j]] = dicc;
 					}
@@ -93,8 +98,6 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 					diccV["pais"] = scope.$parent.pais;
 					initialValues.push(diccV);
 				}	
-				
-				//console.log(initialValues);
 				
 				scope.actual = years[0];
 				

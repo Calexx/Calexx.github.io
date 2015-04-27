@@ -45,7 +45,6 @@ function unionValues(data){
 
 // Mapea los niveles de educacion
 function mappingEducation(level){
-	console.log(level);
 	if (level == "All ISCED 2011 levels ") {
 		return -1;
 	}

@@ -49,8 +49,6 @@ angular.module('visualDataApp.directives.myAreaChartDirective',[])
 				
 				var valuesUnion = unionValues(values);
 				
-				console.log(valuesUnion);
-				
 				var xScale = d3.scale.linear()
 					.domain([scope.years[0], scope.years[scope.years.length-1]])
 					.range([padding*2.3, w - padding/2]);

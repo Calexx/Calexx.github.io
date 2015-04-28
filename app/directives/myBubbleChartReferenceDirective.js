@@ -210,6 +210,7 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 					.on("mouseover",function(d){
 						var cr = d3.select(this);
 						cr
+							.style("stroke","black")
 							.style("opacity",0.5);
 						d3.selectAll('.tooltip').remove();
 						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");

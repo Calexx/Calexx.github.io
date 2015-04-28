@@ -177,6 +177,7 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 					.on("mouseover",function(d){
 						var cr = d3.select(this);
 						cr
+							.style("stroke","black")
 							.style("opacity",1);
 						d3.selectAll('.tooltip').remove();
 						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
@@ -188,7 +189,7 @@ angular.module('visualDataApp.directives.myBubbleChartCompareDirective',[])
 							.style('z-index', 1001);
 						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><p>"+ d[Object.keys(d)[0]][scope.actual].salary + "%</p>";
 						
-						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><table><tr><td>Salary Difference:</td><td>"+d[Object.keys(d)[0]][scope.actual].salary+"%</td></tr><tr><td>Expenditure:</td><td>"+d[Object.keys(d)[0]][scope.actual].expenditure+"€</td></tr></table>";
+						var tooltipText = "<h3>"+Object.keys(d)[0].split('(')[0]+"</h3><table><tr><td>Salary Difference:</td><td>"+(d[Object.keys(d)[0]][scope.actual].salary).toFixed(2)+"%</td></tr><tr><td>Expenditure:</td><td>"+d[Object.keys(d)[0]][scope.actual].expenditure+"€</td></tr></table>";
 						
 						tooltip
 							.html(tooltipText);

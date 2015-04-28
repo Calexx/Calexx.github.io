@@ -160,6 +160,7 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
 						var cr = d3.select(this);
 						cr
+							.style("stroke","black")
 							.style("opacity",1);
 						var absoluteMousePos = d3.mouse(this);
 						tooltip

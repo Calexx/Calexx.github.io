@@ -89,7 +89,7 @@ angular.module('visualDataApp.directives.myPieChartDirective',[])
 						var cr = d3.select(this);
 						cr
 							.style("opacity",0.5)
-							.style("stroke","black")
+							.style("stroke","black");
 						d3.selectAll('.tooltip-pie').remove();
 						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
 						var absoluteMousePos = d3.mouse(this);

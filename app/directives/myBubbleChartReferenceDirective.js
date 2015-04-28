@@ -219,7 +219,7 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 							.style('top', (absoluteMousePos[1])+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<h3>"+scope.$parent.pais.split('(')[0]+"</h3><table><tr><td>Salary:</td><td>"+d[Object.keys(d)[0]][scope.actual].salary+"€</td></tr><tr><td>Employment difference:</td><td>"+Math.round(d[Object.keys(d)[0]][scope.actual].employment)+"%</td></tr></table>";
+						var tooltipText = "<h3>"+scope.$parent.pais.split('(')[0]+"</h3><table><tr><td>Salary:</td><td>"+d[Object.keys(d)[0]][scope.actual].salary+"€</td></tr><tr><td>Employment:</td><td>"+Math.round(d[Object.keys(d)[0]][scope.actual].employment)+"%</td></tr></table>";
 						tooltip
 							.html(tooltipText);
 							

@@ -138,7 +138,7 @@ angular.module('visualDataApp.directives.myChartDirective',[])
 							.style('top', (absoluteMousePos[1])+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);
-						var tooltipText = "<h3>"+d[Object.keys(d)[0]].sexo+"</h3><table><tr><td>Employees:</td><td>"+Math.round(d[Object.keys(d)[0]].Value/1000)+"M</td></tr></table>";
+						var tooltipText = "<h3>"+d[Object.keys(d)[0]].sexo+"</h3><table><tr><td>Employees:</td><td>"+(d[Object.keys(d)[0]].Value/1000).toFixed(2)+"M</td></tr></table>";
 						tooltip
 							.html(tooltipText);
 					})

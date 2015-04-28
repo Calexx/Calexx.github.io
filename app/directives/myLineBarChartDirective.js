@@ -234,7 +234,7 @@ angular.module('visualDataApp.directives.myLineBarChartDirective',[])
 						
 				var path = svg.append("path")
 					.attr("d", lineFunction(initialValuesExp))
-					.attr("stroke", "black")
+					.attr("stroke", "yellow")
 					.attr("stroke-width", 0.5)
 					.attr("fill", "none");
 					

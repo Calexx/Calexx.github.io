@@ -238,9 +238,11 @@ svg{
 
 .rect.Males{
 	fill: #3F7F93;
+	stroke: black;
 }
 .rect.Females{
 	fill: #DA6068;
+	stroke: black;
 }
 
 /*STACKEDBARCHART*/

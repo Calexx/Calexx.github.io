@@ -264,17 +264,28 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 					
 					circles.transition()
 						.attr("cx", function(d) {
+							if(isNaN(d[Object.keys(d)[0]][years[0]]['salary'])){
+								
+							}
 							return xScale(d[Object.keys(d)[0]][years[1]]['salary']);
 						})
 						.attr("cy", function(d) {
+							if(isNaN(d[Object.keys(d)[0]][years[1]]['pib'])){
+								return yScale(d[Object.keys(d)[0]][years[0]]['pib']);
+							}
 							return yScale(d[Object.keys(d)[0]][years[1]]['pib']);
 						})
 						.attr("r", function(d) {
+							if(isNaN(d[Object.keys(d)[0]][years[1]]['population'])){
+								return rScale(d[Object.keys(d)[0]][years[0]]['population']);
+							}
 							return rScale(d[Object.keys(d)[0]][years[1]]['population']);
 						})
 						.style("visibility",function(d){
-							if(isNaN(d[Object.keys(d)[0]][years[1]]['pib']) || isNaN(d[Object.keys(d)[0]][years[1]]['salary']) || isNaN(d[Object.keys(d)[0]][years[1]]['population']))
+							var a = d3.select(this);
+							if(isNaN(a.attr("cx")) || isNaN(a.attr("cy")) || isNaN(a.attr("r"))){
 								return "hidden";
+							}
 							else return "visible";
 						})
 						.duration(2000)
@@ -293,17 +304,28 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 						if(i_circle!=years.length){
 							d3.select(this).transition()
 								.attr("cx", function(d) {
+									if(isNaN(d[Object.keys(d)[0]][years[i_circle]]['salary'])){
+										return xScale(interpolateX(d,i_circle));
+									}
 									return xScale(d[Object.keys(d)[0]][years[i_circle]]['salary']);
 								})
 								.attr("cy", function(d) {
+									if(isNaN(d[Object.keys(d)[0]][years[i_circle]]['pib'])){
+										return yScale(interpolateY(d,i_circle));
+									}
 									return yScale(d[Object.keys(d)[0]][years[i_circle]]['pib']);
 								})
 								.attr("r", function(d) {
+									if(isNaN(d[Object.keys(d)[0]][years[i_circle]]['population'])){
+										return rScale(interpolateR(d,i_circle));
+									}
 									return rScale(d[Object.keys(d)[0]][years[i_circle]]['population']);
 								})
 								.style("visibility",function(d){
-									if(isNaN(d[Object.keys(d)[0]][years[i_circle]]['pib']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['salary']) || isNaN(d[Object.keys(d)[0]][years[i_circle]]['population']))
+									var a = d3.select(this);
+									if(isNaN(a.attr("cx")) || isNaN(a.attr("cy")) || isNaN(a.attr("r"))){
 										return "hidden";
+									}
 									else return "visible";
 								})
 								.duration(2000)
@@ -327,6 +349,27 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 							}
 						}
 					});
+				}
+				
+				function interpolateX(d, i_circle){
+					var x1 = d[Object.keys(d)[0]][years[i_circle-1]]['salary'];
+					var x2 = d[Object.keys(d)[0]][years[i_circle-2]]['salary'];
+					var diff = x1-x2;
+					return x1+diff;
+				}
+				
+				function interpolateY(d, i_circle){
+					var y1 = d[Object.keys(d)[0]][years[i_circle-1]]['pib'];
+					var y2 = d[Object.keys(d)[0]][years[i_circle-2]]['pib'];
+					var diff = y1-y2;
+					return y1+diff;
+				}
+				
+				function interpolateR(d, i_circle){
+					var r1 = d[Object.keys(d)[0]][years[i_circle-1]]['population'];
+					var r2 = d[Object.keys(d)[0]][years[i_circle-2]]['population'];
+					var diff = r1-r2;
+					return r1+diff;
 				}
 			}
 		};

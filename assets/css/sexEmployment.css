@@ -290,6 +290,8 @@ svg{
 
 .arc {
 	cursor:pointer;
+	stroke-width:1px;
+	stroke:white;
 }
 
 /*TOOLTIP*/

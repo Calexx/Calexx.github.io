@@ -104,5 +104,78 @@ angular.module('visualDataApp.services',[])
 			return dicc;
 		}
 	});
+	
+	/*.service ('eurostat',function($q){
+		var deferred = $q.defer();
+		
+		makeCorsRequest("http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..../",test);
+		
+		function xmlToJson(xml) {
+			// Create the return object
+			var obj = {};
+
+			if (xml.nodeType == 1) { // element
+				// do attributes
+				if (xml.attributes.length > 0) {
+				obj["@attributes"] = {};
+					for (var j = 0; j < xml.attributes.length; j++) {
+						var attribute = xml.attributes.item(j);
+						obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+					}
+				}
+			} else if (xml.nodeType == 3) { // text
+				obj = xml.nodeValue;
+			}
+			// do children
+			if (xml.hasChildNodes()) {
+				for(var i = 0; i < xml.childNodes.length; i++) {
+					var item = xml.childNodes.item(i);
+					var nodeName = item.nodeName;
+					if (typeof(obj[nodeName]) == "undefined") {
+						obj[nodeName] = xmlToJson(item);
+					} else {
+						if (typeof(obj[nodeName].push) == "undefined") {
+							var old = obj[nodeName];
+							obj[nodeName] = [];
+							obj[nodeName].push(old);
+						}
+						obj[nodeName].push(xmlToJson(item));
+					}
+				}
+			}
+			return obj;
+		};
+		
+		function test(){
+			var json = xmlToJson(this.responseXML);
+			console.log(json[Object.keys(json)[0]]["ns1:DataSet"]["Series"]);
+		}
+		
+		function makeCorsRequest(url, onLoadFunc) {
+	        var xhr = createCORSRequest(url);
+	        xhr.onload = onLoadFunc;
+	        xhr.onerror = function () {
+	            throw "error";
+	        };
+			xhr.setRequestHeader("Accept","application/vnd.sdmx.structurespecificdata+xml");
+	        xhr.send();
+	    }
+		
+		function createCORSRequest(url) {
+	        var method = 'GET';
+	        if (typeof XDomainRequest != "undefined") {
+	            // XDomainRequest for IE.
+	            var xhr = new XDomainRequest();
+	            xhr.open(method, url);
+	        } else {
+	            var xhr = new XMLHttpRequest();
+	            // XHR for Chrome/Firefox/Opera/Safari.
+	            xhr.open(method, url, true);
+	        }
+	        return xhr;
+	    }
+		
+		return deferred.promise;
+	});*/
 
 		

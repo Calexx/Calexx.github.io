@@ -51,6 +51,7 @@ body{
 	width:95%;
 	float:left;
 	padding:2%;
+	font-size:10px!important;
 }
 .panel{
 	border-radius: 8px;
@@ -283,6 +284,12 @@ svg{
 
 .area-path-pib{
 	fill: #DA6068;
+}
+
+/*SUNBURST*/
+
+.arc {
+	cursor:pointer;
 }
 
 /*TOOLTIP*/

@@ -1,7 +1,12 @@
 angular.module('visualDataApp.controllers',[])
 
 	// Controlador principal de la aplicación
-	.controller('mainCtrl',function($scope,loadJSON,diccionarioEuropa){
+	.controller('mainCtrl',function($scope,loadJSON,diccionarioEuropa/*,eurostat*/){
+		
+		/*eurostat.then(function(data) {
+			console.log(data);
+		})*/
+		
 		loadJSON.then(function(data) {  
 			//$scope.$apply(function(){
 				// Carga de datos

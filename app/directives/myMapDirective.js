@@ -117,11 +117,9 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 							}
 							
 							if(scope.$parent.reconstruccion == false){
-								console.log("entra a reconstruccion");
 								scope.$parent.reconstruccion = true;
 								$("#page-container").empty();
 								var template = "<div ng-include src="+'"'+"'"+"views/secondaryView.tpl.html"+"'"+'"'+"></div>";
-								console.log(template);
 								//var template = "<p> fdsda </p>";
 								var linkFn = $compile(template);
 								var content = linkFn(scope);
@@ -463,9 +461,27 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 					.text("Males");
 			}
 		};
+		
+		function postlink(scope,el,attr){
+			$('.tooltip').tooltipster({
+				arrow: false,
+				animation: 'grow',
+				delay: 100,
+				hideOnClick: true,
+				theme: 'tooltipster-custom',
+				trigger: 'click'
+			});
+		}
+			
 		return {
-			link: link,
 			restrict: 'AE',
+			compile: function compile(tElement, tAttributes, transcludeFn ) {
+				// Compile code goes here.
+				return {
+					pre: link,
+					post: postlink
+				};
+			},
 			scope: true
 		};
 	});

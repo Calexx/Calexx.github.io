@@ -11,6 +11,19 @@ body{
 	background-color: #2D353C!important;
 }
 
+.my-explanation{
+	width:6%;
+	height:20px;
+	border:0px!important;
+	cursor:pointer;
+	background-image: url(../img/help-icon.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center; 
+	background-color: transparent!important;
+	opacity:1;
+}
+
 .myButton {
 	width:3%;
 	height:20px;
@@ -79,7 +92,7 @@ body{
 
 .year-title{
 	color: white;
-	padding-left: 50px;
+	padding-left: 5%;
 	margin:0px;
 	height: 10%;
 	text-align: center;
@@ -296,7 +309,7 @@ svg{
 
 /*TOOLTIP*/
 
-.tooltip{ 
+.tooltip-data{ 
 	background-color: rgba(255,255,255,1.0);
 	padding: 1px;
 	border: 1px solid rgba(0,0,0,.2);
@@ -307,19 +320,19 @@ svg{
 	
 	opacity:1;
 }
-.tooltip td{
+.tooltip-data td{
 	margin: auto;
 	padding: 5px 14px;
 	text-align: center;
 }
 
-.tooltip p{
+.tooltip-data p{
 	margin: 0;
 	padding: 5px 14px;
 	text-align: center;
 }
 
-.tooltip h3{
+.tooltip-data h3{
 	margin: 0;
 	padding: 4px 14px;
 	line-height: 18px;

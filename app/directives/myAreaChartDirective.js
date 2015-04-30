@@ -108,8 +108,11 @@ angular.module('visualDataApp.directives.myAreaChartDirective',[])
 					.attr("class", "area-path-pib")
 					.attr("d", areaPib)
 					.on("mouseover",function(d){
-						d3.selectAll('.tooltip').remove();
-						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+						d3.selectAll('#tooltip-area').remove();
+						tooltip = d3.select(el[0].children[1])
+							.append("div")
+							.attr("class", "tooltip-data")
+							.attr("id", "tooltip-area");
 						var cr = d3.select(this);
 						cr
 							.style("opacity",0.5);
@@ -157,8 +160,11 @@ angular.module('visualDataApp.directives.myAreaChartDirective',[])
 					.attr("class", "area-path-expenditure")
 					.attr("d", areaExpenditure)
 					.on("mouseover",function(d){
-						d3.selectAll('.tooltip').remove();
-						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+						d3.selectAll('#tooltip-area').remove();
+						tooltip = d3.select(el[0].children[1])
+							.append("div")
+							.attr("class", "tooltip-data")
+							.attr("id", "tooltip-area");
 						var cr = d3.select(this);
 						cr
 							.style("opacity",0.5);

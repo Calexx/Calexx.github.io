@@ -203,8 +203,11 @@ angular.module('visualDataApp.directives.myLineBarChartDirective',[])
 						var cr = d3.select(this);
 						cr
 							.style("opacity",0.5);
-						d3.selectAll('.tooltip').remove();
-						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+						d3.selectAll('#tooltip-line-bar').remove();
+						tooltip = d3.select(el[0].children[1])
+							.append("div")
+							.attr("class", "tooltip-data")
+							.attr("id","tooltip-line-bar");
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
 							.style('left', (absoluteMousePos[0]+padding*3)+'px')

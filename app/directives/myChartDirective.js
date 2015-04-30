@@ -130,8 +130,11 @@ angular.module('visualDataApp.directives.myChartDirective',[])
 					.on ("mouseover",function(d){
 						var cr = d3.select(this);
 						cr.attr("r",5);
-						d3.selectAll('.tooltip').remove();
-						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+						d3.selectAll('#tooltip-chart').remove();
+						tooltip = d3.select(el[0].children[1])
+							.append("div")
+							.attr("class", "tooltip-data")
+							.attr("id","tooltip-chart");
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
 							.style('left', (absoluteMousePos[0])+'px')

@@ -110,14 +110,28 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 					.enter().append("path")
 					.attr("d", arc)
 					.attr("class", "arc")
-					.style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+					.style("fill", function(d) { 
+						if (d.name == "Total"){
+							return "#BAB5D8";
+						}	
+						if (d.name == "Males"){
+							return "#3F7F93";
+						}
+						if (d.name == "Females"){
+							return "#DA6068";
+						}
+						return color((d.children ? d : d.parent).name); 
+					})
 					.on("click", click)
 					.on("mouseover",function(d){
 						var cr = d3.select(this);
 						cr
 							.style("opacity",0.5);
-						d3.selectAll('.tooltip-pie').remove();
-						tooltip = d3.select(el[0].children[1]).append("div").attr("class", "tooltip");
+						d3.selectAll('#tooltip-sunburst').remove();
+						tooltip = d3.select(el[0].children[1])
+							.append("div")
+							.attr("class", "tooltip-data")
+							.attr("id","tooltip-sunburst");
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
 							.style('left', (absoluteMousePos[0]+padding*10)+'px')

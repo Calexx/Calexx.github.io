@@ -105,6 +105,10 @@ angular.module('visualDataApp.services',[])
 		}
 	});
 	
+	/*.service('customColors',function(){
+		"hombres" --> "mujeres";	
+	}*/
+	
 	/*.service ('eurostat',function($q){
 		var deferred = $q.defer();
 		

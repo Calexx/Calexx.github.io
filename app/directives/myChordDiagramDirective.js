@@ -37,12 +37,10 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 				for (var i=0;i<sexos.length;i++){
 					var s = [];
 					for (sexo in sexos){
-						for (var j=0;j<sexos.length;j++){
-							s.push(0);
-						};
-						for (activity in activities){
-							s.push(parseFloat(datos[scope.$parent.pais][sexos[sexo]][scope.actual][scope.$parent.education][activities[activity]][scope.value]["Value"].replace(/,/g,'')));
-						}
+						s.push(0);
+					}
+					for (activity in activities){
+						s.push(parseFloat(datos[scope.$parent.pais][sexos[i]][scope.actual][scope.$parent.education][activities[activity]][scope.value]["Value"].replace(/,/g,'')));
 					}
 					namesByIndex[index] = sexos[i];
 					index++;
@@ -51,13 +49,11 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 				
 				for (var i=0;i<activities.length;i++){ 
 					var s = [];
+					for (sexo in sexos){
+						s.push(parseFloat(datos[scope.$parent.pais][sexos[sexo]][scope.actual][scope.$parent.education][activities[i]][scope.value]["Value"].replace(/,/g,'')));
+					}
 					for (activity in activities){
-						for (sexo in sexos){
-							s.push(parseFloat(datos[scope.$parent.pais][sexos[sexo]][scope.actual][scope.$parent.education][activities[activity]][scope.value]["Value"].replace(/,/g,'')));
-						}
-						for (var j=0;j<activities.length;j++){
-							s.push(0);
-						}
+						s.push(0);
 					}
 					namesByIndex[index] = activities[i];
 					index++;
@@ -76,9 +72,9 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 					.outerRadius(outerRadius);
 					
 				var layout = d3.layout.chord()
-					.padding(.04)
+					.padding(.02)
 					.sortSubgroups(d3.descending)
-					.sortChords(d3.descending);
+					.sortGroups(d3.descending);
 					
 				var path = d3.svg.chord()
 					.radius(innerRadius);
@@ -172,6 +168,20 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 					});
 				
 				var groupText = group.append("text")
+					.filter(function(d){
+						if(namesByIndex[d.index]==="Males" || namesByIndex[d.index]==="Females"){
+							return true;
+						}
+						else{
+							var val = parseFloat(datos[scope.$parent.pais]["Total"][scope.actual][scope.$parent.education][namesByIndex[d.index]][scope.value]["Value"].replace(/,/g,''));		
+
+							if(val>20000){
+								console.log(val, namesByIndex[d.index]);
+								return true;
+							}
+						}
+						
+					})
 					.attr("x", 6)
 					.attr("dy", 15);
 				

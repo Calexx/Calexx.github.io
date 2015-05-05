@@ -105,8 +105,6 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 				
 				root["children"] = sxs;
 				
-				console.log(root);
-				
 				var tooltip;
 				
 				var path = svg.datum(root).selectAll("path")

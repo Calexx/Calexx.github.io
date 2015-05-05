@@ -109,7 +109,7 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 					.data(partition.nodes(root))
 					.enter().append("path")
 					.attr("d", arc)
-					.attr("class", "arc")
+					.attr("class", "arc-sunburst")
 					.style("fill", function(d) { 
 						if (d.name == "Total"){
 							return "#BAB5D8";
@@ -134,7 +134,7 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 							.attr("id","tooltip-sunburst");
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
-							.style('left', (absoluteMousePos[0]+padding*10)+'px')
+							.style('left', (absoluteMousePos[0]-padding*10)+'px')
 							.style('top', (absoluteMousePos[1]+padding*10)+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);

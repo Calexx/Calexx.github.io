@@ -324,7 +324,7 @@ svg{
 	font-size: 13px;
 	text-align: center;
 	
-	opacity:1;
+	opacity:0.8;
 }
 .tooltip-data td{
 	margin: auto;

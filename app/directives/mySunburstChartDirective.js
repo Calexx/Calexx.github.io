@@ -91,7 +91,9 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 						
 						second["name"] = activities[activity];
 						second["children"] = educs;
-						
+						second["children"] = second["children"].filter(function(e){
+							return (!isNaN(e.size));
+						});
 						acts.push(second);
 					}
 					
@@ -103,10 +105,12 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 				
 				root["children"] = sxs;
 				
+				console.log(root);
+				
 				var tooltip;
 				
-				var path = svg.selectAll("path")
-					.data(partition.nodes(root))
+				var path = svg.datum(root).selectAll("path")
+					.data(partition.nodes)
 					.enter().append("path")
 					.attr("d", arc)
 					.attr("class", "arc-sunburst")

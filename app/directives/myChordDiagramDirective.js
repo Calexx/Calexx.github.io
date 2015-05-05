@@ -78,7 +78,7 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 				var layout = d3.layout.chord()
 					.padding(.04)
 					.sortSubgroups(d3.descending)
-					.sortChords(d3.ascending);
+					.sortChords(d3.descending);
 					
 				var path = d3.svg.chord()
 					.radius(innerRadius);

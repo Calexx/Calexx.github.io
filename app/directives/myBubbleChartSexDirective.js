@@ -143,14 +143,20 @@ angular.module('visualDataApp.directives.myBubbleChartSexDirective',[])
 				
 				for (pais in dic){
 					for (var j=0;j<years.length;j++){
+						var se = mappingSalary(mapEducation);
 						pobValues.push(parseFloat(population[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
-						salaryValues.push(parseFloat(salaryTotal[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
+						if(mapEducation==-1){
+							salaryValues.push(parseFloat(salaryTotal[pais]["Total"][years[j]][scope.value]["Value"].replace(/,/g,'')));
+						}
+						else{
+							salaryValues.push(parseFloat(salary[pais]["Total"][years[j]][se][scope.value]["Value"].replace(/,/g,'')));
+						}
 						values.push(parseFloat(pib[pais][Object.keys(pib[pais])[0]][years[j]][scope.value]["Value"].replace(/,/g,'')));
 					}
 				}
 				
 				var xScale = d3.scale.linear()
-					.domain([0, d3.max(salaryValues)+d3.min(salaryValues)])
+					.domain([0, d3.max(salaryValues)])
 					.range([padding*2.3, w - padding/2]);
 				var yScale = d3.scale.linear()
 					.domain([0, d3.max(values)])

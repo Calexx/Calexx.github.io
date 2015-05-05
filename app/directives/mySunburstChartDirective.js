@@ -134,7 +134,7 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 							.attr("id","tooltip-sunburst");
 						var absoluteMousePos = d3.mouse(this);
 						tooltip
-							.style('left', (absoluteMousePos[0]-padding*10)+'px')
+							.style('left', (absoluteMousePos[0]+padding*10)+'px')
 							.style('top', (absoluteMousePos[1]+padding*10)+'px')
 							.style('position', 'absolute') 
 							.style('z-index', 1001);

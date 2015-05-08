@@ -22,7 +22,7 @@ angular.module('visualDataApp.directives.myAreaChartDirective',[])
 				d3.select(el[0]).selectAll("svg").remove();
 				
 				var w = el.width()-el.width()/10,
-					h = el.width()-el.width()/1.5;
+					h = el.width()-el.width()/1.5 + 12;
 					
 				var padding = 20;
 				var formatBigNumbers = d3.format(".1s");

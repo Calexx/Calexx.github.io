@@ -28,7 +28,7 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 				d3.select(el[0]).selectAll("svg").remove();
 					
 				var width = el.width()-el.width()/10,
-					height = el.width()-el.width()/6.5,
+					height = el.width()-el.width()/6.5 + 12,
 					radius = Math.min(width, height) / 2;
 					
 				var padding = 30;
@@ -49,8 +49,16 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 					.attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
 
 				var partition = d3.layout.partition()
-					.value(function(d) { return d.size; });
-
+					.value(function(d) { return d.size; })
+					.sort (function(a,b){
+						if(a.name == "Males" || a.name=="Females"){
+							return null;
+						}
+						else {
+							return d3.descending(a.value, b.value);
+						}
+					});
+				
 				var arc = d3.svg.arc()
 					.startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x))); })
 					.endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))); })
@@ -64,12 +72,13 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 				var sexos = scope.$parent.sexos.slice(1);
 				var activities = scope.$parent.activities.slice(1);
 				var educations = scope.$parent.educations.slice(1);
+				educations = educations.slice(0,educations.length-1);
 				
 				root["name"] = scope.$parent.sexos[0];
 				
 				var sxs = [];
 				
-				for (sexo in sexos) {
+				for (education in educations){
 					var first = {};
 					var acts = [];
 					
@@ -77,12 +86,12 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 						var second = {};
 						var educs = []
 						
-						for (education in educations){
+						for (sexo in sexos){
 							var last = {};
 							var size = parseFloat(datos[scope.$parent.pais][sexos[sexo]][scope.actual][educations[education]][activities[activity]][scope.value]["Value"].replace(/,/g,''));
 							
 							/* Educations */
-							last["name"] = educations[education];
+							last["name"] = sexos[sexo];
 							last["size"] = size;
 							
 							/* children */
@@ -97,7 +106,7 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 						acts.push(second);
 					}
 					
-					first["name"] = sexos[sexo];
+					first["name"] = educations[education];;
 					first["children"] = acts;
 					
 					sxs.push(first);
@@ -112,10 +121,7 @@ angular.module('visualDataApp.directives.mySunburstChartDirective',[])
 					.enter().append("path")
 					.attr("d", arc)
 					.attr("class", "arc-sunburst")
-					.style("fill", function(d) { 
-						if (d.name == "Total"){
-							return "#BAB5D8";
-						}	
+					.style("fill", function(d) { 	
 						if (d.name == "Males"){
 							return "#3F7F93";
 						}

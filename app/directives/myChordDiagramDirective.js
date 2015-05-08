@@ -12,7 +12,7 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 					scope.inicial = scope.years[0];
 					scope.actual = scope.inicial;
 					
-					scope.$parent.$watchGroup(['pais','education'], function(){
+					scope.$parent.$watch('pais', function(){
 						drawChart(scope,el,scope.$parent.employment);
 					});
 					
@@ -40,17 +40,24 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 						s.push(0);
 					}
 					for (activity in activities){
-						s.push(parseFloat(datos[scope.$parent.pais][sexos[i]][scope.actual][scope.$parent.education][activities[activity]][scope.value]["Value"].replace(/,/g,'')));
+						if(!isNaN(parseFloat(datos[scope.$parent.pais][sexos[i]][scope.actual][scope.$parent.education][activities[activity]][scope.value]["Value"].replace(/,/g,'')))){
+							s.push(parseFloat(datos[scope.$parent.pais][sexos[i]][scope.actual][scope.$parent.education][activities[activity]][scope.value]["Value"].replace(/,/g,'')))
+						}
+						else s.push(0);
 					}
 					namesByIndex[index] = sexos[i];
 					index++;
 					array.push(s);
+					console.log(s);
 				}
 				
 				for (var i=0;i<activities.length;i++){ 
 					var s = [];
 					for (sexo in sexos){
-						s.push(parseFloat(datos[scope.$parent.pais][sexos[sexo]][scope.actual][scope.$parent.education][activities[i]][scope.value]["Value"].replace(/,/g,'')));
+						if(!isNaN(parseFloat(datos[scope.$parent.pais][sexos[sexo]][scope.actual][scope.$parent.education][activities[i]][scope.value]["Value"].replace(/,/g,'')))){
+							s.push(parseFloat(datos[scope.$parent.pais][sexos[sexo]][scope.actual][scope.$parent.education][activities[i]][scope.value]["Value"].replace(/,/g,'')));
+						}
+						else s.push(0);
 					}
 					for (activity in activities){
 						s.push(0);
@@ -58,6 +65,16 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 					namesByIndex[index] = activities[i];
 					index++;
 					array.push(s);
+				}
+				
+				console.log(array);
+				
+				var maximum = 0;
+				
+				for (fila in array){
+					if(d3.max(array[fila])>maximum){
+						maximum = d3.max(array[fila]);
+					}
 				}
 				
 				var w = el.width()-el.width()/10,
@@ -151,11 +168,13 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 						tooltip.remove();
 					};
 				}
-					
+				
 				var fill = d3.scale.category20c();
 				
 				var groupPath = group.append("path")
-					.attr("id", function(d, i) { return "group" + i; })
+					.attr("id", function(d, i) { 
+						return "group" + namesByIndex[d.index]; 
+					})
 					.attr("d", arc)
 					.style("fill", function(d, i) { 
 						if(namesByIndex[d.index] == "Females"){
@@ -175,8 +194,7 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 						else{
 							var val = parseFloat(datos[scope.$parent.pais]["Total"][scope.actual][scope.$parent.education][namesByIndex[d.index]][scope.value]["Value"].replace(/,/g,''));		
 
-							if(val>20000){
-								console.log(val, namesByIndex[d.index]);
+							if(val>maximum/4){
 								return true;
 							}
 						}
@@ -186,18 +204,18 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 					.attr("dy", 15);
 				
 				groupText.append("textPath")
-					.attr("xlink:href", function(d, i) { return "#group" + i; })
+					.attr("xlink:href", function(d, i) { return "#group" + namesByIndex[d.index]; })
 					.style("font-size", function(d, i){
-						if(namesByIndex[i] == "Females"){
+						if(namesByIndex[d.index] == "Females"){
 							return "15px";
 						}
-						if(namesByIndex[i] == "Males"){
+						if(namesByIndex[d.index] == "Males"){
 							return "15px";
 						}
 						return "9px";
 					})
 					.text(function(d, i) { 
-						return namesByIndex[i].split(' ')[0]; 
+						return namesByIndex[d.index].split(' ')[0]; 
 					});
 				
 				var chord = svg.selectAll(".chord")

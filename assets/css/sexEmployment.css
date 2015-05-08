@@ -55,16 +55,16 @@ body{
 	width:95%;
 	float:left;
 	padding:5px;
-	font-size:16px;
+	font-size:12px;
 }
 .panel-title{
-	font-size: 10px;
+	font-size: 12px;
 }
 .transitioning-title{
 	width:95%;
 	float:left;
 	padding:2%;
-	font-size:10px!important;
+	font-size:12px!important;
 }
 .panel{
 	border-radius: 8px;

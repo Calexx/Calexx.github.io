@@ -42,7 +42,7 @@ angular.module('visualDataApp.directives.myBubbleChartReferenceDirective',[])
 				d3.select(el[0]).selectAll("svg").remove();
 				
 				var w = el.width()-el.width()/10,
-					h = el.width()-el.width()/3.5;
+					h = el.width()-el.width()/6.5;
 					
 				var padding = el.width()/10;
 				

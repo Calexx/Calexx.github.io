@@ -23,8 +23,8 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 				d3.select(el[0]).selectAll("svg").remove();
 				
 				var nElem = 0;
-				var width = el.width()-50,
-					height = el.width()-140;
+				var width = el.width()-el.width()/10,
+					height = el.width()-el.width()/5;
 				var padding = 20;
 				var i_pais,j_pais;		
 
@@ -384,7 +384,7 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 					.attr("y",h_leyenda/2)
 					.attr("class","desc_leyenda")
 					.style("font-size",function(d){
-						return h_leyenda/6 + "px";
+						return h_leyenda/3 + "px";
 					})
 					.text(">4%");
 				svg_leyenda
@@ -393,7 +393,7 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 					.attr("y",h_leyenda/2)
 					.attr("class","desc_leyenda")
 					.style("font-size",function(d){
-						return h_leyenda/6 + "px";
+						return h_leyenda/3 + "px";
 					})
 					.text(">2%");
 				svg_leyenda
@@ -402,7 +402,7 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 					.attr("y",h_leyenda/2)
 					.attr("class","desc_leyenda")
 					.style("font-size",function(d){
-						return h_leyenda/6 + "px";
+						return h_leyenda/3 + "px";
 					})
 					.text(">0%");
 				svg_leyenda
@@ -411,7 +411,7 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 					.attr("y",h_leyenda/2)
 					.attr("class","desc_leyenda")
 					.style("font-size",function(d){
-						return h_leyenda/6 + "px";
+						return h_leyenda/3 + "px";
 					})
 					.text("0%");
 				svg_leyenda
@@ -420,7 +420,7 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 					.attr("y",h_leyenda/2)
 					.attr("class","desc_leyenda")
 					.style("font-size",function(d){
-						return h_leyenda/6 + "px";
+						return h_leyenda/3 + "px";
 					})
 					.text(">0%");
 				svg_leyenda
@@ -429,7 +429,7 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 					.attr("y",h_leyenda/2)
 					.attr("class","desc_leyenda")
 					.style("font-size",function(d){
-						return h_leyenda/6 + "px";
+						return h_leyenda/3 + "px";
 					})
 					.text(">2%");
 				svg_leyenda
@@ -438,7 +438,7 @@ angular.module('visualDataApp.directives.myMapDirective',[])
 					.attr("y",h_leyenda/2)
 					.attr("class","desc_leyenda")
 					.style("font-size",function(d){
-						return h_leyenda/6 + "px";
+						return h_leyenda/3 + "px";
 					})
 					.text(">4%");
 				svg_leyenda

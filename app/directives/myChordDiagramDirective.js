@@ -12,7 +12,7 @@ angular.module('visualDataApp.directives.myChordDiagramDirective',[])
 					scope.inicial = scope.years[0];
 					scope.actual = scope.inicial;
 					
-					scope.$parent.$watch('pais', function(){
+					scope.$parent.$watchGroup(['pais','education'], function(){
 						drawChart(scope,el,scope.$parent.employment);
 					});
 					
